@@ -1,0 +1,10 @@
+﻿  stdafx.c
+  Enemy.c
+  Level1.c
+  Wall.c
+  Main.c
+  Player.c
+  Generating Code...
+  DungeonTemplate.vcxproj -> C:\Users\shain.allen\Desktop\New folder\Debug\DungeonTemplate.exe
+  .\pdcurses\lib\pdcurses.dll
+  1 File(s) copied
