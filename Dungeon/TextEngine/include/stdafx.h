@@ -15,6 +15,10 @@ include files that are used frequently, but are changed infrequently.
 #pragma warning(push)
 #pragma warning(disable : 4001)
 
+#if (_MSC_VER >= 1915)
+#define no_init_all deprecated
+#endif
+
 #define _CRTDBG_MAP_ALLOC /* enable debug heap functions */
 #include <stdlib.h> /* NULL, malloc/free */
 #include <stdio.h> /* printf, fgets */
