@@ -398,3 +398,5 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/c++,visualstudio,visualstudiocode
 Dungeon/.vs/DungeonTemplate/v15/.suo
+Dungeon/.vs/DungeonTemplate/v16/.suo
+Dungeon/.vs/DungeonTemplate/v16/Browse.VC.db
