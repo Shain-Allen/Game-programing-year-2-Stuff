@@ -38,7 +38,7 @@
 static const float levelWidth = 49.0f;
 static const float levelHeight = 19.0f;
 
-static const Vector2D levelCenter = { 35.0f, 15.0f };
+static const Vector2D levelCenter = { 0.0f, 0.0f };
 
 //------------------------------------------------------------------------------
 // Private Function Declarations:
@@ -55,13 +55,13 @@ void Level2Init(void)
 {
 	// Create the player object
 	Vector2D startPosition;
-	startPosition.x = levelCenter.x - 10.0f;
-	startPosition.y = levelCenter.y - 5.0f;
+	startPosition.x = 7.0f;
+	startPosition.y = 3.0f;
 	GameObject* player = GameObjectCreate(startPosition.x, startPosition.y, 'o', COLOR_YELLOW, PlayerUpdate, NULL);
 
 	// Create other game objects
-	GameObject* door = GameObjectCreate(levelCenter.x + 5.0f, levelCenter.y + 5.0f, 'G', COLOR_GREEN, NULL, NULL);
-	GameObject* enemy = GameObjectCreate(levelCenter.x - 5.0f, levelCenter.y - 5.0f, 'X', COLOR_RED, EnemyUpdate, NULL);
+	GameObject* door = GameObjectCreate(41.0f, 17.0f, 'G', COLOR_GREEN, NULL, NULL);
+	GameObject* enemy = GameObjectCreate(25.0f, 13.0f, 'X', COLOR_RED, EnemyUpdate, NULL);
 	GameObject* walls[NUM_WALLS];
 	Level2CreateWalls(walls);
 
@@ -107,20 +107,22 @@ void Level2Shutdown(void)
 void Level2CreateWalls(GameObject** walls)
 {
 	// Top
-	walls[0] = WallCreate(levelCenter.x, levelCenter.y - levelHeight / 2.0f, levelWidth, 1.0f);
+	walls[0] = WallCreate(levelCenter.x + (levelWidth / 2), levelCenter.y + 1.0f, levelWidth, 1.0f);
 
 	// Bottom
-	walls[1] = WallCreate(levelCenter.x, levelCenter.y + levelHeight / 2.0f, levelWidth, 1.0f);
+	walls[1] = WallCreate(levelCenter.x + (levelWidth / 2), levelCenter.y + 19.0f, levelWidth, 1.0f);
 
 	// Left
-	walls[2] = WallCreate(levelCenter.x - levelWidth / 2.0f, levelCenter.y, 1.0f, levelHeight + 1.0f);
+	walls[2] = WallCreate(levelCenter.x + 1.0f, levelCenter.y + (levelHeight / 2), 1.0f, levelHeight + 1.0f);
 
 	// Right
-	walls[3] = WallCreate(levelCenter.x + levelWidth / 2.0f, levelCenter.y, 1.0f, levelHeight);
+	walls[3] = WallCreate(levelCenter.x + 50.0f, levelCenter.y + (levelHeight / 2), 1.0f, levelHeight);
 
-	walls[4] = WallCreate(levelCenter.x, levelCenter.y, 1.0f, 1.0f);
+	//cliff thingy
+	walls[4] = WallCreate(levelCenter.x + 10.0f, levelCenter.y + 5.0f, 18.0f, 2.0f);
 
-	walls[5] = WallCreate(levelCenter.x + 5, levelCenter.y, 1.0f, 1.0f);
+	//2x2 under cliff
+	walls[5] = WallCreate(levelCenter.x + 10, levelCenter.y + 12, 2.0f, 2.0f);
 
 	// Register objects with Object Manager to ensure they are updated
 	for (int i = 0; i < NUM_WALLS; ++i)

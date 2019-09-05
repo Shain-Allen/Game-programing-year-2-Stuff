@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 	UNREFERENCED_PARAMETER(argv);
 
 	// Add levels to the game
-	EngineAddLevel(Level1Init, Level1Update, Level1Shutdown);
+	//EngineAddLevel(Level1Init, Level1Update, Level1Shutdown);
 	EngineAddLevel(Level2Init, Level2Update, Level2Shutdown);
 
 	// Set starting level
