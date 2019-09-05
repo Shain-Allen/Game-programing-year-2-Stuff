@@ -397,3 +397,4 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/c++,visualstudio,visualstudiocode
+Dungeon/.vs/DungeonTemplate/v15/.suo
