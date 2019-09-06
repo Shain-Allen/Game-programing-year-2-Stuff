@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	Level1.h
+// File Name:	Level2.h
 // Author(s):	Shain Allen
 // Project:		Dungeon
 // Course:		VGP2

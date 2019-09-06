@@ -39,6 +39,9 @@
     <ClCompile Include="Source\Level2.c">
       <Filter>Game\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Level3.c">
+      <Filter>Game\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Wall.h">
@@ -69,6 +72,9 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Level2.h">
+      <Filter>Game\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Level3.h">
       <Filter>Game\Levels</Filter>
     </ClInclude>
   </ItemGroup>

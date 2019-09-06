@@ -33,7 +33,7 @@
 // Private Consts:
 //------------------------------------------------------------------------------
 
-#define NUM_WALLS 6
+#define NUM_WALLS 9
 
 static const float levelWidth = 49.0f;
 static const float levelHeight = 19.0f;
@@ -123,6 +123,15 @@ void Level2CreateWalls(GameObject** walls)
 
 	//2x2 under cliff
 	walls[5] = WallCreate(levelCenter.x + 10, levelCenter.y + 12, 2.0f, 2.0f);
+
+	//4X2 wall thingy
+	walls[6] = WallCreate(levelCenter.x + 24, levelCenter.y + 9, 3.0f, 4.0f);
+
+	//2x1
+	walls[7] = WallCreate(levelCenter.x + 39, levelCenter.y + 9, 2.0f, 1.0f);
+
+	//other 2x1
+	walls[8] = WallCreate(levelCenter.x + 32, levelCenter.y + 14, 2.0f, 1.0f);
 
 	// Register objects with Object Manager to ensure they are updated
 	for (int i = 0; i < NUM_WALLS; ++i)

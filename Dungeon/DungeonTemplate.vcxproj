@@ -22,6 +22,7 @@
     <ClCompile Include="Source\Enemy.c" />
     <ClCompile Include="Source\Level1.c" />
     <ClCompile Include="Source\Level2.c" />
+    <ClCompile Include="Source\Level3.c" />
     <ClCompile Include="Source\Wall.c" />
     <ClCompile Include="Source\Main.c" />
     <ClCompile Include="Source\Player.c" />
@@ -36,6 +37,7 @@
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\Level1.h" />
     <ClInclude Include="Source\Level2.h" />
+    <ClInclude Include="Source\Level3.h" />
     <ClInclude Include="Source\Wall.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="TextEngine\include\Engine.h" />
