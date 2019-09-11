@@ -9,12 +9,15 @@
 //
 //------------------------------------------------------------------------------
 
+#define MULTI_THREADED 0
+
 //------------------------------------------------------------------------------
 // Include Files:
 //------------------------------------------------------------------------------
 #include <iostream> // cout, endl
-#include <cstdlib> // atoi
-#include "PRNG.h" // srand, random
+#include <cstdlib>  // atoi
+#include <ctime>    // ???
+#include "PRNG.h"   // srand, random
 #include "Board.h"
 #include "TicTacToe.h"
 
@@ -41,7 +44,6 @@ void ExecuteTest(TestFunction test, int number);
 //------------------------------------------------------------------------------
 // Main Function:
 //------------------------------------------------------------------------------
-
 int main(int argc, char *argv[])
 {
 	// Choose all tests unless second argument is specified
@@ -57,7 +59,7 @@ int main(int argc, char *argv[])
 		TestClear,      // Test 4
 		TestGetState,   // Test 5
 		TestRandom,     // Test 6
-		TestStress,     // Test 7
+		//TestStress,     // Test 7
 	};
 
 	// Seed random number generator - same result every time
@@ -90,15 +92,15 @@ void ExecuteTest(TestFunction test, int number)
 bool TestCreateFree()
 {
 	std::cout << "Testing CS170::BoardCreate..." << std::endl;
-	CS170::Board* theBoard = NULL;
+	CS170::Board* theBoard = nullptr;
 	theBoard = CS170::BoardCreate();
-	if (theBoard == NULL)
+	if (theBoard == nullptr)
 		return false;
 	std::cout << "Success." << std::endl;
 
 	std::cout << "Testing CS170::BoardFree..." << std::endl;
-	CS170::BoardFree(&theBoard);
-	if (theBoard != NULL)
+	CS170::BoardFree(theBoard);
+	if (theBoard != nullptr)
 		return false;
 
 	std::cout << "Success." << std::endl;
@@ -110,7 +112,7 @@ bool TestDisplay()
 	std::cout << "Testing CS170::BoardDisplay with empty board." << std::endl;
 	CS170::Board* theBoard = CS170::BoardCreate();
 	CS170::BoardDisplay(*theBoard);
-	CS170::BoardFree(&theBoard);
+	CS170::BoardFree(theBoard);
 	return true;
 }
 
@@ -127,7 +129,7 @@ bool TestPlaceToken()
 		result = CS170::BoardPlaceToken(*theBoard, i / CS170::boardLength, i % CS170::boardLength, (CS170::TileState)(i % 2 + 1));
 		if (result != CS170::prACCEPTED)
 		{
-			CS170::BoardFree(&theBoard);
+			CS170::BoardFree(theBoard);
 			return false;
 		}
 	}
@@ -139,25 +141,25 @@ bool TestPlaceToken()
 	result = CS170::BoardPlaceToken(*theBoard, 3, 0, CS170::tsPLAYER_ONE);
 	if (result != CS170::prREJECTED_OUTOFBOUNDS)
 	{
-		CS170::BoardFree(&theBoard);
+		CS170::BoardFree(theBoard);
 		return false;
 	}
 	result = CS170::BoardPlaceToken(*theBoard, 0, 4, CS170::tsPLAYER_ONE);
 	if (result != CS170::prREJECTED_OUTOFBOUNDS)
 	{
-		CS170::BoardFree(&theBoard);
+		CS170::BoardFree(theBoard);
 		return false;
 	}
 	result = CS170::BoardPlaceToken(*theBoard, 5, 5, CS170::tsPLAYER_TWO);
 	if (result != CS170::prREJECTED_OUTOFBOUNDS)
 	{
-		CS170::BoardFree(&theBoard);
+		CS170::BoardFree(theBoard);
 		return false;
 	}
 	result = CS170::BoardPlaceToken(*theBoard, (unsigned)-1, (unsigned)-1, CS170::tsPLAYER_TWO);
 	if (result != CS170::prREJECTED_OUTOFBOUNDS)
 	{
-		CS170::BoardFree(&theBoard);
+		CS170::BoardFree(theBoard);
 		return false;
 	}
 
@@ -171,7 +173,7 @@ bool TestPlaceToken()
 		result = CS170::BoardPlaceToken(*theBoard, i / CS170::boardLength, i % CS170::boardLength, (CS170::TileState)((i + 1) % 2 + 1));
 		if (result != CS170::prREJECTED_OCCUPIED)
 		{
-			CS170::BoardFree(&theBoard);
+			CS170::BoardFree(theBoard);
 			return false;
 		}
 	}
@@ -180,7 +182,7 @@ bool TestPlaceToken()
 	CS170::BoardDisplay(*theBoard);
 
 	// Free memory
-	CS170::BoardFree(&theBoard);
+	CS170::BoardFree(theBoard);
 	return true;
 }
 
@@ -197,12 +199,12 @@ bool TestClear()
 	CS170::BoardDisplay(*theBoard);
 
 	// Clear the board.
-	BoardClear(*theBoard);
+	BoardReset(*theBoard);
 	std::cout << "Board after BoardClear: " << std::endl;
 	CS170::BoardDisplay(*theBoard);
 
 	// Free the board.
-	CS170::BoardFree(&theBoard);
+	CS170::BoardFree(theBoard);
 	return true;
 }
 
@@ -222,7 +224,7 @@ bool TestGetStatePlayerWin(CS170::Board& theBoard, CS170::TileState player)
 		state = CS170::BoardGetState(theBoard);
 		if (state != CS170::bsWIN_ONE + player - 1)
 			return false;
-		BoardClear(theBoard);
+		BoardReset(theBoard);
 		std::cout << "Player " << player << " wins." << std::endl;
 	}
 
@@ -236,7 +238,7 @@ bool TestGetStatePlayerWin(CS170::Board& theBoard, CS170::TileState player)
 		state = CS170::BoardGetState(theBoard);
 		if (state != CS170::bsWIN_ONE + player - 1)
 			return false;
-		BoardClear(theBoard);
+		BoardReset(theBoard);
 		std::cout << "Player " << player << " wins." << std::endl;
 	}
 
@@ -249,7 +251,7 @@ bool TestGetStatePlayerWin(CS170::Board& theBoard, CS170::TileState player)
 	state = CS170::BoardGetState(theBoard);
 	if (state != CS170::bsWIN_ONE + player - 1)
 		return false;
-	BoardClear(theBoard);
+	BoardReset(theBoard);
 	std::cout << "Player " << player << " wins." << std::endl;
 
 	for (unsigned i = 0; i < CS170::boardLength; ++i)
@@ -258,7 +260,7 @@ bool TestGetStatePlayerWin(CS170::Board& theBoard, CS170::TileState player)
 	state = CS170::BoardGetState(theBoard);
 	if (state != CS170::bsWIN_ONE + player - 1)
 		return false;
-	BoardClear(theBoard);
+	BoardReset(theBoard);
 	std::cout << "Player " << player << " wins." << std::endl;
 	std::cout << "Success!" << std::endl << std::endl;
 
@@ -278,7 +280,7 @@ bool TestGetState()
 	state = CS170::BoardGetState(*theBoard);
 	if (state != CS170::bsOPEN)
 	{
-		CS170::BoardFree(&theBoard);
+		CS170::BoardFree(theBoard);
 		return false;
 	}
 	std::cout << "Board is open. Success!" << std::endl << std::endl;
@@ -291,17 +293,17 @@ bool TestGetState()
 	state = CS170::BoardGetState(*theBoard);
 	if (state != CS170::bsOPEN)
 	{
-		CS170::BoardFree(&theBoard);
+		CS170::BoardFree(theBoard);
 		return false;
 	}
-	BoardClear(*theBoard);
+	BoardReset(*theBoard);
 	std::cout << "Board is open. Success!" << std::endl << std::endl;
 
 	// Test wins
 	if (!TestGetStatePlayerWin(*theBoard, CS170::tsPLAYER_ONE)
 		|| !TestGetStatePlayerWin(*theBoard, CS170::tsPLAYER_TWO))
 	{
-		CS170::BoardFree(&theBoard);
+		CS170::BoardFree(theBoard);
 		return false;
 	}
 
@@ -321,18 +323,19 @@ bool TestGetState()
 	state = CS170::BoardGetState(*theBoard);
 	if (state != CS170::bsTIE)
 	{
-		CS170::BoardFree(&theBoard);
+		CS170::BoardFree(theBoard);
 		return false;
 	}
 	std::cout << "Tie game. Success!" << std::endl << std::endl;
 
-	CS170::BoardFree(&theBoard);
+	CS170::BoardFree(theBoard);
 	return true;
 }
 
 // Helper function for random test
 enum OutputLevel
 {
+	olNONE,
 	olMINIMAL,
 	olNORMAL,
 	olVERBOSE
@@ -374,16 +377,18 @@ void TestRandomHelper(OutputLevel level = olMINIMAL)
 		CS170::BoardDisplay(*theBoard);
 
 	// Always print out end state
-	if (state == CS170::bsWIN_ONE)
-		std::cout << "Player 1 wins.";
-	else if (state == CS170::bsWIN_TWO)
-		std::cout << "Player 2 wins.";
-	else
-		std::cout << "Tie.";
-	std::cout << std::endl;
+	if (level != olNONE)
+	{
+		if (state == CS170::bsWIN_ONE)
+			std::cout << "Player 1 wins." << std::endl;
+		else if (state == CS170::bsWIN_TWO)
+			std::cout << "Player 2 wins." << std::endl;
+		else
+			std::cout << "Tie." << std::endl;
+	}
 
 	// Deallocate memory
-	CS170::BoardFree(&theBoard);
+	CS170::BoardFree(theBoard);
 }
 
 bool TestRandom()
@@ -395,9 +400,20 @@ bool TestRandom()
 
 bool TestStress()
 {
-	const int numRandomTests = 1000;
+	// For performance measurements
+	time_t startTime = time(nullptr);
+
+	const int numRandomTests = 10000;
 	std::cout << "Testing random placement for " << numRandomTests << " games." << std::endl;
+
 	for (unsigned i = 0; i < numRandomTests; ++i)
-		TestRandomHelper(olMINIMAL);
+		TestRandomHelper(olNONE);
+
+	// Determine how long tests took
+	time_t finishTime = time(nullptr);
+	double difference = difftime(finishTime, startTime);
+
+	std::cout << "Stress test finished in " << difference << " seconds." << std::endl;
+
 	return true;
 }
