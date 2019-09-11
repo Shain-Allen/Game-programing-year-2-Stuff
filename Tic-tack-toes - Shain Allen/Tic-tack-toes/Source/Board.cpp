@@ -8,3 +8,90 @@
 // Copyright © 2019 DigiPen (USA) Corporation.
 //
 //------------------------------------------------------------------------------
+
+#include "Board.h"
+
+
+
+
+namespace CS170
+{
+	struct Board
+	{
+		TileState** data; // The 2D game board represented as an array.
+	};
+
+	const int boardwidth = 3;
+	const int boardhight = 3;
+
+	// Allocate memory for a tic-tac-toe board.
+		// Returns:
+		//   A pointer to the created board struct.
+	Board* BoardCreate()
+	{
+		//allocate board struct
+		Board* board = new Board;
+
+		//allocate array inside of the board
+		board->data = new TileState *[boardwidth];
+
+		//allocate the actual board
+		for (int r = 0; r < boardwidth; ++r)
+		{
+			board->data[r] = new TileState[boardhight];
+		}
+
+		//set all the spots on the board to emtpy 
+
+
+		//return board struct
+		return board;
+	}
+
+	// Free memory for the tic-tac-toe board.
+	// Params:
+	//   theBoard = A reference to the pointer to the board.
+	void BoardFree(Board*& theBoard)
+	{
+
+	}
+
+	// Display the contents of the board using the standard output stream.
+	// Params:
+	//   theBoard = A reference to the game board.
+	void BoardDisplay(const Board& board)
+	{
+
+	}
+
+	// Place a token on the board at a specific position.
+	// Params:
+	//   theBoard = A reference to the game board.
+	//   row = The row of the board on which to place the token.
+	//   column = The column of the board on which to place the token.
+	//   value = The value to place in the specified tile.
+	// Returns:
+	//   Whether the token was able to be placed.
+	PlaceResult BoardPlaceToken(Board& board, unsigned row, unsigned column, TileState value)
+	{
+
+	}
+
+	// Reset the board to an empty state.
+	// Params:
+	//   theBoard = A reference to the game board.
+	void BoardReset(Board& board)
+	{
+
+	}
+
+	// Get the current state of the board. (Is the game over?)
+	// Params:
+	//   theBoard = A reference to the game board.
+	// Returns:
+	//   The current state of the game - win, tie, or open (still going).
+	BoardState BoardGetState(const Board& board)
+	{
+
+	}
+}
