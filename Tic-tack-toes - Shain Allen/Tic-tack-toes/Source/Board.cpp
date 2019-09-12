@@ -10,6 +10,7 @@
 //------------------------------------------------------------------------------
 
 #include "Board.h"
+#include <iostream>
 
 
 
@@ -42,7 +43,13 @@ namespace CS170
 		}
 
 		//set all the spots on the board to emtpy 
-
+		for (int r = 0; r < boardwidth; r++)
+		{
+			for (int c = 0; c < boardhight; c++)
+			{
+				board->data[r][c] = tsEMPTY;
+			}
+		}
 
 		//return board struct
 		return board;
@@ -53,7 +60,15 @@ namespace CS170
 	//   theBoard = A reference to the pointer to the board.
 	void BoardFree(Board*& theBoard)
 	{
+		for (int r = 0; r < boardwidth; r++)
+		{
+			delete[] theBoard->data[r];
+			theBoard->data[r] = nullptr;
+		}
 
+		delete[] theBoard->data;
+		delete theBoard;
+		theBoard = nullptr;
 	}
 
 	// Display the contents of the board using the standard output stream.
@@ -61,6 +76,29 @@ namespace CS170
 	//   theBoard = A reference to the game board.
 	void BoardDisplay(const Board& board)
 	{
+		using std::cout;
+		using std::endl;
+
+		cout << "-------------" << endl;
+		for (int w = 0; w < boardwidth; w++)
+		{
+			for (int h = 0; h < boardhight; h++)
+			{
+				if (board.data[w][h] == tsEMPTY)
+				{
+					cout << "| " << "  ";
+				}
+				else if (board.data[w][h] == tsPLAYER_ONE)
+				{
+					cout << "| " << "X ";
+				}
+				else if (board.data[w][h] == tsPLAYER_TWO)
+				{
+					cout << "| " << "O ";
+				}
+			}
+			cout << "|" << endl << "-------------" << endl;
+		}
 
 	}
 
@@ -72,7 +110,7 @@ namespace CS170
 	//   value = The value to place in the specified tile.
 	// Returns:
 	//   Whether the token was able to be placed.
-	PlaceResult BoardPlaceToken(Board& board, unsigned row, unsigned column, TileState value)
+	/*PlaceResult BoardPlaceToken(Board& board, unsigned row, unsigned column, TileState value)
 	{
 
 	}
@@ -93,5 +131,5 @@ namespace CS170
 	BoardState BoardGetState(const Board& board)
 	{
 
-	}
+	}*/
 }

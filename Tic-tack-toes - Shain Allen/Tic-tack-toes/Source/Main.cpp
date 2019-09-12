@@ -55,10 +55,10 @@ int main(int argc, char *argv[])
 	TestFunction tests[] = {
 		TestCreateFree, // Test 1
 		TestDisplay,    // Test 2
-		TestPlaceToken, // Test 3
-		TestClear,      // Test 4
-		TestGetState,   // Test 5
-		TestRandom,     // Test 6
+		//TestPlaceToken, // Test 3
+		//TestClear,      // Test 4
+		//TestGetState,   // Test 5
+		//TestRandom,     // Test 6
 		//TestStress,     // Test 7
 	};
 
@@ -116,7 +116,7 @@ bool TestDisplay()
 	return true;
 }
 
-bool TestPlaceToken()
+/*bool TestPlaceToken()
 {
 	// Setup phase
 	CS170::Board* theBoard = CS170::BoardCreate();
@@ -414,6 +414,6 @@ bool TestStress()
 	double difference = difftime(finishTime, startTime);
 
 	std::cout << "Stress test finished in " << difference << " seconds." << std::endl;
-
+	
 	return true;
-}
+}*/
