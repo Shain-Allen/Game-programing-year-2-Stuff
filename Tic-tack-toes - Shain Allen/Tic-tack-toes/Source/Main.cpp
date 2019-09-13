@@ -186,7 +186,7 @@ bool TestPlaceToken()
 	return true;
 }
 
-/*bool TestClear()
+bool TestClear()
 {
 	// Allocate memory
 	CS170::Board* theBoard = CS170::BoardCreate();
@@ -209,7 +209,7 @@ bool TestPlaceToken()
 }
 
 // Helper for TestGetState
-bool TestGetStatePlayerWin(CS170::Board& theBoard, CS170::TileState player)
+/*bool TestGetStatePlayerWin(CS170::Board& theBoard, CS170::TileState player)
 {
 	CS170::BoardState state;
 

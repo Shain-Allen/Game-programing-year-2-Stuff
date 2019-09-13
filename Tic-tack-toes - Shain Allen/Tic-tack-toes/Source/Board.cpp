@@ -43,13 +43,7 @@ namespace CS170
 		}
 
 		//set all the spots on the board to emtpy 
-		for (int r = 0; r < boardwidth; r++)
-		{
-			for (int c = 0; c < boardhight; c++)
-			{
-				board->data[r][c] = tsEMPTY;
-			}
-		}
+		BoardReset(*board);
 
 		//return board struct
 		return board;
@@ -112,7 +106,7 @@ namespace CS170
 	//   Whether the token was able to be placed.
 	PlaceResult BoardPlaceToken(Board& board, unsigned row, unsigned column, TileState value)
 	{
-		if (row == boardwidth && column == boardhight)
+		if (row < boardwidth && column < boardhight)
 		{
 			if (board.data[row][column] == tsEMPTY)
 			{
@@ -142,9 +136,15 @@ namespace CS170
 	// Reset the board to an empty state.
 	// Params:
 	//   theBoard = A reference to the game board.
-	/*void BoardReset(Board& board)
+	void BoardReset(Board& board)
 	{
-
+		for (int r = 0; r < boardwidth; r++)
+		{
+			for (int c = 0; c < boardhight; c++)
+			{
+				board.data[r][c] = tsEMPTY;
+			}
+		}
 	}
 
 	// Get the current state of the board. (Is the game over?)
@@ -152,8 +152,14 @@ namespace CS170
 	//   theBoard = A reference to the game board.
 	// Returns:
 	//   The current state of the game - win, tie, or open (still going).
-	/*BoardState BoardGetState(const Board& board)
+	BoardState BoardGetState(const Board& board)
 	{
-
-	}*/
+		for (int w = 0; w < boardwidth; w++)
+		{
+			for (int h = 0; h < boardhight; h++)
+			{
+				
+			}
+		}
+	}
 }
