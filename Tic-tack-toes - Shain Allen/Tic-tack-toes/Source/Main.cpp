@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 	TestFunction tests[] = {
 		TestCreateFree, // Test 1
 		TestDisplay,    // Test 2
-		//TestPlaceToken, // Test 3
+		TestPlaceToken, // Test 3
 		//TestClear,      // Test 4
 		//TestGetState,   // Test 5
 		//TestRandom,     // Test 6
@@ -116,7 +116,7 @@ bool TestDisplay()
 	return true;
 }
 
-/*bool TestPlaceToken()
+bool TestPlaceToken()
 {
 	// Setup phase
 	CS170::Board* theBoard = CS170::BoardCreate();
@@ -186,7 +186,7 @@ bool TestDisplay()
 	return true;
 }
 
-bool TestClear()
+/*bool TestClear()
 {
 	// Allocate memory
 	CS170::Board* theBoard = CS170::BoardCreate();

@@ -110,15 +110,39 @@ namespace CS170
 	//   value = The value to place in the specified tile.
 	// Returns:
 	//   Whether the token was able to be placed.
-	/*PlaceResult BoardPlaceToken(Board& board, unsigned row, unsigned column, TileState value)
+	PlaceResult BoardPlaceToken(Board& board, unsigned row, unsigned column, TileState value)
 	{
-
+		if (row == boardwidth && column == boardhight)
+		{
+			if (board.data[row][column] == tsEMPTY)
+			{
+				if (value == tsPLAYER_ONE)
+				{
+					board.data[row][column] = tsPLAYER_ONE;
+					return prACCEPTED;
+				}
+				else
+				{
+					board.data[row][column] = tsPLAYER_TWO;
+					return prACCEPTED;
+				}
+			}
+			else if (board.data[row][column] == tsPLAYER_ONE || board.data[row][column] == tsPLAYER_TWO)
+			{
+				using std::cout;
+				return prREJECTED_OCCUPIED;
+			}
+		}
+		else
+		{
+			return prREJECTED_OUTOFBOUNDS;
+		}
 	}
 
 	// Reset the board to an empty state.
 	// Params:
 	//   theBoard = A reference to the game board.
-	void BoardReset(Board& board)
+	/*void BoardReset(Board& board)
 	{
 
 	}
@@ -128,7 +152,7 @@ namespace CS170
 	//   theBoard = A reference to the game board.
 	// Returns:
 	//   The current state of the game - win, tie, or open (still going).
-	BoardState BoardGetState(const Board& board)
+	/*BoardState BoardGetState(const Board& board)
 	{
 
 	}*/
