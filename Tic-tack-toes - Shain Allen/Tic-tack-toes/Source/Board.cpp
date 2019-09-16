@@ -158,8 +158,8 @@ namespace CS170
 		{
 			for (int h = 0; h < boardhight; h++)
 			{
-				//check that the left and right spots are the same as the current spot, then check the top and bottom slots then check the diagnols
-				if (board.data[w][h] == board.data[w - 1][h] && board.data[w][h] == board.data[w + 1][h] || board.data[w][h] == board.data[w][h + 1] && board.data[w][h] == board.data[w][h - 1] || board.data[w][h] == board.data[w + 1][h + 1] && board.data[w][h] == board.data[w - 1][h - 1] || board.data[w][h] == board.data[w - 1][h + 1] && board.data[w][h] == board.data[w + 1][h - 1])
+				//check that the left and right spots are the same as the current spot
+				if (board.data[w][h] == board.data[w - 1][h] && board.data[w][h] == board.data[w + 1][h])
 				{
 					if (board.data[w][h] == tsPLAYER_ONE)
 					{
@@ -171,7 +171,74 @@ namespace CS170
 					}
 					else if (board.data[w][h] == tsEMPTY)
 					{
-						bsOPEN;
+						return bsOPEN;
+					}
+					else
+					{
+						return bsTIE;
+					}
+				}
+
+				//check the spots above and bellow the current spot
+				if (board.data[w][h] == board.data[w][h + 1] && board.data[w][h] == board.data[w][h - 1])
+				{
+					if (board.data[w][h] == tsPLAYER_ONE)
+					{
+						return bsWIN_ONE;
+					}
+					else if (board.data[w][h] == tsPLAYER_TWO)
+					{
+						return bsWIN_TWO;
+					}
+					else if (board.data[w][h] == tsEMPTY)
+					{
+						return bsOPEN;
+					}
+					else
+					{
+						return bsTIE;
+					}
+				}
+
+				//check the top right and bottom left diagnols 
+				if (board.data[w][h] == board.data[w + 1][h + 1] && board.data[w][h] == board.data[w - 1][h - 1])
+				{
+					if (board.data[w][h] == tsPLAYER_ONE)
+					{
+						return bsWIN_ONE;
+					}
+					else if (board.data[w][h] == tsPLAYER_TWO)
+					{
+						return bsWIN_TWO;
+					}
+					else if (board.data[w][h] == tsEMPTY)
+					{
+						return bsOPEN;
+					}
+					else
+					{
+						return bsTIE;
+					}
+				}
+
+				//check the other diagnol
+				if (board.data[w][h] == board.data[w - 1][h + 1] && board.data[w][h] == board.data[w + 1][h - 1])
+				{
+					if (board.data[w][h] == tsPLAYER_ONE)
+					{
+						return bsWIN_ONE;
+					}
+					else if (board.data[w][h] == tsPLAYER_TWO)
+					{
+						return bsWIN_TWO;
+					}
+					else if (board.data[w][h] == tsEMPTY)
+					{
+						return bsOPEN;
+					}
+					else
+					{
+						return bsTIE;
 					}
 				}
 			}
