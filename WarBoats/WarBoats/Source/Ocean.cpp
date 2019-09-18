@@ -41,7 +41,7 @@ namespace CS175
 
 		void DestroyOcean(Ocean* theOcean)
 		{
-			theOcean->
+			theOcean->grid
 		}
 
 		ShotResult TakeShot(Ocean& ocean, const Point& coordinate)
