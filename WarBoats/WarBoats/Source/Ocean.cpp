@@ -41,19 +41,50 @@ namespace CS175
 
 		void DestroyOcean(Ocean* theOcean)
 		{
-			theOcean->grid
+			for (int x = 0; x < theOcean->x_quadrants; x++)
+			{
+				delete[] theOcean->grid[x];
+				theOcean->grid[x] = nullptr;
+			}
+
+			delete[] theOcean->grid;
+			delete theOcean;
+			theOcean = nullptr;
 		}
 
+		//tell the player if their boat was placed properly
+		BoatPlacement PlaceBoat(Ocean& ocean, const Boat& boat)
+		{
+			if (boat.orientation == oHORIZONTAL)
+			{
+				if (boat.position.x >= 0 && boat.position.x + (BOAT_LENGTH - 1) <= ocean.x_quadrants)
+				{
+					for (int i = 0; i < BOAT_LENGTH; i++)
+					{
+						if (ocean.grid[boat.position.x + i][boat.position.y] == 0)
+						{
+
+						}
+					}
+				}
+			}
+
+			if (boat.orientation == oVERTICAL)
+			{
+				if (boat.position.y >= 0 && boat.position.y + (BOAT_LENGTH - 1) <= ocean.y_quadrants)
+				{
+
+				}
+			}
+		}
+
+		//tell the player if their shot has landed
 		ShotResult TakeShot(Ocean& ocean, const Point& coordinate)
 		{
 
 		}
 
-		BoatPlacement PlaceBoat(Ocean& ocean, const Boat& boat)
-		{
-
-		}
-
+		//tells the player the current board state
 		ShotStats GetShotStats(const Ocean& ocean)
 		{
 
