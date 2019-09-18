@@ -123,7 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\driver_big.cpp" />
+    <ClCompile Include="Source\driver_big.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Source\driver_sample.cpp" />
     <ClCompile Include="Source\Ocean.cpp" />
     <ClCompile Include="Source\PRNG.cpp" />
