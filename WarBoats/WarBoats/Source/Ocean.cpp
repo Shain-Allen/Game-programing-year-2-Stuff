@@ -27,7 +27,7 @@ namespace CS175
 			//allocate the ocean itself
 			for (int x = 0; x < x_quadrants; x++)
 			{
-				ocean->grid[x_quadrants] = new int[y_quadrants];
+				ocean->grid[x] = new int[y_quadrants];
 			}
 
 			for (int x = 0; x < x_quadrants; x++)
@@ -37,6 +37,15 @@ namespace CS175
 					ocean->grid[x][y] = 0;
 				}
 			}
+			ocean->x_quadrants = x_quadrants;
+			ocean->y_quadrants = y_quadrants;
+			ocean->boats = new Boat[num_boats];
+			ocean->stats.hits = 0;
+			ocean->stats.misses = 0;
+			ocean->stats.duplicates = 0;
+			ocean->stats.sunk = 0;
+
+			return ocean;
 		}
 
 		void DestroyOcean(Ocean* theOcean)
@@ -47,6 +56,7 @@ namespace CS175
 				theOcean->grid[x] = nullptr;
 			}
 
+			delete[] theOcean->boats;
 			delete[] theOcean->grid;
 			delete theOcean;
 			theOcean = nullptr;
@@ -55,61 +65,90 @@ namespace CS175
 		//tell the player if their boat was placed properly
 		BoatPlacement PlaceBoat(Ocean& ocean, const Boat& boat)
 		{
-			//used to find out if you can place the boat
-			int CanPlace = 0;
-			if (boat.orientation == oHORIZONTAL)
+			if ((boat.position.x >= 0 && boat.position.y >= 0) && (boat.position.x < ocean.x_quadrants && boat.position.y < ocean.y_quadrants))
 			{
-				if (boat.position.x >= 0 && boat.position.x + (BOAT_LENGTH - 1) <= ocean.x_quadrants)
+				if (boat.orientation == oHORIZONTAL)
 				{
-					for (int i = 0; i < BOAT_LENGTH; i++)
+					if (boat.position.x + (BOAT_LENGTH - 1) < ocean.x_quadrants)
 					{
-						if (ocean.grid[boat.position.x + i][boat.position.y] == 0)
+						for (int i = 0; i < BOAT_LENGTH; i++)
 						{
-							CanPlace++;
-							if (CanPlace == 4)
+							if (ocean.grid[boat.position.x + i][boat.position.y] != 0)
 							{
-								for (int b = 0; b < BOAT_LENGTH; b++)
-								{
-									ocean.grid[boat.position.x + i][boat.position.y] = boat.ID;
-								}
+								return bpREJECTED;
 							}
 						}
+						for (int b = 0; b < BOAT_LENGTH; b++)
+						{
+							ocean.grid[boat.position.x + b][boat.position.y] = boat.ID;
+						}
+						ocean.boats[boat.ID - 1].hits = 0;
+						return bpACCEPTED;
+					}
+				}
+				else
+				{
+					if (boat.position.y + (BOAT_LENGTH - 1) < ocean.y_quadrants)
+					{
+						for (int i = 0; i < BOAT_LENGTH; i++)
+						{
+							if (ocean.grid[boat.position.x][boat.position.y + i] != 0)
+							{
+								return bpREJECTED;
+							}
+						}
+						for (int b = 0; b < BOAT_LENGTH; b++)
+						{
+							ocean.grid[boat.position.x][boat.position.y + b] = boat.ID;
+						}
+						ocean.boats[boat.ID - 1].hits = 0;
+						return bpACCEPTED;
 					}
 				}
 			}
-
-			if (boat.orientation == oVERTICAL)
-			{
-				if (boat.position.y >= 0 && boat.position.y + (BOAT_LENGTH - 1) <= ocean.y_quadrants)
-				{
-					for (int i = 0; i < BOAT_LENGTH; i++)
-					{
-						if (ocean.grid[boat.position.x][boat.position.y + i] == 0)
-						{
-							CanPlace++;
-							if (CanPlace == 4)
-							{
-								for (int b = 0; b < BOAT_LENGTH; b++)
-								{
-									ocean.grid[boat.position.x][boat.position.y + i] = boat.ID;
-								}
-							}
-						}
-					}
-				}
-			}
+			return bpREJECTED;
 		}
 
 		//tell the player if their shot has landed
 		ShotResult TakeShot(Ocean& ocean, const Point& coordinate)
 		{
-
+			if ((coordinate.x >= 0 && coordinate.x <= ocean.x_quadrants) && (coordinate.y >= 0 && coordinate.y <= ocean.y_quadrants))
+			{
+				if (ocean.grid[coordinate.x][coordinate.y] == dtBLOWNUP || ocean.grid[coordinate.x][coordinate.y] > HIT_OFFSET)
+				{
+					ocean.stats.duplicates += 1;
+					return srDUPLICATE;
+				}
+				else if (ocean.grid[coordinate.x][coordinate.y] == dtOK)
+				{
+					ocean.grid[coordinate.x][coordinate.y] = dtBLOWNUP;
+					ocean.stats.misses += 1;
+					return srMISS;
+				}
+				else 
+				{
+					int id = ocean.grid[coordinate.x][coordinate.y];
+					ocean.boats[(ocean.grid[coordinate.x][coordinate.y]) - 1].hits += 1;
+					ocean.grid[coordinate.x][coordinate.y] += HIT_OFFSET;
+					ocean.stats.hits += 1;
+					if (ocean.boats[id - 1].hits == 4)
+					{
+						ocean.stats.sunk += 1;
+						return srSUNK;
+					}
+					return srHIT;
+				}
+			}
+			else
+			{
+				return srILLEGAL;
+			}
 		}
 
 		//tells the player the current board state
 		ShotStats GetShotStats(const Ocean& ocean)
 		{
-
+			return ocean.stats;
 		}
         
         /*********************************************************************/
@@ -131,7 +170,7 @@ namespace CS175
         If true, the boats are shown in the output. (Debugging feature)
         */
         /*********************************************************************/
-        void DumpOcean(const CS175::WarBoats::Ocean ocean,
+        void DumpOcean(const CS175::WarBoats::Ocean& ocean,
             int field_width,
             bool extraline,
             bool showboats)
