@@ -55,6 +55,8 @@ namespace CS175
 		//tell the player if their boat was placed properly
 		BoatPlacement PlaceBoat(Ocean& ocean, const Boat& boat)
 		{
+			//used to find out if you can place the boat
+			int CanPlace = 0;
 			if (boat.orientation == oHORIZONTAL)
 			{
 				if (boat.position.x >= 0 && boat.position.x + (BOAT_LENGTH - 1) <= ocean.x_quadrants)
@@ -63,7 +65,14 @@ namespace CS175
 					{
 						if (ocean.grid[boat.position.x + i][boat.position.y] == 0)
 						{
-
+							CanPlace++;
+							if (CanPlace == 4)
+							{
+								for (int b = 0; b < BOAT_LENGTH; b++)
+								{
+									ocean.grid[boat.position.x + i][boat.position.y] = boat.ID;
+								}
+							}
 						}
 					}
 				}
@@ -73,7 +82,20 @@ namespace CS175
 			{
 				if (boat.position.y >= 0 && boat.position.y + (BOAT_LENGTH - 1) <= ocean.y_quadrants)
 				{
-
+					for (int i = 0; i < BOAT_LENGTH; i++)
+					{
+						if (ocean.grid[boat.position.x][boat.position.y + i] == 0)
+						{
+							CanPlace++;
+							if (CanPlace == 4)
+							{
+								for (int b = 0; b < BOAT_LENGTH; b++)
+								{
+									ocean.grid[boat.position.x][boat.position.y + i] = boat.ID;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
