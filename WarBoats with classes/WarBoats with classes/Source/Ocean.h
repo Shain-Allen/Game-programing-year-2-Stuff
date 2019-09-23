@@ -45,6 +45,9 @@ namespace CS175
         /*
          * Other private data
         */
+		ShotStats stats; //Status of the attack
+		int *hits;
+		
         
     }; // class Ocean
 
