@@ -141,7 +141,7 @@ int main(void)
 {
   // usage: test_rect(boats, xsize, ysize, show_sunk, show_all)
 
-  test_rect(5, 10, 10, false, false);
+  //test_rect(5, 10, 10, false, false);
   //test_rect(5, 10, 10, true, false);
   //test_rect(5, 10, 10, true, true);
 

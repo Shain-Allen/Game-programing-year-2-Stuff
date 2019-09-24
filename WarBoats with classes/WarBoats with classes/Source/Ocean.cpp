@@ -129,7 +129,7 @@ namespace CS175
 			return stats;
 		}
 
-		int Ocean::ArrayNavigator(int y_, int x_)
+		int Ocean::ArrayNavigator(int x_, int y_)
 		{
 			int Destination;
 
