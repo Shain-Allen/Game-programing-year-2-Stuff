@@ -30,7 +30,10 @@ namespace CS175
 		  ShotResult TakeShot(const Point& coordinate_);
 
 		  //get the Stats of shots
-		  ShotStats& GetShotStats(void);
+		  const ShotStats& GetShotStats(void) const;
+
+		  //1D array navigator (y * width + x)
+		  int ArrayNavigator(int y_, int x_);
      
            // Provided
         const int *GetGrid(void) const;
@@ -40,14 +43,13 @@ namespace CS175
         int *grid;        // The 2D ocean
         int x_quadrants;  // Ocean size along x-axis
         int y_quadrants;  // Ocean size along y-axis
-		int num_boats_;
         
         /*
          * Other private data
         */
 		ShotStats stats; //Status of the attack
 		int *hits;
-		
+		int num_boats;
         
     }; // class Ocean
 

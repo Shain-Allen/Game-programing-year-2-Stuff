@@ -37,6 +37,7 @@ namespace CS175
 					ocean->grid[x][y] = 0;
 				}
 			}
+
 			ocean->x_quadrants = x_quadrants;
 			ocean->y_quadrants = y_quadrants;
 			ocean->boats = new Boat[num_boats];

@@ -587,9 +587,9 @@ void test3(void)
 
 int main(void)
 {
-  test0();
+  //test0();
   //test1();
   //test2();
-  //test3();
+  test3();
   return 0;
 }
