@@ -47,11 +47,11 @@ void Lab1::Update(float dt)
 	angle2 -= (dt * rotationalVelocity * pi * 2)/60;
 	angle3 -= ((dt * rotationalVelocity * pi * 2) / 60) / 60;
 
-	Vector2D end = Vector2D(lineLength * cos(angle1), lineLength * sin(angle1));
+	Vector2D end = Vector2D((lineLength) * cos(angle1), (lineLength) * sin(angle1));
 	debug.AddLineToList(start, end, Color(0.5, 0, 0));
-	Vector2D end2 = Vector2D(lineLength * cos(angle2), lineLength * sin(angle2));
+	Vector2D end2 = Vector2D((lineLength - 0.5)* cos(angle2), (lineLength - 0.5)* sin(angle2));
 	debug.AddLineToList(start, end2, Color(0.2, 0.8, 0.2));
-	Vector2D end3 = Vector2D(lineLength * cos(angle3), lineLength * sin(angle3));
+	Vector2D end3 = Vector2D((lineLength - 0.75)* cos(angle3), (lineLength - 0.75)* sin(angle3));
 	debug.AddLineToList(start, end3, Color(0.1, 0.43, 0.8));
 	debug.EndLineList(camera);
 
