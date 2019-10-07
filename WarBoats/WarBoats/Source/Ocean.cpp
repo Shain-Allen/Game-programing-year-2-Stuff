@@ -1,3 +1,13 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	Ocean.cpp
+// Author(s):	Shain Allen
+// Project:		WarBoats
+// Course:		wanic GP2
+//
+// Copyright © 2018 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
 #include "WarBoats.h"
 #include "Ocean.h"
 #include <iostream> // cout, endl
@@ -132,7 +142,7 @@ namespace CS175
 					ocean.boats[(ocean.grid[coordinate.x][coordinate.y]) - 1].hits += 1;
 					ocean.grid[coordinate.x][coordinate.y] += HIT_OFFSET;
 					ocean.stats.hits += 1;
-					if (ocean.boats[id - 1].hits == 4)
+					if (ocean.boats[id - 1].hits == BOAT_LENGTH)
 					{
 						ocean.stats.sunk += 1;
 						return srSUNK;

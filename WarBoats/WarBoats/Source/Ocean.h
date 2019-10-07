@@ -1,3 +1,13 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	Ocean.h
+// Author(s):	Shain Allen
+// Project:		WarBoats
+// Course:		wanic GP2
+//
+// Copyright © 2018 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
 #pragma once
 #include "WarBoats.h" // ShotStats
 
