@@ -53,7 +53,7 @@ float Vector2D::Y()
 // 2 non-member, non-friend functions (operators)
 std::ostream& operator<<(std::ostream& os, const Vector2D& vector2D)
 {
-	os << '(' << vector2D.X << ',' << 
+	os << '(' << vector2D.X << ',' << vector2D.Y << ')';
 }
 
 } // namespace CS170

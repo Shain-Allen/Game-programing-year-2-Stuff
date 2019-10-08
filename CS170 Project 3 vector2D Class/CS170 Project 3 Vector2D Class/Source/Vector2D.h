@@ -43,7 +43,7 @@ namespace CS170
 	};
   
 	// Overloaded operators (2 non-member, non-friend functions)
-	std::ostream& operator<<(std::ostream& os, const Vector2D);
+	std::ostream& operator<<(std::ostream& os, const Vector2D& vector2D);
 
 } // namespace CS170
 
