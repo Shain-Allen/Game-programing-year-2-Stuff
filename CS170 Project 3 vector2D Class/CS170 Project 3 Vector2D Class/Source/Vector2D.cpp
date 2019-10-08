@@ -11,58 +11,111 @@
 #include "Vector2D.h"  // Vector2D members
 #include <cmath>    // sqrt, atan, sin, cos
 
+
 namespace CS170
 {
 
-///////////////////////////////////////////////////////////////////////////////
-// 22 public member functions (2 constructors, 2 accessors, 2 mutators, 7 others, 9 operators) 
+	///////////////////////////////////////////////////////////////////////////////
+	// 22 public member functions (2 constructors, 2 accessors, 2 mutators, 7 others, 9 operators) 
 
-// Constructors (2)
-Vector2D::Vector2D(float x_, float y_)
-  : x(x_), y(y_)
-{
-}
+	// Constructors (2)
+	Vector2D::Vector2D(float x_, float y_)
+	  : x(x_), y(y_)
+	{
+	}
 
-//default Constructor
-Vector2D::Vector2D()
-	: x(0), y(0)
-{
-}
+	//default Constructor
+	Vector2D::Vector2D()
+		: x(0), y(0)
+	{
+	}
 
-// Accessors (2)
-float Vector2D::X()
-{
-	return x;
-}
+	// Accessors (2)
+	float Vector2D::X() const
+	{
+		return x;
+	}
 
-float Vector2D::Y()
-{
-	return y;
-}
+	float Vector2D::Y() const
+	{
+		return y;
+	}
 
-// Mutators (2)
-float Vector2D::X(float x_)
-{
-	return x = x_;
-}
+	// Mutators (2)
+	void Vector2D::X(float x_)
+	{
+		x = x_;
+	}
 
-float Vector2D::Y(float y_)
-{
-	return y = y_;
-}
-
-// Other functions (7)
+	void Vector2D::Y(float y_)
+	{
+		y = y_;
+	}
 
 
-// Operators (9)
+	// Other functions (7)
+	Vector2D Vector2D::Midpoint(const Vector2D& pt2)
+	{
+		Vector2D midpoint;
 
+		midpoint.x = (x + pt2.x) / 2;
+		midpoint.y = (y + pt2.y) / 2;
 
-///////////////////////////////////////////////////////////////////////////////
-// 2 non-member, non-friend functions (operators)
-std::ostream& operator<<(std::ostream& os, const Vector2D& vector2D)
-{
-	os << '(' << vector2D.X << ',' << vector2D.Y << ')';
-}
+		return midpoint;
+	}
+
+	float Vector2D::Distance(const Vector2D& pt2)
+	{
+		return sqrt(DistanceSquared(pt2));
+	}
+
+	float Vector2D::DistanceSquared(const Vector2D& pt2)
+	{
+		return ((pt2.x - x) * (pt2.x - x) + (pt2.y - y) * (pt2.y - y));
+	}
+
+	float Vector2D::Magnitude()
+	{
+		return sqrt(MagnitudeSquared());
+	}
+
+	float Vector2D::MagnitudeSquared()
+	{
+		return ((x*x) + (y*y));
+	}
+
+	Vector2D Vector2D::Normalized()
+	{
+		Vector2D normalized;
+	}
+	
+	// Operators (9)
+	Vector2D Vector2D::operator+(const Vector2D& pt2)
+	{
+		Vector2D pt3;
+
+		pt3.x = x + pt2.x;
+		pt3.y = y + pt2.y;
+
+		return pt3;
+	}
+
+	Vector2D Vector2D::operator-(const Vector2D& pt2)
+	{
+		Vector2D pt3;
+
+		pt3.x = x - pt2.x;
+		pt3.y = y - pt2.y;
+
+		return pt3;
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	// 2 non-member, non-friend functions (operators)
+	std::ostream& operator<<(std::ostream& os, const Vector2D& vector2D)
+	{
+		return os << '(' << vector2D.X() << ',' << vector2D.Y() << ')';
+	}
 
 } // namespace CS170
 

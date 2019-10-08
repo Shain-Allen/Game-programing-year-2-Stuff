@@ -45,7 +45,7 @@ void GetSetTest(void)
 	std::cout << std::endl;
 }
 
-/*void MagnitudeTest(void)
+void MagnitudeTest(void)
 {
 	std::cout << "\n********** Magnitude test ********** " << std::endl;
 
@@ -116,7 +116,7 @@ void MidpointTest(void)
 	std::cout.unsetf(std::ios_base::fixed);
 	std::cout.precision(6);
 }
-
+/*
 void DotTest(void)
 {
 	std::cout << "\n********** Dot test ********** " << std::endl;
@@ -139,7 +139,7 @@ void DotTest(void)
 	std::cout << "v4 dot v3 = " << v4.DotProduct(v3) << std::endl;
 	std::cout << std::endl;
 }
-
+*/
 void AddSubtractTest(void)
 {
 	std::cout << "\n********** Add and Subtract test ********** " << std::endl;
@@ -157,7 +157,7 @@ void AddSubtractTest(void)
 
 	std::cout << std::endl;
 }
-
+/*
 void ScaleTest(void)
 {
 	std::cout << "\n********** Scale test ********** " << std::endl;
@@ -252,21 +252,21 @@ void UnaryTest(void)
 
 	std::cout << "v3 = " << v3 << std::endl;
 	std::cout << "v4 = " << v4 << std::endl;
-}
+}*/
 
 int main(void)
 {
 	ConstructorTest();
 	GetSetTest();
-	MagnitudeTest();
+	//MagnitudeTest();
 	DistanceTest();
 	MidpointTest();
-	DotTest();
+	//DotTest();
 	AddSubtractTest();
-	ScaleTest();
+	/*ScaleTest();
 	AssignmentTest1();
 	AssignmentTest2();
-	UnaryTest();
+	UnaryTest();*/
 
 	return 0;
-}*/
+}

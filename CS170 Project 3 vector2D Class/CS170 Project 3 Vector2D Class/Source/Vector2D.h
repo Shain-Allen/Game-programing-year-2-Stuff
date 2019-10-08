@@ -25,18 +25,24 @@ namespace CS170
 		Vector2D();
 		
 		// Accessors (2)
-		float X();
-		float Y();
+		float X() const;
+		float Y() const;
 		
 		// Mutators (2)
-		float X(float x);
-		float Y(float y);
+		void X(float x);
+		void Y(float y);
 		
 		// Other functions (7)
-		
+		Vector2D Midpoint(const Vector2D& pt2);
+		float Distance(const Vector2D& pt2);
+		float DistanceSquared(const Vector2D& pt2);
+		float Magnitude();
+		float MagnitudeSquared();
+		Vector2D Normalized();
 
 		// Overloaded operators (9 member functions)
-		
+		Vector2D operator+(const Vector2D& pt2);
+		Vector2D operator-(const Vector2D& pt2);
 		
 	private:
 		float x; // The x-coordinate of a Vector2D
