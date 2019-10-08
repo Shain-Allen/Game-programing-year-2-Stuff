@@ -41,7 +41,15 @@ float Vector2D::Y()
 }
 
 // Mutators (2)
+float Vector2D::X(float x_)
+{
+	return x = x_;
+}
 
+float Vector2D::Y(float y_)
+{
+	return y = y_;
+}
 
 // Other functions (7)
 

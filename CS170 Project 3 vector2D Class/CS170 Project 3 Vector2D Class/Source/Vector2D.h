@@ -29,7 +29,8 @@ namespace CS170
 		float Y();
 		
 		// Mutators (2)
-		
+		float X(float x);
+		float Y(float y);
 		
 		// Other functions (7)
 		
