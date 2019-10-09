@@ -42,10 +42,15 @@ namespace CS170
 		float DotProduct(const Vector2D& pt2);
 
 		// Overloaded operators (9 member functions)
-		Vector2D operator+(const Vector2D& pt2);
-		Vector2D operator-(const Vector2D& pt2);
-		Vector2D operator*(const Vector2D& pt);
-		Vector2D operator*(float john);
+		Vector2D operator+(const Vector2D& pt2) const;
+		Vector2D operator-(const Vector2D& pt2) const;
+		Vector2D operator*(float scaler) const;
+		Vector2D operator/(float scaler) const;
+		Vector2D& operator+=(const Vector2D& pt2);
+		Vector2D& operator-=(const Vector2D& pt2);
+		Vector2D& operator*=(const float E);
+		Vector2D& operator/=(const float E);
+		Vector2D operator-();
 		
 	private:
 		float x; // The x-coordinate of a Vector2D
@@ -54,6 +59,7 @@ namespace CS170
   
 	// Overloaded operators (2 non-member, non-friend functions)
 	std::ostream& operator<<(std::ostream& os, const Vector2D& vector2D);
+	Vector2D operator*(const float scaler, const Vector2D& vector2D);
 
 } // namespace CS170
 

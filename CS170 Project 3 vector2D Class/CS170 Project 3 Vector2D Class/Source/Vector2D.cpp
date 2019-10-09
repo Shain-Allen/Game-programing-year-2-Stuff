@@ -100,7 +100,7 @@ namespace CS170
 	}
 	
 	// Operators (9)
-	Vector2D Vector2D::operator+(const Vector2D& pt2)
+	Vector2D Vector2D::operator+(const Vector2D& pt2) const
 	{
 		Vector2D pt3;
 
@@ -110,7 +110,7 @@ namespace CS170
 		return pt3;
 	}
 
-	Vector2D Vector2D::operator-(const Vector2D& pt2)
+	Vector2D Vector2D::operator-(const Vector2D& pt2) const
 	{
 		Vector2D pt3;
 
@@ -120,14 +120,64 @@ namespace CS170
 		return pt3;
 	}
 
-	Vector2D Vector2D::operator*(const Vector2D& pt)
+	Vector2D Vector2D::operator*(float scaler) const
 	{
+		Vector2D output;
 
+		output.x = x * scaler;
+		output.y = y * scaler;
+
+		return output;
 	}
 
-	Vector2D Vector2D::operator*(float john)
+	Vector2D Vector2D::operator/(float scaler) const
 	{
+		Vector2D output;
 
+		output.x = x / scaler;
+		output.y = y / scaler;
+
+		return output;
+	}
+
+	Vector2D& Vector2D::operator+=(const Vector2D& pt2)
+	{
+		x += pt2.x;
+		y += pt2.y;
+
+		return *this;
+	}
+
+	Vector2D& Vector2D::operator-=(const Vector2D& pt2)
+	{
+		x -= pt2.x;
+		y -= pt2.y;
+
+		return *this;
+	}
+
+	Vector2D& Vector2D::operator*=(const float E)
+	{
+		x *= E;
+		y *= E;
+		return *this;
+	}
+
+	Vector2D& Vector2D::operator/=(const float E)
+	{
+		x /= E;
+		y /= E;
+		return *this;
+	}
+
+	Vector2D Vector2D::operator-()
+	{
+		Vector2D negitive;
+
+		negitive.x = -x;
+		negitive.y = -y;
+
+		return negitive;
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -135,6 +185,16 @@ namespace CS170
 	std::ostream& operator<<(std::ostream& os, const Vector2D& vector2D)
 	{
 		return os << '(' << vector2D.X() << ',' << vector2D.Y() << ')';
+	}
+
+	Vector2D operator*(const float scaler, const Vector2D& vector2D)
+	{
+		Vector2D output;
+
+		output.X(scaler * vector2D.X());
+		output.Y(scaler * vector2D.Y());
+
+		return output;
 	}
 
 } // namespace CS170

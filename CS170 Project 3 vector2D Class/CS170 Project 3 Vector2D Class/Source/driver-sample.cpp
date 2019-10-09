@@ -175,7 +175,7 @@ void ScaleTest(void)
 	std::cout << v4 << " / 3 = " << v4 / 3.0f << std::endl;
 	std::cout << std::endl;
 }
-/*
+
 void AssignmentTest1(void)
 {
 	std::cout << "\n********** Assignment test 1 ********** " << std::endl;
@@ -252,7 +252,7 @@ void UnaryTest(void)
 
 	std::cout << "v3 = " << v3 << std::endl;
 	std::cout << "v4 = " << v4 << std::endl;
-}*/
+}
 
 int main(void)
 {
@@ -263,10 +263,10 @@ int main(void)
 	MidpointTest();
 	DotTest();
 	AddSubtractTest();
-	/*ScaleTest();
+	ScaleTest();
 	AssignmentTest1();
 	AssignmentTest2();
-	UnaryTest();*/
+	UnaryTest();
 
 	return 0;
 }
