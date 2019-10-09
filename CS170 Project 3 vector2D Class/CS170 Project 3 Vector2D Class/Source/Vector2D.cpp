@@ -120,6 +120,16 @@ namespace CS170
 		return pt3;
 	}
 
+	Vector2D Vector2D::operator*(const Vector2D& pt)
+	{
+
+	}
+
+	Vector2D Vector2D::operator*(float john)
+	{
+
+	}
+
 	///////////////////////////////////////////////////////////////////////////////
 	// 2 non-member, non-friend functions (operators)
 	std::ostream& operator<<(std::ostream& os, const Vector2D& vector2D)

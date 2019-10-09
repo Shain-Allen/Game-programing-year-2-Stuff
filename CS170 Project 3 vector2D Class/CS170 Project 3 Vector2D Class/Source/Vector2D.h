@@ -45,7 +45,7 @@ namespace CS170
 		Vector2D operator+(const Vector2D& pt2);
 		Vector2D operator-(const Vector2D& pt2);
 		Vector2D operator*(const Vector2D& pt);
-		Vector2D operator*(float);
+		Vector2D operator*(float john);
 		
 	private:
 		float x; // The x-coordinate of a Vector2D
