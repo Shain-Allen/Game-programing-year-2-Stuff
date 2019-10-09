@@ -116,7 +116,7 @@ void MidpointTest(void)
 	std::cout.unsetf(std::ios_base::fixed);
 	std::cout.precision(6);
 }
-/*
+
 void DotTest(void)
 {
 	std::cout << "\n********** Dot test ********** " << std::endl;
@@ -139,7 +139,7 @@ void DotTest(void)
 	std::cout << "v4 dot v3 = " << v4.DotProduct(v3) << std::endl;
 	std::cout << std::endl;
 }
-*/
+
 void AddSubtractTest(void)
 {
 	std::cout << "\n********** Add and Subtract test ********** " << std::endl;
@@ -157,7 +157,7 @@ void AddSubtractTest(void)
 
 	std::cout << std::endl;
 }
-/*
+
 void ScaleTest(void)
 {
 	std::cout << "\n********** Scale test ********** " << std::endl;
@@ -175,7 +175,7 @@ void ScaleTest(void)
 	std::cout << v4 << " / 3 = " << v4 / 3.0f << std::endl;
 	std::cout << std::endl;
 }
-
+/*
 void AssignmentTest1(void)
 {
 	std::cout << "\n********** Assignment test 1 ********** " << std::endl;
@@ -258,10 +258,10 @@ int main(void)
 {
 	ConstructorTest();
 	GetSetTest();
-	//MagnitudeTest();
+	MagnitudeTest();
 	DistanceTest();
 	MidpointTest();
-	//DotTest();
+	DotTest();
 	AddSubtractTest();
 	/*ScaleTest();
 	AssignmentTest1();

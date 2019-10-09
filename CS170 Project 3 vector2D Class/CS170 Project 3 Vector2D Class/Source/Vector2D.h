@@ -39,10 +39,13 @@ namespace CS170
 		float Magnitude();
 		float MagnitudeSquared();
 		Vector2D Normalized();
+		float DotProduct(const Vector2D& pt2);
 
 		// Overloaded operators (9 member functions)
 		Vector2D operator+(const Vector2D& pt2);
 		Vector2D operator-(const Vector2D& pt2);
+		Vector2D operator*(const Vector2D& pt);
+		Vector2D operator*(float);
 		
 	private:
 		float x; // The x-coordinate of a Vector2D

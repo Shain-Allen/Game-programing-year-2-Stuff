@@ -84,9 +84,19 @@ namespace CS170
 		return ((x*x) + (y*y));
 	}
 
+	float Vector2D::DotProduct(const Vector2D& pt2)
+	{
+		return (x * pt2.x) + (y * pt2.y);
+	}
+
 	Vector2D Vector2D::Normalized()
 	{
 		Vector2D normalized;
+
+		normalized.x = (x / Magnitude());
+		normalized.y = (y / Magnitude());
+
+		return normalized;
 	}
 	
 	// Operators (9)
