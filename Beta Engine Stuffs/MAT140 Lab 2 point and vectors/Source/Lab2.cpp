@@ -153,19 +153,25 @@ void Lab2::CreateHexagon()
 	
 	Vector2D pointV = pointP + vectorV;
 	Vector2D pointU = pointP + vectorU;
-	Vector2D pointA = pointP + ((1/3) * vectorV);
-	Vector2D pointB = pointP + ((1/3) * vectorU);
-	Vector2D pointC = pointP + ((2/3) * vectorU);
-	Vector2D pointD;
-	Vector2D pointE;
-	Vector2D pointF = pointP + ((2/3) * vectorV);
+	Vector2D pointA = pointP + (vectorV / 3);
+	Vector2D pointB = pointP + (vectorU / 3);
+	Vector2D pointC = pointP + (vectorU * (2 / 3));
+	Vector2D pointD = pointP + (((vectorV + vectorU) / 2) * (1 / 3));
+	Vector2D pointE = pointP + (((vectorV + vectorU) / 2) * (2 / 3));
+	Vector2D pointF = pointP + (vectorV * (2 / 3));
 
+	//triangle base
+	/*DrawLine(pointP, pointV);
+	DrawLine(pointP, pointU);
+	DrawLine(pointV, pointU);*/
+
+	//hexigon
 	DrawLine(pointA, pointB);
 	DrawLine(pointB, pointC);
-	DrawLine(pointC, pointD);
-	DrawLine(pointD, pointE);
-	DrawLine(pointE, pointF);
-	DrawLine(pointF, pointA);
+	//DrawLine(pointC, pointD);
+	//DrawLine(pointD, pointE);
+	//DrawLine(pointE, pointF);
+	DrawLine(pointA, pointF);
 }
 
 void Lab2::CreateDiamondCut()
