@@ -150,15 +150,14 @@ void Lab2::CreateFace()
 
 void Lab2::CreateHexagon()
 {
-	
 	Vector2D pointV = pointP + vectorV;
 	Vector2D pointU = pointP + vectorU;
-	Vector2D pointA = pointP + (vectorV / 3);
-	Vector2D pointB = pointP + (vectorU / 3);
-	Vector2D pointC = pointP + (vectorU * (2 / 3));
-	Vector2D pointD = pointP + (((vectorV + vectorU) / 2) * (1 / 3));
-	Vector2D pointE = pointP + (((vectorV + vectorU) / 2) * (2 / 3));
-	Vector2D pointF = pointP + (vectorV * (2 / 3));
+	Vector2D pointA = pointP + vectorV / 3.0f;
+	Vector2D pointB = pointP + vectorU / 3.0f;
+	Vector2D pointC = pointP + (2.0f/3.0f) * vectorU;
+	Vector2D pointD = pointP + (((2.0f/3.0f) * vectorU) + ((1.0f/3.0f) * vectorV));
+	Vector2D pointE = pointP + (((2.0f / 3.0f) * vectorV) + ((1.0f / 3.0f) * vectorU));
+	Vector2D pointF = pointP + (2.0f/3.0f) * vectorV;
 
 	//triangle base
 	/*DrawLine(pointP, pointV);
@@ -168,13 +167,53 @@ void Lab2::CreateHexagon()
 	//hexigon
 	DrawLine(pointA, pointB);
 	DrawLine(pointB, pointC);
-	//DrawLine(pointC, pointD);
-	//DrawLine(pointD, pointE);
-	//DrawLine(pointE, pointF);
-	DrawLine(pointA, pointF);
+	DrawLine(pointC, pointD);
+	DrawLine(pointD, pointE);
+	DrawLine(pointE, pointF);
+	DrawLine(pointF, pointA);
 }
 
 void Lab2::CreateDiamondCut()
 {
+	//second class hexigon
+	Vector2D pointV = pointP + vectorV;
+	Vector2D pointU = pointP + vectorU;
+	Vector2D pointA = pointP + vectorV / 3.0f;
+	Vector2D pointB = pointP + vectorU / 3.0f;
+	Vector2D pointC = pointP + (2.0f / 3.0f) * vectorU;
+	Vector2D pointD = pointP + (((2.0f / 3.0f) * vectorU) + ((1.0f / 3.0f) * vectorV));
+	Vector2D pointE = pointP + (((2.0f / 3.0f) * vectorV) + ((1.0f / 3.0f) * vectorU));
+	Vector2D pointF = pointP + (2.0f / 3.0f) * vectorV;
 
+	//first class Hexigon
+	Vector2D pointG = pointA - (vectorU / 3.0f);
+	Vector2D pointH = pointB - (vectorV / 3.0f);
+	Vector2D pointL = pointB - (vectorV / 3.0f) + (vectorU * (2.0f / 3.0f));
+	Vector2D pointM = pointD + (vectorU / 3.0f);
+	Vector2D pointO = pointE + (vectorV / 3.0f);
+	Vector2D pointQ = pointF + (vectorV / 3.0f) - (vectorU / 3.0f);
+
+	//Drawing Second Class hexigons
+	DrawLine(pointA, pointB);
+	DrawLine(pointB, pointC);
+	DrawLine(pointC, pointD);
+	DrawLine(pointD, pointE);
+	DrawLine(pointE, pointF);
+	DrawLine(pointF, pointA);
+
+	//Drawing First Class hexigons
+	DrawLine(pointG, pointH);
+	DrawLine(pointH, pointL);
+	DrawLine(pointL, pointM);
+	DrawLine(pointM, pointO);
+	DrawLine(pointO, pointQ);
+	DrawLine(pointQ, pointG);
+
+	//Draw the support pillars between first class hexigons and second class hexigons
+	DrawLine(pointG, pointA);
+	DrawLine(pointH, pointB);
+	DrawLine(pointL, pointC);
+	DrawLine(pointM, pointD);
+	DrawLine(pointO, pointE);
+	DrawLine(pointQ, pointF);
 }
