@@ -1,3 +1,13 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	main.cpp
+// Author(s):	Shain Allen
+// Project:		project 4
+// Course:		wanic GP2
+//
+// Copyright © 2018 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
 #include <iostream>
 #include "Circle.h"
 #include "Rectangle.h"
@@ -153,7 +163,7 @@ void TestingTheAbstractClasses(void)
 int main(void)
 {
     TestingTheCircleClass();
-    TestingTheRectangleClass();
-    TestingThePolygonClass();
-    TestingPolymorphism();
+    //TestingTheRectangleClass();
+    //TestingThePolygonClass();
+    //TestingPolymorphism();
 }

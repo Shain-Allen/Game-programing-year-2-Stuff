@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	Point.cpp
+// File Name:	Shape.h
 // Author(s):	Shain Allen
 // Project:		project 4
 // Course:		wanic GP2
@@ -10,14 +10,13 @@
 //------------------------------------------------------------------------------
 #include "Point.h"
 
-Point::Point()
+class Shape
 {
-    x = 0;
-    y = 0;
-}
+public:
+	Shape();
 
-Point::Point(float x_, float y_)
-{
-    x = x_;
-    y = y_;
-}
+
+private:
+
+protected:
+};
