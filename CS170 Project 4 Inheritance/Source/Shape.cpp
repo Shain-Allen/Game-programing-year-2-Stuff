@@ -12,6 +12,7 @@
 #include "Point.h"
 
 Shape::Shape(Point Center_)
+	: Center(Center_)
 {
 }
 
@@ -19,11 +20,13 @@ Shape::~Shape()
 {
 }
 
-const Point Shape::GetCenter()
+const Point Shape::GetCenter() const
 {
-	return Point();
+	return Center;
 }
 
 void Shape::SetCenter(float x_, float y_)
 {
+	Center.x = x_;
+	Center.y = y_;
 }

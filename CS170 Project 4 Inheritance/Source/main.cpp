@@ -76,7 +76,7 @@ void TestingTheRectangleClass(void)
 
     std::cout << std::endl;
 }
-
+/*
 void TestingThePolygonClass(void)
 {
     std::cout << "Testing The Polygon Class:" << std::endl;
@@ -146,7 +146,7 @@ void TestingPolymorphism(void)
         delete shapes[i];
     }
 }
-
+*/
 
 /*
 // Comment out the below code in order to test the abstract classes

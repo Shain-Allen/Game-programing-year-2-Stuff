@@ -8,12 +8,19 @@
 // Copyright © 2018 DigiPen (USA) Corporation.
 //
 //------------------------------------------------------------------------------
+#pragma once
+
 #include "Shape.h"
 #include "Point.h"
 
 class Circle : public Shape
 {
 public:
-	Circle();
+	Circle(Point center_, unsigned int radius_);
 	~Circle();
+	void SetCenter(float x_, float y_);
+	void Draw() const;
+
+private:
+	unsigned int radius;
 };

@@ -14,14 +14,14 @@
 class Shape_With_Vertices : public Shape
 {
 public:
-	Shape_With_Vertices(Point center_, unsigned int number_of_vertices);
+	Shape_With_Vertices(Point center_, unsigned int number_of_vertices_);
 	virtual ~Shape_With_Vertices();
+	virtual void SetCenter(float x_, float y_);
+	virtual void Draw() const = 0;
 	
-
 private:
 	Point* vertices; 
 	unsigned int number_of_vertices;
 
 protected:
-	void SetCenter(float x_, float y_);
 };

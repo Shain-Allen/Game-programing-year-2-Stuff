@@ -8,6 +8,8 @@
 // Copyright © 2018 DigiPen (USA) Corporation.
 //
 //------------------------------------------------------------------------------
+#pragma once
+
 #include "Point.h"
 
 class Shape
@@ -15,13 +17,13 @@ class Shape
 public:
 	Shape(Point Center_);
 	virtual ~Shape();
-	const Point GetCenter();
-	virtual void Draw() = 0;
+	const Point GetCenter() const;
+	virtual void SetCenter(float x_, float y_);
+	virtual void Draw() const = 0;
 
 private:
-
-	Point Center_;
+	Point Center;
 
 protected:
-	void SetCenter(float x_, float y_);
+	
 };
