@@ -5,45 +5,63 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Source Files\Point">
+      <UniqueIdentifier>{03a077a3-41d7-4dc1-8c2d-1e370491940b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shape">
+      <UniqueIdentifier>{4b71d855-a74d-4cbf-8b83-3ccf245b5bfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shape\Shape with Vertices">
+      <UniqueIdentifier>{56f0afa6-b73c-4b7b-874c-aae3c1f23419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shape\Circle">
+      <UniqueIdentifier>{cee07d5b-c9d1-413d-9ae2-1845367de11a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shape\Shape with Vertices\Rectangle">
+      <UniqueIdentifier>{437bfc82-48e7-42c0-946a-ee6cf3b76f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shape\Shape with Vertices\Polygon">
+      <UniqueIdentifier>{aee1da1b-7645-4f24-a328-61bd93ac9925}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Source\Point.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Source\Point.cpp">
+      <Filter>Source Files\Point</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Rectangle.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Shape\Shape with Vertices\Rectangle</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Shape_With_Vertices.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Shape\Shape with Vertices</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Shape.cpp">
+      <Filter>Source Files\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Circle.cpp">
+      <Filter>Source Files\Shape\Circle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Point.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Point</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Circle.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Shape\Circle</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Polygon.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Shape\Shape with Vertices\Polygon</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Rectangle.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Shape\Shape with Vertices\Rectangle</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Shape.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Shape</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Shape_With_Vertices.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Shape\Shape with Vertices</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CS170 Project 4 Inheritance.licenseheader" />
   </ItemGroup>
 </Project>

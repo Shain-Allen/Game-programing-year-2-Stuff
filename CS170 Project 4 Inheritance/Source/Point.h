@@ -2,7 +2,7 @@
 //
 // File Name:	Point.h
 // Author(s):	Shain Allen
-// Project:		project 4
+// Project:		CS170 Project 4 Inheritance
 // Course:		wanic GP2
 //
 // Copyright © 2018 DigiPen (USA) Corporation.
