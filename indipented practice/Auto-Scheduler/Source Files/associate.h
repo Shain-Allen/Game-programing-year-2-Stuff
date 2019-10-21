@@ -10,9 +10,6 @@
 
 #include <iostream>
 #include "Time.h"
-
-using std::cout;
-using std::cin;
 using std::string;
 
 
