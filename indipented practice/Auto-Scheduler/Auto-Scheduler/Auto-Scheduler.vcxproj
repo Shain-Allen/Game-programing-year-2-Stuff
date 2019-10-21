@@ -125,6 +125,10 @@
   <ItemGroup>
     <ClCompile Include="..\Source Files\Main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Source Files\associate.h" />
+    <ClInclude Include="..\Source Files\Time.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

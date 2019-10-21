@@ -1,16 +1,16 @@
 //------------------------------------------------------------------------------
 //
-// File Name: Main.cpp
+// File Name: Time.h
 // Author(s): Shain Allen
 // Project: Auto-Scheduler
 // Course: personal projects
 //
 //------------------------------------------------------------------------------
-#include <iostream>
-#include "associate.h"
+#pragma once
 
 
-int main()
+struct Time
 {
-
-}
+	int Hours;
+	int Minutes;
+};
