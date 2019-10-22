@@ -13,15 +13,15 @@
 using std::cout;
 using std::cin;
 using std::endl;
+using std::vector;
 
 int main()
 {
-	std::vector<Associate> associates;
+	vector<Associate> associates;
 	//push_back()
 	string name_;
 	Time Start_;
 	Time End_;
-	Time Total_;
 	bool IsMinor_;
 	char NewEntry;
 
@@ -33,6 +33,18 @@ int main()
 	while (NewEntry == 'y')
 	{
 		cout << "please enter a name: ";
+		cin >> name_;
+		Associate var(name_);
+
+		cout << "please enter the starting time for this assocuate" << endl;
+		cin >> Start_.Hours;
+		cin >> Start_.Minutes;
+		cout << endl << "please enter the End time for this associate" << endl;
+		cin >> End_.Hours;
+		cin >> End_.Minutes;
+
+
+		associates.push_back(var);
 	}
 
 }

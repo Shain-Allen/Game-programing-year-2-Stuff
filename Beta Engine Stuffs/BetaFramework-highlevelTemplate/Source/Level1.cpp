@@ -45,26 +45,31 @@ void Level1::Initialize()
 	testObject->AddComponent(transform);
 
 	// Create a sprite component and set its mesh and sprite source
+	//retrieve texture using the resource manager
+	TexturePtr texture = ResourceGetTexture("Monkey.png");
+	//texture, name, number of colums, number of rows
+	SpriteSourcePtr spritesource = std::make_shared<SpriteSource>(texture, "Monkey", 3, 5);
 	Sprite* sprite = new Sprite();
-	sprite->SetColor(Colors::Green);
+	sprite->SetSpriteSource(spritesource);
 	testObject->AddComponent(sprite);
 
-	GameObject* newObject = new GameObject("newObject");
+	//add animator componet
+	Animator* animator = new Animator();
+	testObject->AddComponent(animator);
 
-	transform = new Transform(0.0f, 0.0f);
-	transform->SetRotation(0.0f);
-	transform->SetScale(Vector2D(1.0f, 1.0f));
-	newObject->AddComponent(transform);
+	//create animations
+	//NOTE:: Animations require the following
+	// name, Spritesource, Frame Count, frame start, frameduration
+	AnimationPtr walkAnim = std::make_shared<Animation>("monkey walk", spritesource, 8, 0, 0.1f);
 
-	sprite = new Sprite();
-	sprite->SetColor(Colors::Yellow);
-	newObject->AddComponent(sprite);
+	size_t walkIndex = animator->AddAnimation(walkAnim);
+
 
 	// Initialize the object
 	//testObject->Initialize();
 	//update, Draw, delete the object for us
 	GetSpace()->GetObjectManager().AddObject(*testObject);
-	GetSpace()->GetObjectManager().AddObject(*newObject);
+	animator->Play(walkIndex);
 }
 
 // Update the Level1 game state.
@@ -80,15 +85,13 @@ void Level1::Update(float dt)
 	if (input->CheckTriggered('1'))
 		GetSpace()->RestartLevel();
 
-	GameObject* newObject = GetSpace()->GetObjectManager().GetObjectByName("newObject");
-
 	// If the user presses the 'D' key, delete the object
 	if (input->CheckTriggered('D'))
 	{
 		//delete testObject;
 		//testObject = nullptr;
 		testObject->Destroy();
-		newObject->Destroy();
+		testObject = nullptr;
 	}
 
 	// If the object exists
@@ -99,23 +102,18 @@ void Level1::Update(float dt)
 		testObject->Draw();
 	}*/
 
-	Transform* transform = testObject->GetComponent<Transform>();
-	Vector2D position = transform->GetTranslation();
-
-	if (input->CheckHeld(VK_RIGHT))
+	if (testObject != nullptr)
 	{
-		position.x += 2.0f * dt;
-	}
-	transform->SetTranslation(position);
+		Transform* transform = testObject->GetComponent<Transform>();
+		Vector2D position = transform->GetTranslation();
 
-	transform = newObject->GetComponent<Transform>();
-	position = transform->GetTranslation();
-	
-	if (input->CheckHeld(VK_RIGHT))
-	{
-		position.x += 2.0f * dt;
+		if (input->CheckHeld(VK_RIGHT))
+		{
+			position.x += 2.0f * dt;
+		}
+		transform->SetTranslation(position);
+
 	}
-	transform->SetTranslation(position);
 	
 }
 

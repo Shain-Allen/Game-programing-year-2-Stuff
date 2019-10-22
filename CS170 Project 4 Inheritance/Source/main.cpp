@@ -163,7 +163,7 @@ void TestingTheAbstractClasses(void)
 int main(void)
 {
     TestingTheCircleClass();
-    //TestingTheRectangleClass();
+    TestingTheRectangleClass();
     //TestingThePolygonClass();
     //TestingPolymorphism();
 }
