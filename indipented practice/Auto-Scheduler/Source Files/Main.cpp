@@ -42,7 +42,7 @@ int main()
 		cin >> End_.Minutes;
 		cout << "is this associate a minor? (y/n): ";
 		cin >> IsMinor_;
-		Associate var(name_);
+		Associate var(string name_, Time Start_, Time End_, char IsMinor_);
 		associates.push_back(var);
 	}
 
