@@ -22,7 +22,7 @@ int main()
 	string name_;
 	Time Start_;
 	Time End_;
-	bool IsMinor_;
+	char IsMinor_;
 	char NewEntry;
 
 	cout << "welcome to the Auto Schedualer" << endl;
@@ -34,16 +34,15 @@ int main()
 	{
 		cout << "please enter a name: ";
 		cin >> name_;
-		Associate var(name_);
-
 		cout << "please enter the starting time for this assocuate" << endl;
 		cin >> Start_.Hours;
 		cin >> Start_.Minutes;
 		cout << endl << "please enter the End time for this associate" << endl;
 		cin >> End_.Hours;
 		cin >> End_.Minutes;
-
-
+		cout << "is this associate a minor? (y/n): ";
+		cin >> IsMinor_;
+		Associate var(name_);
 		associates.push_back(var);
 	}
 

@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source Files\associate.cpp" />
     <ClCompile Include="..\Source Files\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
