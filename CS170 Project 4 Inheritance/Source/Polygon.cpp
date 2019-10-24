@@ -25,7 +25,7 @@ Polygon::Polygon(Point center_, const Point* vertices_, unsigned int number_of_v
 {
 	vertices = new Point[number_of_vertices_];
 
-	for (int i = 0; i < number_of_vertices_; i++)
+	for (int i = 0; i <= number_of_vertices_; i++)
 	{
 		vertices[i] = vertices_[i];
 	}
@@ -38,7 +38,7 @@ Polygon::~Polygon()
 
 void Polygon::SetVertex(unsigned int index_, float x_, float y_)
 {
-	if (GetNumVertices() > index_)
+	if (index_ < GetNumVertices())
 	{
 		vertices[index_].x = x_;
 		vertices[index_].y = y_;
