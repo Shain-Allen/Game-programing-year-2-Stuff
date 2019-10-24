@@ -16,7 +16,27 @@ using namespace Beta;
 
 // STUDENT CODE GOES HERE
 
+MonkeyMovement::MonkeyMovement()
+{
+}
 
+void MonkeyMovement::Initialize()
+{
+}
+
+void MonkeyMovement::Update(float dt)
+{
+}
+
+void MonkeyMovement::MoveHorizontal() const
+{
+}
+
+void MonkeyMovement::MoveVertical() const
+{
+}
 
 // Create extra component functions - DO NOT REMOVE
 COMPONENT_SUBCLASS_DEFINITION(MonkeyMovement)
+
+

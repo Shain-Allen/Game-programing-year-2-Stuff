@@ -25,6 +25,9 @@
     <ClCompile Include="Source\MonkeyMovement.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Level1.cpp">
+      <Filter>Game\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\stdafx.h">

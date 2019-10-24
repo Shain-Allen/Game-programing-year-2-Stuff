@@ -16,7 +16,31 @@ using namespace Beta;
 
 // STUDENT CODE GOES HERE
 
+MonkeyAnimation::MonkeyAnimation()
+{
+}
 
+void MonkeyAnimation::Initialize()
+{
+}
+
+void MonkeyAnimation::Update(float dt)
+{
+}
+
+void MonkeyAnimation::ChooseNextState()
+{
+}
+
+void MonkeyAnimation::ChangeCurrentState()
+{
+}
+
+void MonkeyAnimation::FlipSprite() const
+{
+}
 
 // Create extra component functions - DO NOT REMOVE
 COMPONENT_SUBCLASS_DEFINITION(MonkeyAnimation)
+
+
