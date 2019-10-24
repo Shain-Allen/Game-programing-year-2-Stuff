@@ -8,6 +8,7 @@
 // Copyright © 2018 DigiPen (USA) Corporation.
 //
 //------------------------------------------------------------------------------
+#pragma once
 #include "Point.h"
 #include "Shape.h"
 
@@ -18,10 +19,11 @@ public:
 	virtual ~Shape_With_Vertices();
 	virtual void SetCenter(float x_, float y_);
 	virtual void Draw() const = 0;
+	int GetNumVertices();
 	
-private:
-	Point* vertices; 
+private: 
 	unsigned int number_of_vertices;
 
 protected:
+	Point* vertices;
 };

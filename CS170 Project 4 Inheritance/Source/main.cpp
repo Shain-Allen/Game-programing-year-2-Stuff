@@ -76,7 +76,7 @@ void TestingTheRectangleClass(void)
 
     std::cout << std::endl;
 }
-/*
+
 void TestingThePolygonClass(void)
 {
     std::cout << "Testing The Polygon Class:" << std::endl;
@@ -120,7 +120,7 @@ void TestingThePolygonClass(void)
 
     std::cout << std::endl;
 }
-
+/*
 void TestingPolymorphism(void)
 {
     std::cout << "Testing Polymorphism:" << std::endl;
@@ -162,8 +162,8 @@ void TestingTheAbstractClasses(void)
 
 int main(void)
 {
-    TestingTheCircleClass();
-    TestingTheRectangleClass();
-    //TestingThePolygonClass();
+    //TestingTheCircleClass();
+    //TestingTheRectangleClass();
+    TestingThePolygonClass();
     //TestingPolymorphism();
 }

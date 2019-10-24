@@ -43,6 +43,9 @@
     <ClCompile Include="..\Source\Circle.cpp">
       <Filter>Source Files\Shape\Circle</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Polygon.cpp">
+      <Filter>Source Files\Shape\Shape with Vertices\Polygon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Point.h">

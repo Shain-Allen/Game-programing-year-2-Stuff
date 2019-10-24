@@ -27,3 +27,8 @@ void Shape_With_Vertices::SetCenter(float x_, float y_)
 {
 	Shape::SetCenter(x_, y_);
 }
+
+int Shape_With_Vertices::GetNumVertices()
+{
+	return number_of_vertices;
+}
