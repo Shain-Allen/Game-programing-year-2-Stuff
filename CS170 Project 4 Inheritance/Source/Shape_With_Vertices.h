@@ -16,10 +16,11 @@ class Shape_With_Vertices : public Shape
 {
 public:
 	Shape_With_Vertices(Point center_, unsigned int number_of_vertices_);
+	Shape_With_Vertices(const Shape_With_Vertices& other);
 	virtual ~Shape_With_Vertices();
 	virtual void SetCenter(float x_, float y_);
 	virtual void Draw() const = 0;
-	int GetNumVertices();
+	unsigned int GetNumVertices() const;
 	
 private: 
 	unsigned int number_of_vertices;
