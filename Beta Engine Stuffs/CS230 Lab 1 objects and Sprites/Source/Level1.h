@@ -83,6 +83,9 @@ private:
 	Beta::AnimationPtr animationWalk;
 	Beta::AnimationPtr animationJump;
 	Beta::AnimationPtr animationIdle;
+
+	//game objects
+	Beta::GameObject* monkey;
 };
 
 //----------------------------------------------------------------------------

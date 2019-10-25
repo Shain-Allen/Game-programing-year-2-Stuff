@@ -41,9 +41,9 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	EngineCore& engine = EngineCore::GetInstance();
 
 	// TO DO: Add SpaceManager module to engine
-	//SpaceManager& spaceManager = *engine.AddModule<SpaceManager>();
+	SpaceManager& spaceManager = *engine.AddModule<SpaceManager>();
 	// TO DO: Set initial level to Level1
-	//spaceManager.GetDefaultSpace().SetLevel<Level1>();
+	spaceManager.GetDefaultSpace().SetLevel<Level1>();
 
 	// Game engine goes!
 	StartupSettings settings;

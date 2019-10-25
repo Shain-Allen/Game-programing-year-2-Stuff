@@ -17,6 +17,7 @@ using namespace Beta;
 // STUDENT CODE GOES HERE
 
 MonkeyAnimation::MonkeyAnimation()
+	: Component("MonkeyAnimation"), walkAnimation(0), jumpAnimation(0), idleAnimation(0), currentState(StateIdle), nextState(StateIdle), animator(nullptr), physics(nullptr), transform(0)
 {
 }
 
@@ -26,6 +27,7 @@ void MonkeyAnimation::Initialize()
 
 void MonkeyAnimation::Update(float dt)
 {
+	UNREFERENCED_PARAMETER(dt);
 }
 
 void MonkeyAnimation::ChooseNextState()
