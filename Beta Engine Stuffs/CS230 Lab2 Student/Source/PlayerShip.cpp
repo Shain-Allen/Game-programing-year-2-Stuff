@@ -30,3 +30,35 @@ using namespace Beta;
 COMPONENT_SUBCLASS_DEFINITION(PlayerShip)
 
 //------------------------------------------------------------------------------
+
+PlayerShip::PlayerShip(Beta::Archetype bulletArchetype, float forwardThrust, float maximumSpeed, float rotationSpeed, float bulletSpeed)
+{
+}
+
+void PlayerShip::Initialize()
+{
+}
+
+void PlayerShip::Update(float dt)
+{
+}
+
+void PlayerShip::Serialize(Beta::FileStream& parser) const
+{
+}
+
+void PlayerShip::Deserialize(Beta::FileStream& parser)
+{
+}
+
+void PlayerShip::Move() const
+{
+}
+
+void PlayerShip::Rotate() const
+{
+}
+
+void PlayerShip::Shoot() const
+{
+}
