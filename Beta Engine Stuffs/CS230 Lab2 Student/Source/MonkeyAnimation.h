@@ -95,7 +95,7 @@ private:
 
 	// Components
 	Beta::Animator* animator;
-	Beta::RigidBody* rigidBody;
+	Beta::RigidBody* physics;
 	Beta::Transform* transform;
 
 	// Flip
