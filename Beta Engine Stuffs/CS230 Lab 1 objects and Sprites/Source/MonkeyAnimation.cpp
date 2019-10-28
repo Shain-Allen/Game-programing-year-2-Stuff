@@ -85,15 +85,18 @@ void MonkeyAnimation::ChangeCurrentState()
 
 void MonkeyAnimation::FlipSprite() const
 {
+
+	Vector2D flipedMonkey(-originalScale.x, originalScale.y);
+
 	if (currentState != StateIdle)
 	{
 		if (physics->GetVelocity().x < 0)
 		{
-			transform->SetScale(-originalScale.x);
+			transform->SetScale(flipedMonkey);
 		}
 		else if (physics->GetVelocity().x > 0)
 		{
-			transform->SetScale(originalScale.x);
+			transform->SetScale(originalScale);
 		}
 	}
 }

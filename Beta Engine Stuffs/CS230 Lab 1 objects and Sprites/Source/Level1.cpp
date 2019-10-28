@@ -93,6 +93,9 @@ Beta::GameObject* Level1::CreateMonkey(void)
 	//add animator
 	Animator* animator = new Animator();
 	monkey->AddComponent(animator);
+	animator->AddAnimation(animationWalk);
+	animator->AddAnimation(animationJump);
+	animator->AddAnimation(animationIdle);
 
 	//add Rigidbody
 	RigidBody* rigidBody = new RigidBody;
