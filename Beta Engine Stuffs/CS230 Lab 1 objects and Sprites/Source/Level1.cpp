@@ -103,7 +103,8 @@ Beta::GameObject* Level1::CreateMonkey(void)
 	monkey->AddComponent(monkeyMovement);
 
 	//add monkey animation
-	
+	MonkeyAnimation* monkeyAnimation = new MonkeyAnimation;
+	monkey->AddComponent(monkeyAnimation);
 
 	return monkey;
 }

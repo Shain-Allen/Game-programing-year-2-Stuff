@@ -23,23 +23,79 @@ MonkeyAnimation::MonkeyAnimation()
 
 void MonkeyAnimation::Initialize()
 {
+	//set the pointers
+	animator = GetOwner()->GetComponent<Animator>();
+	physics = GetOwner()->GetComponent<RigidBody>();
+	transform = GetOwner()->GetComponent<Transform>();
+
+	//set the indicies of each animation
+	walkAnimation = animator->GetAnimationIndex("animationWalk");
+	jumpAnimation = animator->GetAnimationIndex("animationJump");
+	idleAnimation = animator->GetAnimationIndex("animationIdle");
+
+	animator->Play(idleAnimation);
+
+	originalScale = transform->GetScale();
 }
 
 void MonkeyAnimation::Update(float dt)
 {
 	UNREFERENCED_PARAMETER(dt);
+	ChooseNextState();
+	ChangeCurrentState();
+	FlipSprite();
 }
 
 void MonkeyAnimation::ChooseNextState()
 {
+	if (physics->GetVelocity().y != 0)
+	{
+		nextState = StateJump;
+	}
+	else if (physics->GetVelocity().x != 0)
+	{
+		nextState = StateWalk;
+	}
+	else
+	{
+		nextState = StateIdle;
+	}
 }
 
 void MonkeyAnimation::ChangeCurrentState()
 {
+	if (currentState != nextState)
+	{
+		currentState = nextState;
+
+		switch (currentState)
+		{
+		case StateIdle:
+			animator->Play(idleAnimation);
+			break;
+		case StateWalk:
+			animator->Play(walkAnimation);
+			break;
+		case StateJump:
+			animator->Play(jumpAnimation);
+			break;
+		}
+	}
 }
 
 void MonkeyAnimation::FlipSprite() const
 {
+	if (currentState != StateIdle)
+	{
+		if (physics->GetVelocity().x < 0)
+		{
+			transform->SetScale(-originalScale.x);
+		}
+		else if (physics->GetVelocity().x > 0)
+		{
+			transform->SetScale(originalScale.x);
+		}
+	}
 }
 
 // Create extra component functions - DO NOT REMOVE
