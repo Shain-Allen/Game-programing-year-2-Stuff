@@ -1,0 +1,6 @@
+bullet
+{
+	numRows : 5
+	numCols : 3
+	texture : bullet.png
+}

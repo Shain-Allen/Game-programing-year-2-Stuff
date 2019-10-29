@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 //
 // File Name:	MonkeyMovement.cpp
-// Author(s):	Student name here
-// Project:		BetaFramework
-// Course:		WANIC VGP2 2018-2019
+// Author(s):	Shain Allen
+// Project:	MonkeyMovement.cpp
+// Course:	wanic GP2
 //
 // Copyright © 2018 DigiPen (USA) Corporation.
 //

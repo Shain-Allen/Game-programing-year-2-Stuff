@@ -89,14 +89,14 @@ private:
 	// Private Variables:
 	//------------------------------------------------------------------------------
 
+	// Bullet archetype
+	Beta::Archetype bulletArchetype;
+
 	// Movement properties
 	float forwardThrust;
 	float maximumSpeed;
 	float rotationSpeed;
 	float bulletSpeed;
-
-	// Bullet archetype
-	Beta::Archetype bulletArchetype;
 
 	// Components
 	Beta::Transform* transform;

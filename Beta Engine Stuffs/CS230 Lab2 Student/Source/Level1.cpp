@@ -61,6 +61,10 @@ void Level1::Update(float dt)
 		GetSpace()->RestartLevel();
 	}
 
+	if (input->CheckTriggered('2'))
+	{
+		GetSpace()->SetLevel<Level1>();
+	}
 
 }
 

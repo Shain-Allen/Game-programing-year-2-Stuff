@@ -27,9 +27,8 @@
 namespace Beta
 {
 	class GameObject;
-	typedef std::shared_ptr<const SpriteSource> SpriteSourcePtr;
-	typedef std::shared_ptr<const Texture> TexturePtr;
-	typedef std::shared_ptr<const GameObject> Archetype;
+	class SpriteSource;
+	class Texture;
 }
 
 

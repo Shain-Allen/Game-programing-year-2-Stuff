@@ -32,6 +32,7 @@ COMPONENT_SUBCLASS_DEFINITION(PlayerShip)
 //------------------------------------------------------------------------------
 
 PlayerShip::PlayerShip(Beta::Archetype bulletArchetype, float forwardThrust, float maximumSpeed, float rotationSpeed, float bulletSpeed)
+	: Beta::Component("PlayerShip"), bulletArchetype(bulletArchetype), forwardThrust(forwardThrust), maximumSpeed(maximumSpeed), rotationSpeed(rotationSpeed), bulletSpeed(bulletSpeed)
 {
 }
 
@@ -41,6 +42,7 @@ void PlayerShip::Initialize()
 
 void PlayerShip::Update(float dt)
 {
+	UNREFERENCED_PARAMETER(dt);
 }
 
 void PlayerShip::Serialize(Beta::FileStream& parser) const
