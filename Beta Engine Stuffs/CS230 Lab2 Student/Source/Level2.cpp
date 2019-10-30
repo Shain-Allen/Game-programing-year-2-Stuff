@@ -14,6 +14,8 @@
 #include <iostream>
 #include <sstream>
 #include "Level1.h"
+#include "PlayerShip.h"
+#include "TimedDeath.h"
 
 using namespace::Beta;
 using std::cout;
@@ -33,8 +35,8 @@ void Level2::Load()
 
 	graphics.SetBackgroundColor(Colors::Black);
 
-	shipTexture = ResourceGetTexture("ship");
-	bulletTexture = ResourceGetTexture("bullet");
+	shipTexture = ResourceGetTexture("ship.png");
+	bulletTexture = ResourceGetTexture("bullet.png");
 	shipSpriteSource = ResourceGetSpriteSource("Ship");
 	bulletSpriteSource = ResourceGetSpriteSource("Bullet");
 	bulletArchetype = Archetype(CreateBulletArchetype());
@@ -53,7 +55,7 @@ void Level2::Update(float dt)
 
 	std::stringstream windowTitle;
 	
-	windowTitle << "Bullets alive: " << 1;
+	windowTitle << "Bullets alive: " << GetSpace()->GetObjectManager().GetObjectCount("bullet");
 
 	WindowSystem& windowSystem = *EngineGetModule(WindowSystem);
 
@@ -88,6 +90,9 @@ Beta::GameObject* Level2::CreateShip(void)
 	RigidBody* rigiBody = new RigidBody;
 	ship->AddComponent(rigiBody);
 
+	PlayerShip* playerShip = new PlayerShip(bulletArchetype);
+	ship->AddComponent(playerShip);
+
 	return ship;
 }
 
@@ -107,5 +112,8 @@ Beta::GameObject* Level2::CreateBulletArchetype(void)
 	RigidBody* RigiBody = new RigidBody;
 	bullet->AddComponent(RigiBody);
 
-	return nullptr;
+	TimedDeath* timedDeath = new TimedDeath;
+	bullet->AddComponent(timedDeath);
+
+	return bullet;
 }

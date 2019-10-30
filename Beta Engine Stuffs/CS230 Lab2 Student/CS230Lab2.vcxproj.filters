@@ -34,6 +34,9 @@
     <ClCompile Include="Source\MonkeyMovement.cpp">
       <Filter>Game\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MonkeyAnimation.cpp">
+      <Filter>Game\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\stdafx.h">

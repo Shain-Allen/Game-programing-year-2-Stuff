@@ -13,6 +13,7 @@
 #include "Level1.h"
 #include "MonkeyMovement.h"
 #include "MonkeyAnimation.h"
+#include "Level2.h"
 
 using namespace Beta;
 using std::cout;
@@ -63,7 +64,7 @@ void Level1::Update(float dt)
 
 	if (input->CheckTriggered('2'))
 	{
-		GetSpace()->SetLevel<Level1>();
+		GetSpace()->SetLevel<Level2>();
 	}
 
 }
