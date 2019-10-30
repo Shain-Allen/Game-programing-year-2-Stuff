@@ -39,7 +39,7 @@ void Level2::Load()
 	bulletTexture = ResourceGetTexture("bullet.png");
 	shipSpriteSource = ResourceGetSpriteSource("Ship");
 	bulletSpriteSource = ResourceGetSpriteSource("Bullet");
-	bulletArchetype = Archetype(CreateBulletArchetype());
+	bulletArchetype = ResourceGetArchetype("Bullet");
 }
 
 void Level2::Initialize()
@@ -114,6 +114,8 @@ Beta::GameObject* Level2::CreateBulletArchetype(void)
 
 	TimedDeath* timedDeath = new TimedDeath;
 	bullet->AddComponent(timedDeath);
+
+	EngineGetModule(GameObjectFactory)->SaveObjectToFile(bullet);
 
 	return bullet;
 }

@@ -51,14 +51,14 @@ void PlayerShip::Update(float dt)
 	Shoot();
 }
 
-void PlayerShip::Serialize(Beta::FileStream& parser) const
+void PlayerShip::Serialize(Beta::FileStream& stream) const
 {
-	UNREFERENCED_PARAMETER(parser);
+	UNREFERENCED_PARAMETER(stream);
 }
 
-void PlayerShip::Deserialize(Beta::FileStream& parser)
+void PlayerShip::Deserialize(Beta::FileStream& stream)
 {
-	UNREFERENCED_PARAMETER(parser);
+	UNREFERENCED_PARAMETER(stream);
 }
 
 void PlayerShip::Move() const

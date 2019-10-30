@@ -48,12 +48,16 @@ void TimedDeath::Update(float dt)
 	}
 }
 
-void TimedDeath::Serialize(Beta::FileStream& parser) const
+void TimedDeath::Serialize(Beta::FileStream& stream) const
 {
-	UNREFERENCED_PARAMETER(parser);
+	UNREFERENCED_PARAMETER(stream);
+
+	stream.WriteVariable("timeUntilDeath", timeUntilDeath);
 }
 
-void TimedDeath::Deserialize(Beta::FileStream& parser)
+void TimedDeath::Deserialize(Beta::FileStream& stream)
 {
-	UNREFERENCED_PARAMETER(parser);
+	UNREFERENCED_PARAMETER(stream);
+
+	stream.ReadVariable("timeUntilDeath", timeUntilDeath);
 }
