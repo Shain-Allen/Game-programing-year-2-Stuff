@@ -46,7 +46,10 @@ void Level2::Initialize()
 {
 	cout << "Level2::Initialize" << endl;
 
-	GetSpace()->GetObjectManager().AddObject(*CreateShip());
+	GameObjectFactory& factory = *EngineGetModule(GameObjectFactory);
+
+	GetSpace()->GetObjectManager().AddObject(*factory.CreateObject("ship"));
+	//new GameObject(ResourceGetArchetype("ship"));
 }
 
 void Level2::Update(float dt)
@@ -55,7 +58,7 @@ void Level2::Update(float dt)
 
 	std::stringstream windowTitle;
 	
-	windowTitle << "Bullets alive: " << GetSpace()->GetObjectManager().GetObjectCount("bullet");
+	windowTitle << "Bullets alive: " << GetSpace()->GetObjectManager().GetObjectCount("Bullet");
 
 	WindowSystem& windowSystem = *EngineGetModule(WindowSystem);
 
@@ -92,6 +95,8 @@ Beta::GameObject* Level2::CreateShip(void)
 
 	PlayerShip* playerShip = new PlayerShip(bulletArchetype);
 	ship->AddComponent(playerShip);
+
+	EngineGetModule(GameObjectFactory)->SaveObjectToFile(ship);
 
 	return ship;
 }

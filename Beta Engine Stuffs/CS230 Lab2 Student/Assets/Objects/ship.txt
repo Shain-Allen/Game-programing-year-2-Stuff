@@ -1,15 +1,15 @@
-Bullet
+ship
 {
 	numComponents : 4
 	Transform
 	{
 		translation : { 0, 0 }
 		rotation : 0
-		scale : { 0.07, 0.07 }
+		scale : { 0.5, 0.5 }
 	}
 	Sprite
 	{
-		spriteSource : Bullet
+		spriteSource : ship
 		color : { 1 , 1 , 1 , 1 }
 		zDepth : 0
 	}
@@ -19,8 +19,12 @@ Bullet
 		angularVelocity : 0
 		mass : 1
 	}
-	timedDeath
+	PlayerShip
 	{
-		timeUntilDeath : 1
+		bulletArchtype : Bullet
+		forwardThrust : 3
+		maxiumSpeed : 2
+		rotationSpeed : 3.14159
+		bulletSpeed : 4
 	}
 }

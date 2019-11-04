@@ -54,11 +54,25 @@ void PlayerShip::Update(float dt)
 void PlayerShip::Serialize(Beta::FileStream& stream) const
 {
 	UNREFERENCED_PARAMETER(stream);
+
+	stream.WriteVariable("bulletArchtype", bulletArchetype->GetName());
+	stream.WriteVariable("forwardThrust", forwardThrust);
+	stream.WriteVariable("maxiumSpeed", maximumSpeed);
+	stream.WriteVariable("rotationSpeed", rotationSpeed);
+	stream.WriteVariable("bulletSpeed", bulletSpeed);
 }
 
 void PlayerShip::Deserialize(Beta::FileStream& stream)
 {
 	UNREFERENCED_PARAMETER(stream);
+	std::string bulletName;
+
+	stream.ReadVariable("bulletArchtype", bulletName);
+	bulletArchetype = ResourceGetArchetype(bulletName);
+	stream.ReadVariable("forwardThrust", forwardThrust);
+	stream.ReadVariable("maxiumSpeed", maximumSpeed);
+	stream.ReadVariable("rotationSpeed", rotationSpeed);
+	stream.ReadVariable("bulletSpeed", bulletSpeed);
 }
 
 void PlayerShip::Move() const
@@ -102,7 +116,7 @@ void PlayerShip::Shoot() const
 
 	if (input->CheckTriggered(' '))
 	{
-		GameObject* bullet = new GameObject(bulletArchetype);
+		GameObject* bullet = new GameObject(ResourceGetArchetype("Bullet"));
 
 		Vector2D fireingdir = Vector2D::FromAngleRadians(transform->GetRotation());
 
