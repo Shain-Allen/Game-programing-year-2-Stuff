@@ -46,11 +46,18 @@ void Level1::Initialize()
 
 	// Create a sprite component and set its mesh and sprite source
 	Sprite* sprite = new Sprite();
-	sprite->SetColor(Colors::Green);
+	sprite->SetColor(Colors::Yellow);
 	testObject->AddComponent(sprite);
 
+	// Add a circle collider componet
+	ColliderCircle* collider = new ColliderCircle();
+	testObject->AddComponent(collider);
+
 	// Initialize the object
-	testObject->Initialize();
+	//testObject->Initialize();
+
+	//use object manager to update/draw etc
+	GetSpace()->GetObjectManager().AddObject(*testObject);
 }
 
 // Update the Level1 game state.
@@ -65,27 +72,10 @@ void Level1::Update(float dt)
 	// If the user presses the '1' key, restart the current level
 	if (input->CheckTriggered('1'))
 		GetSpace()->RestartLevel();
-
-	// If the user presses the 'D' key, delete the object
-	if (input->CheckTriggered('D'))
-	{
-		delete testObject;
-		testObject = nullptr;
-	}
-
-	// If the object exists
-	if (testObject)
-	{
-		// Update and draw
-		testObject->Update(dt);
-		testObject->Draw();
-	}
 }
 
 // Shutdown any memory associated with the Level1 game state.
 void Level1::Shutdown()
 {
 	std::cout << "Level1::Shutdown" << std::endl;
-
-	delete testObject;
 }
