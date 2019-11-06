@@ -15,6 +15,7 @@
 
 #include "stdafx.h"
 #include "Level1.h"
+#include "DestroyOnCollide.h"
 
 //------------------------------------------------------------------------------
 
@@ -50,14 +51,43 @@ void Level1::Initialize()
 	testObject->AddComponent(sprite);
 
 	// Add a circle collider componet
-	ColliderCircle* collider = new ColliderCircle();
+	//ColliderCircle* collider = new ColliderCircle();
+	ColliderRectangle* collider = new ColliderRectangle();
+	collider->SetExtents(transform->GetScale() / 2.0f);
 	testObject->AddComponent(collider);
+
+	//Add Destory On collide
+	DestroyOnCollide* destroyOnCollide = new DestroyOnCollide;
+	testObject->AddComponent(destroyOnCollide);
 
 	// Initialize the object
 	//testObject->Initialize();
 
+	//made second object using code copyed from above
+	// Create a new game object
+	GameObject* bob = new GameObject("bob");
+
+	// Create a transform component at 0,0 with scale 300,300
+	transform = new Transform(2.0f, 2.0f);
+	transform->SetRotation(0.0f);
+	transform->SetScale(Vector2D(1.0f, 1.0f));
+	bob->AddComponent(transform);
+
+	// Create a sprite component and set its mesh and sprite source
+	sprite = new Sprite();
+	sprite->SetColor(Colors::Orange);
+	bob->AddComponent(sprite);
+
+	// Add a circle collider componet
+	//ColliderCircle* collider = new ColliderCircle();
+	collider = new ColliderRectangle();
+	collider->SetExtents(transform->GetScale() / 2.0f);
+	bob->AddComponent(collider);
+
 	//use object manager to update/draw etc
+	GetSpace()->GetObjectManager().AddObject(*bob);
 	GetSpace()->GetObjectManager().AddObject(*testObject);
+	
 }
 
 // Update the Level1 game state.
