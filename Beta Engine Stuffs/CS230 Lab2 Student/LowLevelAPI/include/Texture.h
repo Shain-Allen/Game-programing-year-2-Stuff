@@ -64,11 +64,22 @@ namespace Beta
 		// Destroys texture data via OpenGL
 		BE_API ~Texture();
 
-		// Set this as the active texture,
+		// Set this as the active texture.
 		// Params:
 		//   uvOffset = The texture coordinate offset to use when rendering.
 		//   shader = The shader that will be using this texture. Defaults to sprite shader if parameter is null.
 		BE_API void Use(const Vector2D& uvOffset = Vector2D(), const ShaderProgram* shader = nullptr) const;
+
+		// Set this as the active texture.
+		// Params:
+		//   spriteColumns	= The number of columns in the sprite texture.
+		//   spriteRows		= The number of rows in the sprite texture.
+		//	 flipX			= Whether to flip the texture horizontally when drawing.
+		//	 flipY			= Whether to flip the texture vertically when drawing.
+		//   uvOffset		= The texture coordinate offset to use when rendering.
+		//   shader			= The shader that will be using this texture. Defaults to sprite shader if parameter is null.
+		BE_API void Use(unsigned spriteColumns, unsigned spriteRows, bool flipX, bool flipY, 
+			const Vector2D& uvOffset, const ShaderProgram* shader = nullptr) const;
 
 		// Returns the name of the texture.
 		BE_API const std::string& GetName() const;

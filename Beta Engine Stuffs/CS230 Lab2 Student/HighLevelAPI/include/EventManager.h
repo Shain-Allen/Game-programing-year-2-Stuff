@@ -200,6 +200,14 @@ namespace Beta
 
 	private:
 		//------------------------------------------------------------------------------
+		// Private Functions:
+		//------------------------------------------------------------------------------
+
+		// Disable copy and assign to prevent accidental copies
+		EventManager(const EventManager&) = delete;
+		EventManager& operator=(const EventManager&) = delete;
+
+		//------------------------------------------------------------------------------
 		// Private Structures:
 		//------------------------------------------------------------------------------
 

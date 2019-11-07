@@ -19,6 +19,24 @@
     <ClCompile Include="Source\stdafx.cpp">
       <Filter>Precompiled</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Level1.cpp">
+      <Filter>Game\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Level2.cpp">
+      <Filter>Game\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MonkeyAnimation.cpp">
+      <Filter>Game\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MonkeyMovement.cpp">
+      <Filter>Game\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerShip.cpp">
+      <Filter>Game\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TimedDeath.cpp">
+      <Filter>Game\Behaviors</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Asteroid.cpp">
       <Filter>Game\Behaviors</Filter>
     </ClCompile>
@@ -27,6 +45,9 @@
     </ClCompile>
     <ClCompile Include="Source\ScreenWrap.cpp">
       <Filter>Game\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Asteroids.cpp">
+      <Filter>Game\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,16 +75,16 @@
     <ClInclude Include="Source\Asteroids.h">
       <Filter>Game\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Asteroid.h">
-      <Filter>Game\Behaviors</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ScreenWrap.h">
-      <Filter>Game\Behaviors</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Archetypes.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Asteroid.h">
+      <Filter>Game\Behaviors</Filter>
+    </ClInclude>
     <ClInclude Include="Source\PlayerProjectile.h">
+      <Filter>Game\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ScreenWrap.h">
       <Filter>Game\Behaviors</Filter>
     </ClInclude>
   </ItemGroup>

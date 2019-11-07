@@ -43,6 +43,15 @@ namespace Beta
 
 		// Retrieve the space in which the level is running.
 		BE_HL_API Space* GetSpace() const;
+
+	private:
+		//------------------------------------------------------------------------------
+		// Private Functions:
+		//------------------------------------------------------------------------------
+
+		// Disable copy and assign to prevent accidental copies
+		Level(const Level&) = delete;
+		Level& operator=(const Level&) = delete;
 	};
 }
 

@@ -23,12 +23,12 @@ using namespace Beta;
 
 // STUDENT CODE GOES HERE
 
-
-
-
-
+ScreenWrap::ScreenWrap()
+{
+}
 
 //------------------------------------------------------------------------------
 
 // Extra component stuff - DO NOT REMOVE
 COMPONENT_SUBCLASS_DEFINITION(ScreenWrap)
+

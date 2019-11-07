@@ -129,6 +129,10 @@ namespace Beta
 		// Private Functions:
 		//------------------------------------------------------------------------------
 
+		// Disable copy and assign to prevent accidental copies
+		ResourceManager(const ResourceManager&) = delete;
+		ResourceManager& operator=(const ResourceManager&) = delete;
+
 		virtual ResourcePtr Create(const std::string& name) = 0;
 
 		//------------------------------------------------------------------------------

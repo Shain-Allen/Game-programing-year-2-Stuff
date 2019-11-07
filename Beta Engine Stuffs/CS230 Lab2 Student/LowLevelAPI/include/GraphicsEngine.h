@@ -155,6 +155,14 @@ namespace Beta
 
 	private:
 		//------------------------------------------------------------------------------
+		// Private Functions:
+		//------------------------------------------------------------------------------
+
+		// Disable copy and assign to prevent accidental copies
+		GraphicsEngine(const GraphicsEngine&) = delete;
+		GraphicsEngine& operator=(const GraphicsEngine&) = delete;
+
+		//------------------------------------------------------------------------------
 		// Private Variables:
 		//------------------------------------------------------------------------------
 

@@ -74,7 +74,9 @@ namespace Beta
 		// Activates the sprite source's texture and sets its UV offset based on the given frame index.
 		// Params:
 		//   frameIndex = The index of the frame of the texture that we want to use.
-		BE_HL_API void UseTexture(unsigned frameIndex) const;
+		//   flipX		= Whether to flip the sprite horizontally when rendering.
+		//   flipY	    = Whether to flip the sprite vertically when rendering.
+		BE_HL_API void UseTexture(unsigned frameIndex, bool flipX = false, bool flipY = false) const;
 
 		// Returns the maximum number of possible frames in the sprite source's texture (rows * cols).
 		BE_HL_API unsigned GetFrameCount() const;

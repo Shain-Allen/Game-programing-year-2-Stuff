@@ -71,6 +71,10 @@ namespace Beta
 		// Private Functions:
 		//------------------------------------------------------------------------------
 
+		// Disable copy and assign to prevent accidental copies
+		Input(const Input&) = delete;
+		Input& operator=(const Input&) = delete;
+
 		// Helper functions
 		void UpdateKeyboard();
 		void UpdateMouse();

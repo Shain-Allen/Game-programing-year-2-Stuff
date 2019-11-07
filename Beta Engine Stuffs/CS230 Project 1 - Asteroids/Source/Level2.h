@@ -27,7 +27,10 @@
 namespace Beta
 {
 	class GameObject;
+	class SpriteSource;
+	class Texture;
 }
+
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -68,6 +71,16 @@ private:
 	// Returns:
 	//	 A pointer to the newly constructed game object
 	Beta::GameObject* CreateBulletArchetype(void);
+
+	//------------------------------------------------------------------------------
+	// Private Variables:
+	//------------------------------------------------------------------------------
+	
+	Beta::TexturePtr shipTexture;
+	Beta::TexturePtr bulletTexture;
+	Beta::SpriteSourcePtr shipSpriteSource;
+	Beta::SpriteSourcePtr bulletSpriteSource;
+	Beta::Archetype bulletArchetype;
 };
 
 

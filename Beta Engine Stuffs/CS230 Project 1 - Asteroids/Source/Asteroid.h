@@ -80,14 +80,14 @@ private:
 	// Private Structures:
 	//------------------------------------------------------------------------------
 
-	enum Size
+	enum class Size
 	{
 		SizeSmall,
 		SizeMedium,
 		SizeLarge,
 	};
 
-	enum Location
+	enum class Location
 	{
 		LocationTopLeft,
 		LocationTopRight,

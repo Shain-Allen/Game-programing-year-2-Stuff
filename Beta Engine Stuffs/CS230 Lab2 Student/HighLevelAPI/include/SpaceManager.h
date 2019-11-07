@@ -64,6 +64,18 @@ namespace Beta
 		BE_HL_API Space& GetDefaultSpace();
 
 	private:
+		//------------------------------------------------------------------------------
+		// Private Functions:
+		//------------------------------------------------------------------------------
+
+		// Disable copy and assign to prevent accidental copies
+		SpaceManager(const SpaceManager&) = delete;
+		SpaceManager& operator=(const SpaceManager&) = delete;
+
+		//------------------------------------------------------------------------------
+		// Private Variables:
+		//------------------------------------------------------------------------------
+
 		// Pointers to all spaces
 		Array<Space*> spaces;
 

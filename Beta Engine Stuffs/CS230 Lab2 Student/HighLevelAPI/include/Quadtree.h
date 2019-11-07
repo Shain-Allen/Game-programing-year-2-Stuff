@@ -98,6 +98,10 @@ namespace Beta
 		// Private Functions:
 		//------------------------------------------------------------------------------
 
+		// Disable copy and assign to prevent accidental copies
+		Quadtree(const Quadtree&) = delete;
+		Quadtree& operator=(const Quadtree&) = delete;
+
 		// Splits the contents of a node into four child nodes.
 		void Split();
 

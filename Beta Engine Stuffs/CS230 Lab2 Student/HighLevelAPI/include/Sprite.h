@@ -116,6 +116,12 @@ namespace Beta
 		// Sets the current depth of the sprite in the level.
 		BE_HL_API void SetZDepth(float depth);
 
+		// Set whether to flip the sprite horizontally when drawing
+		BE_HL_API void SetFlipX(bool flipX);
+
+		// Set whether to flip the sprite vertically when drawing
+		BE_HL_API void SetFlipY(bool flipY);
+
 		// Save object data to file.
 		// Params:
 		//   stream = The stream object used to save the object's data.
@@ -156,6 +162,10 @@ namespace Beta
 
 		// For depth
 		float zDepth;
+
+		// Mirroring
+		bool flipX;
+		bool flipY;
 
 		static MeshManager meshManager;
 
