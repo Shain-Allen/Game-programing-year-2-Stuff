@@ -11,6 +11,7 @@
 #include "stdafx.h"
 #include "Archetypes.h"
 
+
 Beta::GameObject* Archetypes::CreateShip()
 {
 	GameObject* ship = new GameObject("ship");

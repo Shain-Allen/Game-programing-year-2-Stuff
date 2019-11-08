@@ -13,7 +13,10 @@
   <ItemGroup>
     <ClCompile Include="Source\Archetypes.cpp" />
     <ClCompile Include="Source\Asteroid.cpp" />
-    <ClCompile Include="Source\Asteroids.cpp" />
+    <ClCompile Include="Source\Asteroids.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Source\Level1.cpp" />
     <ClCompile Include="Source\Level2.cpp" />
     <ClCompile Include="Source\Main.cpp" />

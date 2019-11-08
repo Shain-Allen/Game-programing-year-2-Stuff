@@ -16,6 +16,7 @@
 #include "Level1.h"
 #include "PlayerShip.h"
 #include "TimedDeath.h"
+#include "Archetypes.h"
 
 using namespace::Beta;
 using std::cout;
@@ -35,11 +36,13 @@ void Level2::Load()
 
 	graphics.SetBackgroundColor(Colors::Black);
 
-	shipTexture = ResourceGetTexture("ship.png");
-	bulletTexture = ResourceGetTexture("bullet.png");
-	shipSpriteSource = ResourceGetSpriteSource("Ship");
-	bulletSpriteSource = ResourceGetSpriteSource("Bullet");
-	bulletArchetype = ResourceGetArchetype("Bullet");
+	//shipTexture = ResourceGetTexture("ship.png");
+	//bulletTexture = ResourceGetTexture("bullet.png");
+	//shipSpriteSource = ResourceGetSpriteSource("Ship");
+	//bulletSpriteSource = ResourceGetSpriteSource("Bullet");
+	//bulletArchetype = ResourceGetArchetype("Bullet");
+	Archetypes::CreateBulletArchetype();
+	Archetypes::CreateAsteroidArchetype();
 }
 
 void Level2::Initialize()
@@ -76,7 +79,7 @@ void Level2::Update(float dt)
 		GetSpace()->SetLevel<Level1>();
 	}
 }
-
+/*
 Beta::GameObject* Level2::CreateShip(void)
 {
 	GameObject* ship = new GameObject("ship");
@@ -124,3 +127,4 @@ Beta::GameObject* Level2::CreateBulletArchetype(void)
 
 	return bullet;
 }
+*/
