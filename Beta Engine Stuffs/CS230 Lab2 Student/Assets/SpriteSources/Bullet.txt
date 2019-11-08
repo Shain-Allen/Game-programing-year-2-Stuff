@@ -1,6 +1,0 @@
-bullet
-{
-	numRows : 1
-	numCols : 1
-	texture : bullet.png
-}
