@@ -73,16 +73,6 @@ namespace Beta
 		//	 velocity = Pointer to a velocity vector.
 		BE_HL_API void SetVelocity(const Vector2D& velocity);
 
-		// Set the x-component of the rigid body's velocity.
-		// Params:
-		//	 x = The new value for the velocity's x-component.
-		BE_HL_API void SetVelocityX(float x);
-
-		// Set the y-component of the rigid body's velocity.
-		// Params:
-		//	 y = The new value for the velocity's y-component.
-		BE_HL_API void SetVelocityY(float y);
-
 		// Set the angular velocity of a physics component.
 		// Params:
 		//	 velocity = New value for the rotational velocity.

@@ -119,10 +119,6 @@ namespace Beta
 			float distance, const std::string& filter = "");
 
 	private:
-		//------------------------------------------------------------------------------
-		// Private Functions:
-		//------------------------------------------------------------------------------
-
 		// Disable copy constructor and assignment operator
 		GameObjectManager(const GameObjectManager&) = delete;
 		GameObjectManager& operator=(const GameObjectManager&) = delete;

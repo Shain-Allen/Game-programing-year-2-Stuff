@@ -17,8 +17,8 @@
 
 #include <BetaObject.h>
 
-#include <Component.h>			// GetType
 #include <Array.h>				// Array of components
+#include "Component.h"			// Array of components
 #include "ResourceManager.h"	// Archetype manager
 
 //------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ namespace Beta
 
 		// Retrieves the component with the given type if it exists.
 		template<typename ComponentType>
-		ComponentType* GetComponent() const
+		ComponentType* GetComponent()
 		{
 			size_t numComponents = components.Size();
 

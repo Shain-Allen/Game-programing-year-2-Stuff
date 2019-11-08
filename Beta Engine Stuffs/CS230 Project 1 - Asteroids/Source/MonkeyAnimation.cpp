@@ -17,7 +17,7 @@ using namespace Beta;
 // STUDENT CODE GOES HERE
 
 MonkeyAnimation::MonkeyAnimation()
-	: Component("MonkeyAnimation"), walkAnimation(0), jumpAnimation(0), idleAnimation(0), currentState(StateIdle), nextState(StateIdle), animator(nullptr), physics(nullptr), transform(0)
+	: Component("MonkeyAnimation"), walkAnimation(0), jumpAnimation(0), idleAnimation(0), currentState(StateIdle), nextState(StateIdle), animator(nullptr), rigidBody(nullptr), transform(0)
 {
 }
 
@@ -25,7 +25,7 @@ void MonkeyAnimation::Initialize()
 {
 	//set the pointers
 	animator = GetOwner()->GetComponent<Animator>();
-	physics = GetOwner()->GetComponent<RigidBody>();
+	rigidBody = GetOwner()->GetComponent<RigidBody>();
 	transform = GetOwner()->GetComponent<Transform>();
 
 	//set the indicies of each animation
@@ -48,11 +48,11 @@ void MonkeyAnimation::Update(float dt)
 
 void MonkeyAnimation::ChooseNextState()
 {
-	if (physics->GetVelocity().y != 0)
+	if (rigidBody->GetVelocity().y != 0)
 	{
 		nextState = StateJump;
 	}
-	else if (physics->GetVelocity().x != 0)
+	else if (rigidBody->GetVelocity().x != 0)
 	{
 		nextState = StateWalk;
 	}
@@ -90,11 +90,11 @@ void MonkeyAnimation::FlipSprite() const
 
 	if (currentState != StateIdle)
 	{
-		if (physics->GetVelocity().x < 0)
+		if (rigidBody->GetVelocity().x < 0)
 		{
 			transform->SetScale(flipedMonkey);
 		}
-		else if (physics->GetVelocity().x > 0)
+		else if (rigidBody->GetVelocity().x > 0)
 		{
 			transform->SetScale(originalScale);
 		}

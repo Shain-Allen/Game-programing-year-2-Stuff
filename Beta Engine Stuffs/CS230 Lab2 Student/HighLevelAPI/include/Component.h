@@ -44,7 +44,6 @@ namespace Beta
 
 	class GameObject;
 	class Component;
-	class Space;
 }
 
 //------------------------------------------------------------------------------
@@ -187,9 +186,6 @@ namespace Beta
 
 		// Retrieve component's owner object (if any).
 		BE_HL_API GameObject* GetOwner() const;
-
-		// Get the space that contains this object.
-		BE_HL_API Space* GetSpace() const;
 
 		// Clones the component, returning a dynamically allocated copy.
 		BE_HL_API virtual Component* Clone() const = 0;

@@ -109,14 +109,6 @@ namespace Beta
 
 	private:
 		//------------------------------------------------------------------------------
-		// Private Functions:
-		//------------------------------------------------------------------------------
-
-		// Disable copy and assign to prevent accidental copies
-		SoundManager(const SoundManager&) = delete;
-		SoundManager& operator=(const SoundManager&) = delete;
-
-		//------------------------------------------------------------------------------
 		// Private Variables:
 		//------------------------------------------------------------------------------
 

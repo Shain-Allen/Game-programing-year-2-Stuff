@@ -93,7 +93,7 @@ Beta::GameObject* Level2::CreateShip(void)
 	RigidBody* rigiBody = new RigidBody;
 	ship->AddComponent(rigiBody);
 
-	PlayerShip* playerShip = new PlayerShip(bulletArchetype);
+	PlayerShip* playerShip = new PlayerShip();
 	ship->AddComponent(playerShip);
 
 	EngineGetModule(GameObjectFactory)->SaveObjectToFile(ship);

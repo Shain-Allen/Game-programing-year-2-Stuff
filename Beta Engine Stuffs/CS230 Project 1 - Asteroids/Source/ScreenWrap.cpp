@@ -24,7 +24,17 @@ using namespace Beta;
 // STUDENT CODE GOES HERE
 
 ScreenWrap::ScreenWrap()
+	: Component("ScreenWrap"), transform(nullptr), rigidBody(nullptr)
 {
+}
+
+void ScreenWrap::Initialize()
+{
+}
+
+void ScreenWrap::Update(float dt)
+{
+	UNREFERENCED_PARAMETER(dt);
 }
 
 //------------------------------------------------------------------------------

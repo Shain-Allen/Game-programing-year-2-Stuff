@@ -83,10 +83,6 @@ namespace Beta
 		// Private Functions:
 		//------------------------------------------------------------------------------
 
-		// Disable copy and assign to prevent accidental copies
-		WindowSystem(const WindowSystem&) = delete;
-		WindowSystem& operator=(const WindowSystem&) = delete;
-
 		// Initializes the Beta systems. Uses the specified options to initialize Beta and
 		// the functionality handled by Beta.
 		void InitHelper();

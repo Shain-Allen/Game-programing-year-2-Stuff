@@ -65,16 +65,6 @@ namespace Beta
 		//	 translation = Reference to a translation vector.
 		BE_HL_API void SetTranslation(const Vector2D& translation);
 
-		// Set the x-component of the translation.
-		// Params:
-		//	 x = The new value for the translation's x-component.
-		BE_HL_API void SetTranslationX(float x);
-
-		// Set the y-component of the translation.
-		// Params:
-		//	 y = The new value for the translation's y-component.
-		BE_HL_API void SetTranslationY(float y);
-
 		// Get the translation of a transform component.
 		// Returns:
 		//	 A reference to the component's translation structure.
@@ -94,16 +84,6 @@ namespace Beta
 		// Params:
 		//	 scale = Reference to a scale vector.
 		BE_HL_API void SetScale(const Vector2D& scale);
-
-		// Set the x-component of the scale.
-		// Params:
-		//	 x = The new value for the scale's x-component.
-		BE_HL_API void SetScaleX(float x);
-
-		// Set the y-component of the scale.
-		// Params:
-		//	 y = The new value for the scale's y-component.
-		BE_HL_API void SetScaleY(float y);
 
 		// Get the scale of a transform component.
 		// Returns:

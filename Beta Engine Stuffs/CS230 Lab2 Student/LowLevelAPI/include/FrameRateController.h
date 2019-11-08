@@ -38,7 +38,7 @@ namespace Beta
 		// Grabs the initial time stamp and sets the maximum frame rate for the 
 		// frame rate controller.
 		// Params:
-		//   framerateCap = Maximum frames per second.
+		//   maxRate = Maximum frames per second.
 		void Initialize(unsigned framerateCap = 200);
 
 		// End the current frame, updating the delta time and frame count. Frame 
@@ -60,14 +60,6 @@ namespace Beta
 		unsigned long GetFrameCount() const;
 
 	private:
-		//------------------------------------------------------------------------------
-		// Private Functions:
-		//------------------------------------------------------------------------------
-
-		// Disable copy and assign to prevent accidental copies
-		FrameRateController(const FrameRateController&) = delete;
-		FrameRateController& operator=(const FrameRateController&) = delete;
-	
 		//------------------------------------------------------------------------------
 		// Private Variables:
 		//------------------------------------------------------------------------------

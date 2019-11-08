@@ -102,10 +102,6 @@ namespace Beta
 		// Private Functions:
 		//------------------------------------------------------------------------------
 
-		// Disable copy and assign to prevent accidental copies
-		Space(const Space&) = delete;
-		Space& operator=(const Space&) = delete;
-
 		// Updates current/next level pointers and calls shutdown/unload/load/init
 		void ChangeLevel();
 

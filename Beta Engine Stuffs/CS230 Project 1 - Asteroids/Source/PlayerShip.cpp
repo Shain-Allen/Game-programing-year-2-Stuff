@@ -31,8 +31,8 @@ COMPONENT_SUBCLASS_DEFINITION(PlayerShip)
 
 //------------------------------------------------------------------------------
 
-PlayerShip::PlayerShip(Beta::Archetype bulletArchetype, float forwardThrust, float maximumSpeed, float rotationSpeed, float bulletSpeed)
-	: Beta::Component("PlayerShip"), bulletArchetype(bulletArchetype), forwardThrust(forwardThrust), maximumSpeed(maximumSpeed), rotationSpeed(rotationSpeed), bulletSpeed(bulletSpeed), transform(nullptr), rigidBody(nullptr)
+PlayerShip::PlayerShip(float forwardThrust, float maximumSpeed, float rotationSpeed, float bulletSpeed, float deathDuration)
+	: Component("PlayerShip"), forwardThrust(forwardThrust), maximumSpeed(maximumSpeed), rotationSpeed(rotationSpeed), bulletSpeed(bulletSpeed), bulletArchetype(bulletArchetype), score(0), deathDuration(deathDuration), isDying(false), transform(nullptr), rigidBody(nullptr)
 {
 }
 
@@ -51,7 +51,17 @@ void PlayerShip::Update(float dt)
 	Shoot();
 }
 
-void PlayerShip::Serialize(Beta::FileStream& stream) const
+unsigned PlayerShip::GetScore() const
+{
+	return 0;
+}
+
+void PlayerShip::IncreaseScore(unsigned amount)
+{
+	UNREFERENCED_PARAMETER(amount);
+}
+
+/*void PlayerShip::Serialize(Beta::FileStream& stream) const
 {
 	UNREFERENCED_PARAMETER(stream);
 
@@ -73,7 +83,7 @@ void PlayerShip::Deserialize(Beta::FileStream& stream)
 	stream.ReadVariable("maxiumSpeed", maximumSpeed);
 	stream.ReadVariable("rotationSpeed", rotationSpeed);
 	stream.ReadVariable("bulletSpeed", bulletSpeed);
-}
+}*/
 
 void PlayerShip::Move() const
 {
@@ -110,7 +120,7 @@ void PlayerShip::Rotate() const
 	}
 }
 
-void PlayerShip::Shoot() const
+void PlayerShip::Shoot()
 {
 	Input* input = EngineGetModule(Input);
 
@@ -130,4 +140,14 @@ void PlayerShip::Shoot() const
 
 		GetOwner()->GetSpace()->GetObjectManager().AddObject(*bullet);
 	}
+}
+
+void PlayerShip::DeathSequence(float dt)
+{
+	UNREFERENCED_PARAMETER(dt);
+}
+
+void PlayerShip::OnCollisionStarted(const Beta::Event& event)
+{
+	UNREFERENCED_PARAMETER(event);
 }

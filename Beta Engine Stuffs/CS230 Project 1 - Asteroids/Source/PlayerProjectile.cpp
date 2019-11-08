@@ -23,10 +23,23 @@ using namespace Beta;
 
 // STUDENT CODE GOES HERE
 
+PlayerProjectile::PlayerProjectile()
+	: Component("PlayerProjectile"), player(nullptr)
+{
+}
 
+void PlayerProjectile::Initialize()
+{
+}
 
+void PlayerProjectile::SetSpawner(PlayerShip* player)
+{
+	UNREFERENCED_PARAMETER(player);
+}
 
-
+void PlayerProjectile::OnCollisionStarted(const Beta::Event& event)
+{
+}
 
 //------------------------------------------------------------------------------
 

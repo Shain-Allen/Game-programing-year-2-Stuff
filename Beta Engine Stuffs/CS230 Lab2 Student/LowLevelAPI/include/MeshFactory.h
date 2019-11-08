@@ -94,14 +94,6 @@ namespace Beta
 
 	private:
 		//------------------------------------------------------------------------------
-		// Private Functions:
-		//------------------------------------------------------------------------------
-		
-		// Disable copy and assign to prevent accidental copies
-		MeshFactory(const MeshFactory&) = delete;
-		MeshFactory& operator=(const MeshFactory&) = delete;
-
-		//------------------------------------------------------------------------------
 		// Private Consts:
 		//------------------------------------------------------------------------------
 

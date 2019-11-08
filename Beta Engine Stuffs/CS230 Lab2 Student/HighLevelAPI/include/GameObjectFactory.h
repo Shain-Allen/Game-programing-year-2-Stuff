@@ -84,14 +84,6 @@ namespace Beta
 
 	private:
 		//------------------------------------------------------------------------------
-		// Private Functions:
-		//------------------------------------------------------------------------------
-
-		// Disable copy and assign to prevent accidental copies
-		GameObjectFactory(const GameObjectFactory&) = delete;
-		GameObjectFactory& operator=(const GameObjectFactory&) = delete;
-
-		//------------------------------------------------------------------------------
 		// Private Variables:
 		//------------------------------------------------------------------------------
 

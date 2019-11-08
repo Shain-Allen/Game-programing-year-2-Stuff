@@ -102,14 +102,6 @@ namespace Beta
 
 	private:
 		//------------------------------------------------------------------------------
-		// Private Functions:
-		//------------------------------------------------------------------------------
-
-		// Disable copy and assign to prevent accidental copies
-		DebugDraw(const DebugDraw&) = delete;
-		DebugDraw& operator=(const DebugDraw&) = delete;
-
-		//------------------------------------------------------------------------------
 		// Private Structures:
 		//------------------------------------------------------------------------------
 
