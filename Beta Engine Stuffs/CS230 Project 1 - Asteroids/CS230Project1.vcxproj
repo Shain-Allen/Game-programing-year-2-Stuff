@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Archetypes.cpp" />
     <ClCompile Include="Source\Asteroid.cpp" />
     <ClCompile Include="Source\Asteroids.cpp" />
     <ClCompile Include="Source\Level1.cpp" />
