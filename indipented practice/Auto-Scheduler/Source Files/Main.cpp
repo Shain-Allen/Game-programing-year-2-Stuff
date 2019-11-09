@@ -35,11 +35,11 @@ int main()
 		cout << "please enter a name: ";
 		cin >> name_;
 		cout << "please enter the starting time for this assocuate" << endl;
-		cin >> Start_.Hours;
-		cin >> Start_.Minutes;
+		//cin >> Start_.Hours;
+		//cin >> Start_.Minutes;
 		cout << endl << "please enter the End time for this associate" << endl;
-		cin >> End_.Hours;
-		cin >> End_.Minutes;
+		//cin >> End_.Hours;
+		//cin >> End_.Minutes;
 		cout << "is this associate a minor? (y/n): ";
 		cin >> IsMinor_;
 		Associate var(string name_, Time Start_, Time End_, char IsMinor_);

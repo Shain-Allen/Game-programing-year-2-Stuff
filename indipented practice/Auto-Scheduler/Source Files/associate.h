@@ -16,21 +16,17 @@ using std::string;
 class Associate
 {
 public:
-	Associate(string name_, Time Start_, Time End_, char IsMinor_);
+	Associate(string name_, Time start_, Time end_, char isMinor_);
 
 	~Associate();
 
-	void SetTime(Time Start_, Time End_);
-
-	void SetMinor(char IsMinor_);
-
 private:
 	string name;
-	Time Start;
-	Time End;
-	Time TotalTime;
-	char IsMinor;
-	Time FirstBreak;
-	Time Lunch;
-	Time SecondBreak;
+	Time start;
+	Time end;
+	Time totalTime;
+	char isMinor;
+	Time firstBreak;
+	Time lunch;
+	Time secondBreak;
 };

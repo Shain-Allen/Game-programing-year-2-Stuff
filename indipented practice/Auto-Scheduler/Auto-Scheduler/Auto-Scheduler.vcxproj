@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="..\Source Files\associate.cpp" />
     <ClCompile Include="..\Source Files\Main.cpp" />
+    <ClCompile Include="..\Source Files\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source Files\associate.h" />

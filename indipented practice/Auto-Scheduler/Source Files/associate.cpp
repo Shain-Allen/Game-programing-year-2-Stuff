@@ -8,22 +8,12 @@
 //
 //------------------------------------------------------------------------------
 
-Associate::Associate(string name_, Time Start_, Time End_, char IsMinor_)
-	: name(name_), Start(Start_), End(End_), IsMinor(IsMinor_)
+Associate::Associate(string name_, Time start_, Time end_, char isMinor_)
+	: name(name_), start(start_), end(end_), isMinor(isMinor_), firstBreak(0, 0), lunch(0, 0), secondBreak(0, 0)
 {
 }
 
 Associate::~Associate()
-{
-
-}
-
-void Associate::SetTime(Time Start_, Time End_)
-{
-
-}
-
-void Associate::SetMinor(char IsMinor_)
 {
 
 }
