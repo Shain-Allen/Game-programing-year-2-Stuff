@@ -22,10 +22,15 @@ Time Time::operator-(const Time& time2)
 {
 	//total hours worked for the day
 	Time totalHours;
+	int totalHoursInMinutes;
 	
 	//hours converted to minutes and added to minutes spot for both times
 	int timeInMinutes1 = TimeToMinutes(*this);
-	int timeInMinutes2;
+	int timeInMinutes2 = TimeToMinutes(time2);
+
+	totalHoursInMinutes = timeInMinutes1 - timeInMinutes2;
+
+	totalHours = MinutesToTime(totalHoursInMinutes);
 
 	return totalHours;
 }
@@ -39,7 +44,7 @@ int Time::TimeToMinutes(Time inPutTime)
 	return timeInMinutes;
 }
 
-Time Time::TimeFromMinutes(int inPutMinutes)
+Time Time::MinutesToTime(int inPutMinutes)
 {
 	Time timeFromMinutes;
 

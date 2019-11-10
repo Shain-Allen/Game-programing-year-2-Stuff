@@ -24,7 +24,7 @@ private:
 	int TimeToMinutes(Time inPutTime);
 
 	//takes in minutes and converts it to an hour:minute formation as time
-	Time TimeFromMinutes(int inPutMinutes);
+	Time MinutesToTime(int inPutMinutes);
 
 	//variables
 	int Hours;
