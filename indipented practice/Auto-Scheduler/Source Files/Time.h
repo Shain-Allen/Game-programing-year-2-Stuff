@@ -16,7 +16,13 @@ public:
 
 	Time(int Hours_, int Minutes);
 
+	void SetHours(int hours);
+
+	void SetMinutes(int Minutes);
+
 	Time operator-(const Time& time2);
+
+	Time& operator+=(const Time& time2);
 
 private:
 	//functions
@@ -27,6 +33,6 @@ private:
 	Time MinutesToTime(int inPutMinutes);
 
 	//variables
-	int Hours;
-	int Minutes;
+	int hours;
+	int minutes;
 };

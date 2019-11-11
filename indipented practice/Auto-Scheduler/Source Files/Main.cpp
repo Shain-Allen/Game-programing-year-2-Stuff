@@ -9,6 +9,7 @@
 #include <iostream>
 #include "associate.h"
 #include <vector>
+#include "Time.h"
 
 using std::cout;
 using std::cin;
@@ -20,30 +21,34 @@ int main()
 	vector<Associate> associates;
 	//push_back()
 	string name_;
-	Time Start_;
-	Time End_;
-	char IsMinor_;
-	char NewEntry;
+	Time startTime;
+	Time endTime;
+	char isMinor_;
+	char newschedual;
+	int hour;
+	int minute;
 
 	cout << "welcome to the Auto Schedualer" << endl;
 	cout << "do you wish to make a new schedual? (y/n): ";
-	cin >> NewEntry;
+	cin >> newschedual;
 	cout << endl;
 
-	while (NewEntry == 'y')
+	while (newschedual == 'y')
 	{
 		cout << "please enter a name: ";
 		cin >> name_;
+		
+		//get the start time in format hh:mm
 		cout << "please enter the starting time for this assocuate" << endl;
-		//cin >> Start_.Hours;
-		//cin >> Start_.Minutes;
+		cin >> hour;
+		cin >> minute;
+		startTime.SetHours(hour);
 		cout << endl << "please enter the End time for this associate" << endl;
-		//cin >> End_.Hours;
-		//cin >> End_.Minutes;
+		cin >> 
+		cin >> 
 		cout << "is this associate a minor? (y/n): ";
 		cin >> IsMinor_;
-		Associate var(string name_, Time Start_, Time End_, char IsMinor_);
-		associates.push_back(var);
+		//associates.push_back(var);
 	}
 
 }
