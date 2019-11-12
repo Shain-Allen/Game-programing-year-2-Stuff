@@ -39,15 +39,20 @@ int main()
 		cin >> name_;
 		
 		//get the start time in format hh:mm
-		cout << "please enter the starting time for this assocuate" << endl;
+		cout << "please enter the starting time for this assocuate: ";
 		cin >> hour;
+		cout << ":";
 		cin >> minute;
 		startTime.SetHours(hour);
-		cout << endl << "please enter the End time for this associate" << endl;
-		cin >> 
-		cin >> 
+		startTime.SetMinutes(minute);
+		cout << endl << "please enter the End time for this associate: ";
+		cin >> hour;
+		cout << ":";
+		cin >> minute;
+		endTime.SetHours(hour);
+		endTime.SetMinutes(minute);
 		cout << "is this associate a minor? (y/n): ";
-		cin >> IsMinor_;
+		cin >> isMinor_;
 		//associates.push_back(var);
 	}
 
