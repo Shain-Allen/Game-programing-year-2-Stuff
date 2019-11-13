@@ -32,7 +32,7 @@ COMPONENT_SUBCLASS_DEFINITION(PlayerShip)
 //------------------------------------------------------------------------------
 
 PlayerShip::PlayerShip(float forwardThrust, float maximumSpeed, float rotationSpeed, float bulletSpeed, float deathDuration)
-	: Component("PlayerShip"), forwardThrust(forwardThrust), maximumSpeed(maximumSpeed), rotationSpeed(rotationSpeed), bulletSpeed(bulletSpeed), bulletArchetype(bulletArchetype), score(0), deathDuration(deathDuration), isDying(false), transform(nullptr), rigidBody(nullptr)
+	: Component("PlayerShip"), forwardThrust(forwardThrust), maximumSpeed(maximumSpeed), rotationSpeed(rotationSpeed), bulletSpeed(bulletSpeed), bulletArchetype(bulletArchetype), score(0), deathDuration(deathDuration), timer(0), isDying(false), transform(nullptr), rigidBody(nullptr)
 {
 }
 

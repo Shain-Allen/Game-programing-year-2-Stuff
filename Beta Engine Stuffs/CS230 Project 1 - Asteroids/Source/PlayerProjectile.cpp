@@ -39,6 +39,7 @@ void PlayerProjectile::SetSpawner(PlayerShip* player)
 
 void PlayerProjectile::OnCollisionStarted(const Beta::Event& event)
 {
+	UNREFERENCED_PARAMETER(event);
 }
 
 //------------------------------------------------------------------------------

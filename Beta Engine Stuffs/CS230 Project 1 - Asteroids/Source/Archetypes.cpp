@@ -10,7 +10,11 @@
 //------------------------------------------------------------------------------
 #include "stdafx.h"
 #include "Archetypes.h"
+#include "TimedDeath.h"
+#include "PlayerShip.h"
+#include "Level2.h"
 
+using namespace Beta;
 
 Beta::GameObject* Archetypes::CreateShip()
 {
