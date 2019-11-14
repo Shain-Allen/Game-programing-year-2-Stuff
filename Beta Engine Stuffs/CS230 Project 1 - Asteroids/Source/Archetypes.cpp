@@ -13,6 +13,7 @@
 #include "TimedDeath.h"
 #include "PlayerShip.h"
 #include "Level2.h"
+#include "ScreenWrap.h"
 
 using namespace Beta;
 
@@ -26,7 +27,7 @@ Beta::GameObject* Archetypes::CreateShip()
 	ship->AddComponent(transform);
 
 	Sprite* sprite = new Sprite;
-	sprite->SetSpriteSource(shipSpriteSource);
+	sprite->SetSpriteSource(ResourceGetSpriteSource("Ship"));
 	ship->AddComponent(sprite);
 
 	RigidBody* rigiBody = new RigidBody;
@@ -34,6 +35,12 @@ Beta::GameObject* Archetypes::CreateShip()
 
 	PlayerShip* playerShip = new PlayerShip();
 	ship->AddComponent(playerShip);
+
+	ScreenWrap* screenWrap = new ScreenWrap();
+	ship->AddComponent(screenWrap);
+
+	ColliderCircle* collider = new ColliderCircle(transform->GetScale().x / 2);
+	ship->AddComponent(collider);
 
 	EngineGetModule(GameObjectFactory)->SaveObjectToFile(ship);
 
@@ -50,7 +57,7 @@ Beta::Archetype Archetypes::CreateBulletArchetype()
 	bullet->AddComponent(transform);
 
 	Sprite* sprite = new Sprite;
-	sprite->SetSpriteSource(shipSpriteSource);
+	sprite->SetSpriteSource(ResourceGetSpriteSource("Bullet"));
 	bullet->AddComponent(sprite);
 
 	RigidBody* RigiBody = new RigidBody;
@@ -59,9 +66,12 @@ Beta::Archetype Archetypes::CreateBulletArchetype()
 	TimedDeath* timedDeath = new TimedDeath;
 	bullet->AddComponent(timedDeath);
 
+	ColliderCircle* collider = new ColliderCircle(transform->GetScale().x / 2);
+	bullet->AddComponent(collider);
+
 	EngineGetModule(GameObjectFactory)->SaveObjectToFile(bullet);
 
-	return bullet;
+	return Beta::Archetype(bullet);
 }
 
 Beta::Archetype Archetypes::CreateAsteroidArchetype()

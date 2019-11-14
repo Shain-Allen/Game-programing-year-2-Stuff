@@ -126,7 +126,7 @@ void PlayerShip::Shoot()
 
 	if (input->CheckTriggered(' '))
 	{
-		GameObject* bullet = new GameObject(ResourceGetArchetype("Bullet"));
+  		GameObject* bullet = new GameObject(ResourceGetArchetype("bullet"));
 
 		Vector2D fireingdir = Vector2D::FromAngleRadians(transform->GetRotation());
 

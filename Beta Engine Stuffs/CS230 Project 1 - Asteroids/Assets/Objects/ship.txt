@@ -1,6 +1,6 @@
 ship
 {
-	numComponents : 4
+	numComponents : 6
 	Transform
 	{
 		translation : { 0, 0 }
@@ -21,10 +21,12 @@ ship
 	}
 	PlayerShip
 	{
-		bulletArchtype : Bullet
-		forwardThrust : 3
-		maxiumSpeed : 2
-		rotationSpeed : 3.14159
-		bulletSpeed : 4
+	}
+	ScreenWrap
+	{
+	}
+	ColliderCircle
+	{
+		radius : 0.25
 	}
 }

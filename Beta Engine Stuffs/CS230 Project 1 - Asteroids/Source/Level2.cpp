@@ -41,8 +41,7 @@ void Level2::Load()
 	//shipSpriteSource = ResourceGetSpriteSource("Ship");
 	//bulletSpriteSource = ResourceGetSpriteSource("Bullet");
 	//bulletArchetype = ResourceGetArchetype("Bullet");
-	Archetypes::CreateBulletArchetype();
-	Archetypes::CreateAsteroidArchetype();
+	bulletArchetype = Archetypes::CreateBulletArchetype();
 }
 
 void Level2::Initialize()
@@ -51,7 +50,7 @@ void Level2::Initialize()
 
 	GameObjectFactory& factory = *EngineGetModule(GameObjectFactory);
 
-	GetSpace()->GetObjectManager().AddObject(*factory.CreateObject("ship"));
+	GetSpace()->GetObjectManager().AddObject(*Archetypes::CreateShip());
 	//new GameObject(ResourceGetArchetype("ship"));
 }
 
@@ -79,52 +78,3 @@ void Level2::Update(float dt)
 		GetSpace()->SetLevel<Level1>();
 	}
 }
-/*
-Beta::GameObject* Level2::CreateShip(void)
-{
-	GameObject* ship = new GameObject("ship");
-
-	Transform* transform = new Transform(0.0f, 0.0f);
-	transform->SetRotation(0.0f);
-	transform->SetScale(Vector2D(0.5f, 0.5f));
-	ship->AddComponent(transform);
-
-	Sprite* sprite = new Sprite;
-	sprite->SetSpriteSource(shipSpriteSource);
-	ship->AddComponent(sprite);
-
-	RigidBody* rigiBody = new RigidBody;
-	ship->AddComponent(rigiBody);
-
-	PlayerShip* playerShip = new PlayerShip();
-	ship->AddComponent(playerShip);
-
-	EngineGetModule(GameObjectFactory)->SaveObjectToFile(ship);
-
-	return ship;
-}
-
-Beta::GameObject* Level2::CreateBulletArchetype(void)
-{
-	GameObject* bullet = new GameObject("bullet");
-
-	Transform* transform = new Transform(0.0f, 0.0f);
-	transform->SetRotation(0.0f);
-	transform->SetScale(Vector2D(0.07f, 0.07f));
-	bullet->AddComponent(transform);
-
-	Sprite* sprite = new Sprite;
-	sprite->SetSpriteSource(shipSpriteSource);
-	bullet->AddComponent(sprite);
-
-	RigidBody* RigiBody = new RigidBody;
-	bullet->AddComponent(RigiBody);
-
-	TimedDeath* timedDeath = new TimedDeath;
-	bullet->AddComponent(timedDeath);
-
-	EngineGetModule(GameObjectFactory)->SaveObjectToFile(bullet);
-
-	return bullet;
-}
-*/

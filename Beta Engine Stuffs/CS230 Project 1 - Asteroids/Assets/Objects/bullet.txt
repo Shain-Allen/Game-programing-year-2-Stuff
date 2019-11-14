@@ -1,6 +1,6 @@
-Bullet
+bullet
 {
-	numComponents : 4
+	numComponents : 5
 	Transform
 	{
 		translation : { 0, 0 }
@@ -9,7 +9,7 @@ Bullet
 	}
 	Sprite
 	{
-		spriteSource : Bullet
+		spriteSource : bullet
 		color : { 1 , 1 , 1 , 1 }
 		zDepth : 0
 	}
@@ -22,5 +22,9 @@ Bullet
 	timedDeath
 	{
 		timeUntilDeath : 1
+	}
+	ColliderCircle
+	{
+		radius : 0.035
 	}
 }

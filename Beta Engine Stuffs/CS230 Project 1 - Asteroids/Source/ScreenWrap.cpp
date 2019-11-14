@@ -19,7 +19,8 @@
 //------------------------------------------------------------------------------
 
 using namespace Beta;
-
+using std::cout;
+using std::endl;
 
 // STUDENT CODE GOES HERE
 
@@ -30,11 +31,37 @@ ScreenWrap::ScreenWrap()
 
 void ScreenWrap::Initialize()
 {
+	cout << "ScreenWrap" << endl;
 }
 
 void ScreenWrap::Update(float dt)
 {
 	UNREFERENCED_PARAMETER(dt);
+
+	BoundingRectangle worldsize = GetSpace()->GetCamera().GetScreenWorldDimensions();
+
+	Transform* objectTransform = GetOwner()->GetComponent<Transform>();
+	RigidBody* objectRigidbody = GetOwner()->GetComponent<RigidBody>();
+
+	if (objectTransform->GetTranslation().x > worldsize.right + objectTransform->GetScale().x)
+	{
+		objectTransform->SetTranslationX(worldsize.left - objectTransform->GetScale().x);
+	}
+
+	if (objectTransform->GetTranslation().x < worldsize.left - objectTransform->GetScale().x)
+	{
+		objectTransform->SetTranslationX(worldsize.right + objectTransform->GetScale().x);
+	}
+
+	if (objectTransform->GetTranslation().y > worldsize.top + objectTransform->GetScale().y)
+	{
+		objectTransform->SetTranslationY(worldsize.bottom - objectTransform->GetScale().y);
+	}
+
+	if (objectTransform->GetTranslation().y < worldsize.bottom - objectTransform->GetScale().y)
+	{
+		objectTransform->SetTranslationY(worldsize.top + objectTransform->GetScale().y);
+	}
 }
 
 //------------------------------------------------------------------------------

@@ -60,20 +60,6 @@ public:
 
 private:
 	//------------------------------------------------------------------------------
-	// Private Functions:
-	//------------------------------------------------------------------------------
-
-	// Create a game object that uses the Ship sprite source.
-	// Returns:
-	//	 A pointer to the newly constructed game object
-	Beta::GameObject* CreateShip(void);
-
-	// Create a game object archetype that uses the Bullet sprite source.
-	// Returns:
-	//	 A pointer to the newly constructed game object
-	Beta::GameObject* CreateBulletArchetype(void);
-
-	//------------------------------------------------------------------------------
 	// Private Variables:
 	//------------------------------------------------------------------------------
 	
