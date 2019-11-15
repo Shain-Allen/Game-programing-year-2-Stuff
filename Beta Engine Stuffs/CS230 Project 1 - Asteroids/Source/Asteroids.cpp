@@ -10,14 +10,16 @@
 //------------------------------------------------------------------------------
 #include "stdafx.h"
 #include "Asteroids.h"
+#include "Archetypes.h"
 
 Asteroids::Asteroids()
-	: Level("Asteroids"), asteroidSpawnInitial(0), asteroidSpawnMaximum(0), asteroidSpawnCount(0), asteroidWaveCount(0), playerShip(nullptr), asteroidHighScore(0)
+	: Level("Asteroids"), asteroidSpawnInitial(8), asteroidSpawnMaximum(20), asteroidSpawnCount(0), asteroidWaveCount(0), playerShip(nullptr), asteroidHighScore(0)
 {
 }
 
 void Asteroids::Load()
 {
+	asteroidArchetype = Archetypes::CreateAsteroidArchetype();
 }
 
 void Asteroids::Initialize()

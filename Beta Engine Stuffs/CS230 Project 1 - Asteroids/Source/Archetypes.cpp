@@ -76,5 +76,25 @@ Beta::Archetype Archetypes::CreateBulletArchetype()
 
 Beta::Archetype Archetypes::CreateAsteroidArchetype()
 {
+	GameObject* asteroid = new GameObject("Asteroid");
+
+	Transform* transform = new Transform(0.0f, 0.0f);
+	transform->SetRotation(0.0f);
+	transform->SetScale(Vector2D(0.6f, 0.6f));
+	asteroid->AddComponent(transform);
+
+	Sprite* sprite = new Sprite;
+	sprite->SetSpriteSource(ResourceGetSpriteSource("Asteroid"));
+	asteroid->AddComponent(sprite);
+
+	RigidBody* rigidBody = new RigidBody;
+	asteroid->AddComponent(rigidBody);
+
+	ColliderCircle* colliderCircle = new ColliderCircle(transform->GetScale().x / 2);
+	asteroid->AddComponent(colliderCircle);
+
+	ScreenWrap* screenWrap = new ScreenWrap;
+	asteroid->AddComponent(screenWrap);
+
 	return Beta::Archetype();
 }

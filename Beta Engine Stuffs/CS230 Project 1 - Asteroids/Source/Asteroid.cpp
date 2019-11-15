@@ -49,23 +49,98 @@ unsigned Asteroid::GetPointValue() const
 	{
 		return basePointsValue * sqrt(sizePointsModifier);
 	}
+
+	if (size == Size::SizeMedium)
+	{
+		return basePointsValue * (sizePointsModifier);
+	}
+
+	if (size == Size::SizeLarge)
+	{
+		return basePointsValue;
+	}
 }
 
 void Asteroid::OnCollisionStarted(const Beta::Event& event)
 {
-	UNREFERENCED_PARAMETER(event);
+	auto ce = static_cast<const CollisionEvent&>(event);
+
+	if (ce.otherObject.GetName() == "Bullet" || ce.otherObject.GetName() == "Spaceship")
+	{
+		SpawnNewAsteroids();
+		GetOwner()->Destroy();
+	}
 }
 
 void Asteroid::SetPosition()
 {
+	if (size == Size::SizeLarge)
+	{
+		Location corner = static_cast<Location>(Random::Range(0, 3));
+
+		BoundingRectangle worldsize = GetSpace()->GetCamera().GetScreenWorldDimensions();
+
+		if (corner == Location::LocationTopLeft)
+		{
+			GetOwner()->GetComponent<Transform>()->SetTranslation(worldsize.top + worldsize.left);
+		}
+
+		if (corner == Location::LocationTopRight)
+		{
+			GetOwner()->GetComponent<Transform>()->SetTranslation(worldsize.top + worldsize.right);
+		}
+
+		if (corner == Location::LocationBottomRight)
+		{
+			GetOwner()->GetComponent<Transform>()->SetTranslation(worldsize.bottom + worldsize.right);
+		}
+
+		if (corner == Location::LocationBottomLeft)
+		{
+			GetOwner()->GetComponent<Transform>()->SetTranslation(worldsize.bottom + worldsize.left);
+		}
+	}
 }
 
 void Asteroid::SetVelocity()
 {
+	float angle = Random::Range(0, 359);
+	float speed = Random::Range(speedMin, speedMax);
+
+	Vector2D velocity = Vector2D::FromAngleDegrees(angle);
+
+	GetOwner()->GetComponent<RigidBody>()->SetVelocity(velocity);
 }
 
 void Asteroid::SpawnNewAsteroids()
 {
+	int newAsteroids = 0;
+
+	if (size == Size::SizeSmall)
+	{
+		newAsteroids = 0;
+	}
+
+	if (size == Size::SizeMedium)
+	{
+		newAsteroids = Random::Range(1, 2);
+	}
+
+	if (size == Size::SizeLarge)
+	{
+		newAsteroids = Random::Range(2, 3);
+	}
+
+	GameObject* smallerAsteroids = new GameObject(*GetOwner());
+	Vector2D scale = GetOwner()->GetComponent<Transform>()->GetScale();
+	float colldierRadius = GetOwner()->GetComponent<ColliderCircle>()->GetRadius();
+
+	for (int i = 0; i < newAsteroids; i++)
+	{
+		GetSpace()->GetObjectManager().AddObject(*smallerAsteroids);
+		GetOwner()->GetComponent<Transform>()->SetScale(scale * spawnScaleModifier);
+		GetOwner()->GetComponent<ColliderCircle>()->SetRadius(colldierRadius * spawnScaleModifier);
+	}
 }
 
 
