@@ -14,6 +14,7 @@
 #include "PlayerShip.h"
 #include "Level2.h"
 #include "ScreenWrap.h"
+#include "Asteroid.h"
 
 using namespace Beta;
 
@@ -76,25 +77,28 @@ Beta::Archetype Archetypes::CreateBulletArchetype()
 
 Beta::Archetype Archetypes::CreateAsteroidArchetype()
 {
-	GameObject* asteroid = new GameObject("Asteroid");
+	GameObject* asteroids = new GameObject("Asteroid");
 
 	Transform* transform = new Transform(0.0f, 0.0f);
 	transform->SetRotation(0.0f);
 	transform->SetScale(Vector2D(0.6f, 0.6f));
-	asteroid->AddComponent(transform);
+	asteroids->AddComponent(transform);
 
 	Sprite* sprite = new Sprite;
 	sprite->SetSpriteSource(ResourceGetSpriteSource("Asteroid"));
-	asteroid->AddComponent(sprite);
+	asteroids->AddComponent(sprite);
 
 	RigidBody* rigidBody = new RigidBody;
-	asteroid->AddComponent(rigidBody);
+	asteroids->AddComponent(rigidBody);
 
 	ColliderCircle* colliderCircle = new ColliderCircle(transform->GetScale().x / 2);
-	asteroid->AddComponent(colliderCircle);
+	asteroids->AddComponent(colliderCircle);
 
 	ScreenWrap* screenWrap = new ScreenWrap;
-	asteroid->AddComponent(screenWrap);
+	asteroids->AddComponent(screenWrap);
+
+	Asteroid* asteroid = new Asteroid;
+	asteroids->AddComponent(asteroid);
 
 	return Beta::Archetype();
 }

@@ -12,6 +12,8 @@
 #include "Asteroids.h"
 #include "Archetypes.h"
 
+using namespace Beta;
+
 Asteroids::Asteroids()
 	: Level("Asteroids"), asteroidSpawnInitial(8), asteroidSpawnMaximum(20), asteroidSpawnCount(0), asteroidWaveCount(0), playerShip(nullptr), asteroidHighScore(0)
 {
@@ -20,10 +22,24 @@ Asteroids::Asteroids()
 void Asteroids::Load()
 {
 	asteroidArchetype = Archetypes::CreateAsteroidArchetype();
+
+	GameObject::GetArchetypeManager().Add(asteroidArchetype->GetName(), asteroidArchetype);
+
+	bulletArchetype = Archetypes::CreateBulletArchetype();
+
+	GameObject::GetArchetypeManager().Add(bulletArchetype->GetName(), bulletArchetype);
+
+	//get graphics engine
+	GraphicsEngine& graphics = *EngineGetModule(GraphicsEngine);
+
+	graphics.SetBackgroundColor(Colors::Black);
 }
 
 void Asteroids::Initialize()
 {
+	asteroidWaveCount = 0;
+
+	asteroidSpawnCount = asteroidSpawnInitial;
 }
 
 void Asteroids::Update(float dt)
