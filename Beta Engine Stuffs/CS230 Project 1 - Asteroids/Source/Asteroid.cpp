@@ -34,8 +34,8 @@ void Asteroid::Initialize()
 {
 	cout << "Asteroid" << endl;
 
-	Transform* transform = new Transform();
-	RigidBody* rigidBody = new RigidBody();
+	transform = GetOwner()->GetComponent<Transform>();
+	rigidBody = GetOwner()->GetComponent<RigidBody>();
 
 	RegisterEventHandler(GetOwner(), "CollisionStarted", &Asteroid::OnCollisionStarted);
 
@@ -47,15 +47,13 @@ unsigned Asteroid::GetPointValue() const
 {
 	if (size == Size::SizeSmall)
 	{
-		return basePointsValue * sqrt(sizePointsModifier);
+		return basePointsValue * static_cast<unsigned>((sizePointsModifier * sizePointsModifier));
 	}
-
-	if (size == Size::SizeMedium)
+	else if (size == Size::SizeMedium)
 	{
-		return basePointsValue * (sizePointsModifier);
+		return basePointsValue * static_cast<unsigned>(sizePointsModifier);
 	}
-
-	if (size == Size::SizeLarge)
+	else
 	{
 		return basePointsValue;
 	}
@@ -82,30 +80,33 @@ void Asteroid::SetPosition()
 
 		if (corner == Location::LocationTopLeft)
 		{
-			GetOwner()->GetComponent<Transform>()->SetTranslation(worldsize.top + worldsize.left);
+			GetOwner()->GetComponent<Transform>()->SetTranslationY(worldsize.top);
+			GetOwner()->GetComponent<Transform>()->SetTranslationX(worldsize.left);
 		}
 
 		if (corner == Location::LocationTopRight)
 		{
-			GetOwner()->GetComponent<Transform>()->SetTranslation(worldsize.top + worldsize.right);
+			GetOwner()->GetComponent<Transform>()->SetTranslationY(worldsize.top);
+			GetOwner()->GetComponent<Transform>()->SetTranslationX(worldsize.right);
 		}
 
 		if (corner == Location::LocationBottomRight)
 		{
-			GetOwner()->GetComponent<Transform>()->SetTranslation(worldsize.bottom + worldsize.right);
+			GetOwner()->GetComponent<Transform>()->SetTranslationY(worldsize.bottom);
+			GetOwner()->GetComponent<Transform>()->SetTranslationX(worldsize.right);
 		}
 
 		if (corner == Location::LocationBottomLeft)
 		{
-			GetOwner()->GetComponent<Transform>()->SetTranslation(worldsize.bottom + worldsize.left);
+			GetOwner()->GetComponent<Transform>()->SetTranslationY(worldsize.bottom);
+			GetOwner()->GetComponent<Transform>()->SetTranslationX(worldsize.left);
 		}
 	}
 }
 
 void Asteroid::SetVelocity()
 {
-	float angle = Random::Range(0, 359);
-	float speed = Random::Range(speedMin, speedMax);
+	float angle = Random::Range(0.0f, 359.0f);
 
 	Vector2D velocity = Vector2D::FromAngleDegrees(angle);
 

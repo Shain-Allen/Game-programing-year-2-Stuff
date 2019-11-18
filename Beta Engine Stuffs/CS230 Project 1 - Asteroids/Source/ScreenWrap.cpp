@@ -41,7 +41,6 @@ void ScreenWrap::Update(float dt)
 	BoundingRectangle worldsize = GetSpace()->GetCamera().GetScreenWorldDimensions();
 
 	Transform* objectTransform = GetOwner()->GetComponent<Transform>();
-	RigidBody* objectRigidbody = GetOwner()->GetComponent<RigidBody>();
 
 	if (objectTransform->GetTranslation().x > worldsize.right + objectTransform->GetScale().x)
 	{

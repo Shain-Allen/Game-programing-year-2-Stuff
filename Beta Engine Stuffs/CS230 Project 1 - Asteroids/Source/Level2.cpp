@@ -17,6 +17,7 @@
 #include "PlayerShip.h"
 #include "TimedDeath.h"
 #include "Archetypes.h"
+#include "Asteroids.h"
 
 using namespace::Beta;
 using std::cout;
@@ -48,8 +49,6 @@ void Level2::Initialize()
 {
 	cout << "Level2::Initialize" << endl;
 
-	GameObjectFactory& factory = *EngineGetModule(GameObjectFactory);
-
 	GetSpace()->GetObjectManager().AddObject(*Archetypes::CreateShip());
 	//new GameObject(ResourceGetArchetype("ship"));
 }
@@ -76,5 +75,10 @@ void Level2::Update(float dt)
 	if (input->CheckTriggered('1'))
 	{
 		GetSpace()->SetLevel<Level1>();
+	}
+
+	if (input->CheckTriggered('3'))
+	{
+		GetSpace()->SetLevel<Asteroids>();
 	}
 }

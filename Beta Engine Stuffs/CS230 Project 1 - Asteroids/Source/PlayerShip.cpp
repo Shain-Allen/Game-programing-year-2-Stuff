@@ -26,9 +26,6 @@ using namespace Beta;
 
 // Student code goes here.
 
-// Extra component functionality - DO NOT REMOVE
-COMPONENT_SUBCLASS_DEFINITION(PlayerShip)
-
 //------------------------------------------------------------------------------
 
 PlayerShip::PlayerShip(float forwardThrust, float maximumSpeed, float rotationSpeed, float bulletSpeed, float deathDuration)
@@ -40,15 +37,19 @@ void PlayerShip::Initialize()
 {
 	transform = GetOwner()->GetComponent<Transform>();
 	rigidBody = GetOwner()->GetComponent<RigidBody>();
+
+	RegisterEventHandler(GetOwner(), "CollisionStarted", &PlayerShip::OnCollisionStarted);
 }
 
 void PlayerShip::Update(float dt)
 {
 	UNREFERENCED_PARAMETER(dt);
-
-	Move();
-	Rotate();
-	Shoot();
+	if (isDying != true)
+	{
+		Move();
+		Rotate();
+		Shoot();
+	}
 }
 
 unsigned PlayerShip::GetScore() const
@@ -151,3 +152,6 @@ void PlayerShip::OnCollisionStarted(const Beta::Event& event)
 {
 	UNREFERENCED_PARAMETER(event);
 }
+
+// Extra component functionality - DO NOT REMOVE
+COMPONENT_SUBCLASS_DEFINITION(PlayerShip)

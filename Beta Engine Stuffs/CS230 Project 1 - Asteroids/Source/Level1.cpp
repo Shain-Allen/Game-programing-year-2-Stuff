@@ -14,6 +14,7 @@
 #include "MonkeyMovement.h"
 #include "MonkeyAnimation.h"
 #include "Level2.h"
+#include "Asteroids.h"
 
 using namespace Beta;
 using std::cout;
@@ -67,6 +68,10 @@ void Level1::Update(float dt)
 		GetSpace()->SetLevel<Level2>();
 	}
 
+	if (input->CheckTriggered('3'))
+	{
+		GetSpace()->SetLevel<Asteroids>();
+	}
 }
 
 void Level1::Shutdown()

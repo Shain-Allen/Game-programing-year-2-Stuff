@@ -100,5 +100,5 @@ Beta::Archetype Archetypes::CreateAsteroidArchetype()
 	Asteroid* asteroid = new Asteroid;
 	asteroids->AddComponent(asteroid);
 
-	return Beta::Archetype();
+	return Archetype(asteroids);
 }

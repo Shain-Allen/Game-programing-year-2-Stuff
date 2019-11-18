@@ -15,6 +15,8 @@
 
 #include "stdafx.h"
 #include "PlayerProjectile.h"
+#include "PlayerShip.h"
+#include "Asteroid.h"
 
 //------------------------------------------------------------------------------
 
@@ -30,16 +32,24 @@ PlayerProjectile::PlayerProjectile()
 
 void PlayerProjectile::Initialize()
 {
+	RegisterEventHandler(GetOwner(), "CollisionStarted", &PlayerProjectile::OnCollisionStarted);
 }
 
-void PlayerProjectile::SetSpawner(PlayerShip* player)
+void PlayerProjectile::SetSpawner(PlayerShip* player_)
 {
-	UNREFERENCED_PARAMETER(player);
+	player = player_;
 }
 
 void PlayerProjectile::OnCollisionStarted(const Beta::Event& event)
 {
-	UNREFERENCED_PARAMETER(event);
+	auto collision = static_cast<const CollisionEvent&>(event);
+
+	if (collision.otherObject.GetName() == "Asteroid")
+	{	
+		player->IncreaseScore(collision.otherObject.GetComponent<Asteroid>()->GetPointValue());
+	}
+
+	GetOwner()->Destroy();
 }
 
 //------------------------------------------------------------------------------

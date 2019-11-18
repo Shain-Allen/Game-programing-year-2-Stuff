@@ -18,6 +18,7 @@
 // Levels
 #include "Level1.h"
 #include "Level2.h"
+#include "Asteroids.h"
 
 // Components
 #include "PlayerShip.h"
@@ -47,10 +48,10 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	EngineCore& engine = EngineCore::GetInstance();
 	SpaceManager& spaceManager = *engine.AddModule<SpaceManager>();
 	GameObjectFactory& factory = *engine.AddModule<GameObjectFactory>();
+	engine.AddModule<EventManager>();
 
 	// Set initial game state to the second level.
 	spaceManager.GetDefaultSpace().SetLevel<Level1>();
-	spaceManager.GetDefaultSpace().SetLevel<Level2>();
 
 	// TO DO: Register PlayerShip and TimedDeath
 	factory.RegisterComponent<PlayerShip>();
