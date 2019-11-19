@@ -63,7 +63,7 @@ void Asteroid::OnCollisionStarted(const Beta::Event& event)
 {
 	auto ce = static_cast<const CollisionEvent&>(event);
 
-	if (ce.otherObject.GetName() == "Bullet" || ce.otherObject.GetName() == "Spaceship")
+	if (ce.otherObject.GetName() == "bullet" || ce.otherObject.GetName() == "ship")
 	{
 		SpawnNewAsteroids();
 		GetOwner()->Destroy();
@@ -132,15 +132,24 @@ void Asteroid::SpawnNewAsteroids()
 		newAsteroids = Random::Range(2, 3);
 	}
 
-	GameObject* smallerAsteroids = new GameObject(*GetOwner());
-	Vector2D scale = GetOwner()->GetComponent<Transform>()->GetScale();
-	float colldierRadius = GetOwner()->GetComponent<ColliderCircle>()->GetRadius();
-
 	for (int i = 0; i < newAsteroids; i++)
 	{
+		GameObject* smallerAsteroids = new GameObject(*GetOwner());
+		Vector2D scale = GetOwner()->GetComponent<Transform>()->GetScale();
+		float colldierRadius = GetOwner()->GetComponent<ColliderCircle>()->GetRadius();
+
+		if (GetOwner()->GetComponent<Asteroid>()->size == Size::SizeLarge)
+		{
+			smallerAsteroids->GetComponent<Asteroid>()->size = Size::SizeMedium;
+		}
+		else
+		{
+			smallerAsteroids->GetComponent<Asteroid>()->size = Size::SizeSmall;
+		}
+
 		GetSpace()->GetObjectManager().AddObject(*smallerAsteroids);
 		GetOwner()->GetComponent<Transform>()->SetScale(scale * spawnScaleModifier);
-		GetOwner()->GetComponent<ColliderCircle>()->SetRadius(colldierRadius * spawnScaleModifier);
+		GetOwner()->GetComponent<ColliderCircle>()->SetRadius(colldierRadius * spawnScaleModifier);	
 	}
 }
 

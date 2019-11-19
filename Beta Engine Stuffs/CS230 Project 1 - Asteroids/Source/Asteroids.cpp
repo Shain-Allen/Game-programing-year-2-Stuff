@@ -14,6 +14,7 @@
 #include "Level1.h"
 #include "Level2.h"
 #include "PlayerShip.h"
+#include <sstream>
 
 using namespace Beta;
 
@@ -50,6 +51,7 @@ void Asteroids::Initialize()
 
 	GetSpace()->GetObjectManager().AddObject(*ship);
 
+	playerShip = ship->GetComponent<PlayerShip>();
 }
 
 void Asteroids::Update(float dt)
@@ -61,28 +63,16 @@ void Asteroids::Update(float dt)
 		SpawnAsteroidWave();
 	}
 
-	//get the ability to take input
-	Input* input = EngineGetModule(Input);
-
-	//check if the player pressed 1 and restart the level
-	if (input->CheckTriggered('1'))
-	{
-		GetSpace()->SetLevel<Level1>();
-	}
-
-	if (input->CheckTriggered('2'))
-	{
-		GetSpace()->SetLevel<Level2>();
-	}
-
-	if (input->CheckTriggered('3'))
-	{
-		GetSpace()->RestartLevel();
-	}
+	UpdateScore();
+	SwitchLevels();
 }
 
 void Asteroids::Shutdown()
 {
+	if (playerShip->GetScore() > asteroidHighScore)
+	{
+		asteroidHighScore = playerShip->GetScore();
+	}
 }
 
 void Asteroids::SpawnAsteroid(void)
@@ -109,9 +99,34 @@ void Asteroids::SpawnAsteroidWave(void)
 
 void Asteroids::UpdateScore()
 {
+	std::stringstream windowTitle;
+
+	windowTitle << "Asteroids: Wave	= " << asteroidWaveCount << ", Score = " << playerShip->GetScore() << "High score = " << asteroidHighScore;
+
+	WindowSystem& windowSystem = *EngineGetModule(WindowSystem);
+
+	windowSystem.SetWindowTitle(windowTitle.str());
 }
 
 void Asteroids::SwitchLevels()
 {
+	//get the ability to take input
+	Input* input = EngineGetModule(Input);
+
+	//check if the player pressed 1 and restart the level
+	if (input->CheckTriggered('1'))
+	{
+		GetSpace()->SetLevel<Level1>();
+	}
+
+	if (input->CheckTriggered('2'))
+	{
+		GetSpace()->SetLevel<Level2>();
+	}
+
+	if (input->CheckTriggered('3'))
+	{
+		GetSpace()->RestartLevel();
+	}
 }
 

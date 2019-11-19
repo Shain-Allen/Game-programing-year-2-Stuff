@@ -15,6 +15,7 @@
 #include "Level2.h"
 #include "ScreenWrap.h"
 #include "Asteroid.h"
+#include "PlayerProjectile.h"
 
 using namespace Beta;
 
@@ -69,6 +70,9 @@ Beta::Archetype Archetypes::CreateBulletArchetype()
 
 	ColliderCircle* collider = new ColliderCircle(transform->GetScale().x / 2);
 	bullet->AddComponent(collider);
+
+	PlayerProjectile* playerProjetile = new PlayerProjectile;
+	bullet->AddComponent(playerProjetile);
 
 	EngineGetModule(GameObjectFactory)->SaveObjectToFile(bullet);
 

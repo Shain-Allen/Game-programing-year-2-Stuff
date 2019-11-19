@@ -15,6 +15,7 @@
 
 #include "stdafx.h"
 #include "PlayerShip.h"
+#include "PlayerProjectile.h"
 
 //------------------------------------------------------------------------------
 
@@ -43,23 +44,26 @@ void PlayerShip::Initialize()
 
 void PlayerShip::Update(float dt)
 {
-	UNREFERENCED_PARAMETER(dt);
-	if (isDying != true)
+	if (isDying == false)
 	{
 		Move();
 		Rotate();
 		Shoot();
 	}
+	else
+	{
+		DeathSequence(dt);
+	}
 }
 
 unsigned PlayerShip::GetScore() const
 {
-	return 0;
+	return score;
 }
 
 void PlayerShip::IncreaseScore(unsigned amount)
 {
-	UNREFERENCED_PARAMETER(amount);
+	score += amount;
 }
 
 /*void PlayerShip::Serialize(Beta::FileStream& stream) const
@@ -140,17 +144,35 @@ void PlayerShip::Shoot()
 		bullet->GetComponent<RigidBody>()->SetVelocity(bulletVelocity + rigidBody->GetVelocity());
 
 		GetOwner()->GetSpace()->GetObjectManager().AddObject(*bullet);
+
+		bullet->GetComponent<PlayerProjectile>()->SetSpawner(this);
 	}
 }
 
 void PlayerShip::DeathSequence(float dt)
 {
-	UNREFERENCED_PARAMETER(dt);
+	if (timer <= 0)
+	{
+		GetSpace()->RestartLevel();
+	}
+
+	GetOwner()->GetComponent<Sprite>()->SetAlpha(round(sinf(timer * 20.0f)));
+
+	timer -= dt;
 }
 
 void PlayerShip::OnCollisionStarted(const Beta::Event& event)
 {
-	UNREFERENCED_PARAMETER(event);
+	auto collision = static_cast<const CollisionEvent&>(event);
+	if (collision.otherObject.GetName() == "Asteroid")
+	{
+		if (!isDying)
+		{
+			isDying = true;
+			timer = deathDuration;
+			//std::cout << "Yes" << std::endl;
+		}
+	}
 }
 
 // Extra component functionality - DO NOT REMOVE

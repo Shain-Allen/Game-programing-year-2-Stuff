@@ -1,6 +1,6 @@
 bullet
 {
-	numComponents : 5
+	numComponents : 6
 	Transform
 	{
 		translation : { 0, 0 }
@@ -26,5 +26,8 @@ bullet
 	ColliderCircle
 	{
 		radius : 0.035
+	}
+	PlayerProjectile
+	{
 	}
 }
