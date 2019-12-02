@@ -14,6 +14,8 @@
 //------------------------------------------------------------------------------
 
 #include "stdafx.h"
+#include "Level.h"
+#include "Space.h"
 
 //------------------------------------------------------------------------------
 
@@ -38,6 +40,7 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	EngineCore& engine = EngineCore::GetInstance();
 
 	// TO-DO: Add additional modules to engine (Space)
+	engine.AddModule<Space>();
 
 	// TO-DO: Set initial level of space to the first level
 
