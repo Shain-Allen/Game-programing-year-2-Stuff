@@ -53,9 +53,9 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	settings.windowHeight = 600;
 	settings.framerateCap = 200;
 
-	//std::streambuf* coutBuff = std::cout.rdbuf();
-	//std::ofstream fileOutput("trace.txt");
-	//std::cout.rdbuf(fileOutput.rdbuf());
+	std::streambuf* coutBuff = std::cout.rdbuf();
+	std::ofstream fileOutput("trace.txt");
+	std::cout.rdbuf(fileOutput.rdbuf());
 
 	engine.Start(settings);
 
