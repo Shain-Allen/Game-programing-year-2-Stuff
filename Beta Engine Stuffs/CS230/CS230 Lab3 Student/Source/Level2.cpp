@@ -22,7 +22,7 @@ Levels::Level2::Level2()
 
 void Levels::Level2::Load()
 {
-	cout << "Level2::load" << endl;
+	cout << "Level2::Load" << endl;
 }
 
 void Levels::Level2::Initialize()

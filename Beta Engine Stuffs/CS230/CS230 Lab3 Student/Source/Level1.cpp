@@ -35,7 +35,7 @@ void Levels::Level1::Update(float dt)
 {
 	UNREFERENCED_PARAMETER(dt);
 
-	cout << "Level1:: Update" << endl;
+	cout << "Level1::Update" << endl;
 	
 	lives--;
 

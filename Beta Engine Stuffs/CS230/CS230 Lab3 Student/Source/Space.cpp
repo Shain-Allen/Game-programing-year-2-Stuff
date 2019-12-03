@@ -76,6 +76,8 @@ void Space::RestartLevel()
 
 void Space::ChangeLevel()
 {
+	std::cout << "Space::ChangeLevel" << std::endl;
+
 	if (currentLevel != nullptr)
 	{
 		if (nextLevel == currentLevel)
@@ -83,16 +85,19 @@ void Space::ChangeLevel()
 			currentLevel->Shutdown();
 			currentLevel->Initialize();
 		}
+	}
 
-		if (nextLevel != currentLevel)
+	if (nextLevel != currentLevel)
+	{
+		if (currentLevel != nullptr)
 		{
 			currentLevel->Shutdown();
 			currentLevel->Unload();
-			nextLevel->Load();
-			nextLevel->Initialize();
 		}
+		nextLevel->Load();
+		nextLevel->Initialize();
 	}
-		currentLevel = nextLevel;
-		nextLevel = nullptr;
-		std::cout << "Space::ChangeLevel" << std::endl;
+	
+	currentLevel = nextLevel;
+	nextLevel = nullptr;
 }
