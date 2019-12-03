@@ -16,6 +16,7 @@
 #include "stdafx.h"
 #include "Level.h"
 #include "Space.h"
+#include "Level1.h"
 
 //------------------------------------------------------------------------------
 
@@ -43,6 +44,8 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	engine.AddModule<Space>();
 
 	// TO-DO: Set initial level of space to the first level
+	engine.GetModule<Space>()->SetLevel(new Levels::Level1);
+
 
 	// Game engine goes!
 	StartupSettings settings;
@@ -50,7 +53,13 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	settings.windowHeight = 600;
 	settings.framerateCap = 200;
 
+	//std::streambuf* coutBuff = std::cout.rdbuf();
+	//std::ofstream fileOutput("trace.txt");
+	//std::cout.rdbuf(fileOutput.rdbuf());
+
 	engine.Start(settings);
+
+	//std::cout.rdbuf(coutBuff);
 
 	return 0;
 }

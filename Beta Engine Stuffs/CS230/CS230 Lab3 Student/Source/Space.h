@@ -37,7 +37,8 @@ public:
 	//------------------------------------------------------------------------------
 
 	// Constructor(s)
-	Space(const std::string& name);
+
+	Space(const std::string& name = "GameSpace");
 
 	// Destructor
 	~Space();

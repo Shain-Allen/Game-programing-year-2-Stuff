@@ -33,7 +33,7 @@ void Space::Update(float dt)
 
 	if (currentLevel != nullptr)
 	{
-		Update(dt);
+		currentLevel->Update(dt);
 	}
 }
 
@@ -91,8 +91,8 @@ void Space::ChangeLevel()
 			nextLevel->Load();
 			nextLevel->Initialize();
 		}
+	}
 		currentLevel = nextLevel;
 		nextLevel = nullptr;
 		std::cout << "Space::ChangeLevel" << std::endl;
-	}
 }
