@@ -12,23 +12,31 @@
 #include "Level1.h"
 #include "Level2.h"
 #include "Space.h"
+#include "MeshHelper.h"
+#include "Sprite.h"
 
 using std::cout;
 using std::endl;
 
 Levels::Level1::Level1()
-	:Level("Level1"), mesh(nullptr), sprite(nullptr), lives(3)
+	:Level("Level1"), mesh(nullptr), sprite(nullptr), lives(256)
 {
 }
 
 void Levels::Level1::Load()
 {
 	cout << "Level1::Load" << endl;
+
+	using namespace Beta;
+
+	mesh = CreateTriangleMesh(Colors::Blue, Colors::Green, Colors::Red);
 }
 
 void Levels::Level1::Initialize()
 {
 	cout << "Level1::Initialize" << endl;
+
+	sprite = new Sprite(mesh);
 }
 
 void Levels::Level1::Update(float dt)
@@ -43,14 +51,19 @@ void Levels::Level1::Update(float dt)
 	{
 		GetSpace()->SetLevel(new Level2);
 	}
+
+	sprite->Draw();
 }
 
 void Levels::Level1::Shutdown()
 {
 	cout << "Level1::Shutdown" << endl;
+
+	delete sprite;
 }
 
 void Levels::Level1::Unload()
 {
 	cout << "Level1::Unload" << endl;
+	delete mesh;
 }

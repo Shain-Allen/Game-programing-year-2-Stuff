@@ -44,7 +44,10 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	using namespace Beta;
 	EngineCore& engine = EngineCore::GetInstance();
 
+	engine.AddModule<Space>();
+
 	// TO-DO: Set initial level to the first level
+	engine.GetModule<Space>()->SetLevel(new Levels::Level1);
 
 	StartupSettings settings;
 	settings.windowWidth = 800;

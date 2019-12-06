@@ -11,6 +11,9 @@
 #include "stdafx.h"
 #include "Level2.h"
 #include "Space.h"
+#include "MeshHelper.h"
+#include "Sprite.h"
+#include "SpriteSource.h"
 
 using std::cout;
 using std::endl;
@@ -23,6 +26,16 @@ Levels::Level2::Level2()
 void Levels::Level2::Load()
 {
 	cout << "Level2::Load" << endl;
+
+	using namespace Beta;
+
+	GraphicsEngine& graphics = *EngineGetModule(GraphicsEngine);
+
+	texture = Texture::CreateTextureFromFile("Monkey.png");
+
+	spriteSource = new SpriteSource(texture, "Monkey", 3, 5);
+
+	mesh = CreateQuadMesh()
 }
 
 void Levels::Level2::Initialize()

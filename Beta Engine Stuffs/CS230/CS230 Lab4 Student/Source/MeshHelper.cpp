@@ -30,7 +30,7 @@ Beta::Mesh* CreateQuadMesh(const Beta::Vector2D& uvSize, const Beta::Vector2D& m
 {
 	// Get access to the MeshFactorymodule
 	using namespace Beta;
-	MeshFactory& meshFactory= *EngineGetModule(MeshFactory);
+	MeshFactory& meshFactory = *EngineGetModule(MeshFactory);
 
 	Vertex topLeft = Vertex(Vector2D(-meshSize.x, meshSize.y), Vector2D(0.0f, -uvSize.y));
 	Vertex bottomLeft = Vertex(Vector2D(-meshSize), Vector2D(-uvSize.x, uvSize.y));
