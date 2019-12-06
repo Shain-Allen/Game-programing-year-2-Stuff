@@ -27,7 +27,7 @@ const std::string& SpriteSource::GetName() const
 
 const Beta::Vector2D SpriteSource::GetTextureDimensions() const
 {
-	return Beta::Vector2D(numRows, numCols);
+	return Beta::Vector2D(static_cast<float>(numCols), static_cast<float>(numRows));
 }
 
 const Beta::Vector2D SpriteSource::GetUV(unsigned int frameIndex_) const
@@ -35,8 +35,8 @@ const Beta::Vector2D SpriteSource::GetUV(unsigned int frameIndex_) const
 	float colsSize = 1.0f / static_cast<float>(numCols);
 	float rowSize = 1.0f / static_cast<float>(numRows);
 	
-	unsigned int cols = numCols % frameIndex_;
-	unsigned int rows = numRows / frameIndex_;
+	unsigned int cols = frameIndex_ % numCols;
+	unsigned int rows = frameIndex_ / numRows;
 
 	using namespace Beta;
 

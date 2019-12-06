@@ -32,10 +32,10 @@ Beta::Mesh* CreateQuadMesh(const Beta::Vector2D& uvSize, const Beta::Vector2D& m
 	using namespace Beta;
 	MeshFactory& meshFactory = *EngineGetModule(MeshFactory);
 
-	Vertex topLeft = Vertex(Vector2D(-meshSize.x, meshSize.y), Vector2D(0.0f, -uvSize.y));
-	Vertex bottomLeft = Vertex(Vector2D(-meshSize), Vector2D(-uvSize.x, uvSize.y));
-	Vertex topRight = Vertex(Vector2D(meshSize), Vector2D(uvSize.x, -uvSize.y));
-	Vertex bottomRight = Vertex(Vector2D(meshSize.x, -meshSize.y), Vector2D(uvSize));
+	Vertex topLeft =     Vertex(Vector2D(-meshSize.x,  meshSize.y), Vector2D( 0.0f    ,  0.0f));
+	Vertex bottomLeft =  Vertex(Vector2D(-meshSize.x, -meshSize.y), Vector2D( 0.0f    ,  uvSize.y));
+	Vertex topRight =    Vertex(Vector2D( meshSize.x,  meshSize.y), Vector2D( uvSize.x,  0.0f));
+	Vertex bottomRight = Vertex(Vector2D( meshSize.x, -meshSize.y), Vector2D( uvSize.x,  uvSize.y));
 
 	meshFactory.AddTriangle(topLeft, bottomLeft, bottomRight);
 	meshFactory.AddTriangle(topLeft, topRight, bottomRight);

@@ -60,6 +60,9 @@ public:
 	// Get the sprite source used by this animation.
 	const SpriteSource* GetSpriteSource() const;
 
+	// Reset the current frame to 0 and return the starting frame.
+	unsigned Play() const;
+
 private:
 	//------------------------------------------------------------------------------
 	// Private Functions:

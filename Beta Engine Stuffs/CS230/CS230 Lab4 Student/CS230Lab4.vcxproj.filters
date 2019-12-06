@@ -46,7 +46,15 @@
     <ClCompile Include="Source\SpriteSource.cpp">
       <Filter>High-Level API\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Sprite.cpp" />
+    <ClCompile Include="Source\Animator.cpp">
+      <Filter>High-Level API\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>High-Level API\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.cpp">
+      <Filter>High-Level API\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\stdafx.h">
