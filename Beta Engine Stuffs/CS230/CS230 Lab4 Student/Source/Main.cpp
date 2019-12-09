@@ -56,10 +56,15 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 
 	// TO DO: Redirect std::cout to file
 
+	std::streambuf* coutBuff = std::cout.rdbuf();
+	std::ofstream fileOutput("trace.txt");
+	std::cout.rdbuf(fileOutput.rdbuf());
+
 	// Game engine goes!
 	engine.Start(settings);
 
 	// TO-DO: Restore std::cout to console
+	std::cout.rdbuf(coutBuff);
 
 	return 0;
 }

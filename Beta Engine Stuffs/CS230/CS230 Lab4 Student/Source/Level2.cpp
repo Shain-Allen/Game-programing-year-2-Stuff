@@ -41,6 +41,8 @@ void Levels::Level2::Load()
 
 	mesh = CreateQuadMesh(Vector2D(1 / spriteDimensions.x, 1 / spriteDimensions.y), Vector2D(0.5f, 0.5f));
 
+	animFrameDuration = 0.0f;
+
 	animation = new Animation("Animation", nullptr, animFrameCount, animFrameStart, animFrameDuration);
 }
 
@@ -65,7 +67,10 @@ void Levels::Level2::Update(float dt)
 
 	animator->Update(dt);
 
-	/*
+	
+	if (!animator->IsDone())
+		return;
+
 	currentHealth--;
 	
 	if (currentHealth <= 0)
@@ -81,14 +86,12 @@ void Levels::Level2::Update(float dt)
 			GetSpace()->RestartLevel();
 		}
 	}
-	*/
 }
 
 void Levels::Level2::Shutdown()
 {
 	cout << "Level2::Shutdown" << endl;
-
-	delete animation;
+	delete animator;
 	delete sprite;
 }
 
@@ -96,6 +99,6 @@ void Levels::Level2::Unload()
 {
 	cout << "Level2::Unload" << endl;
 
-	delete animator;
+	delete animation;
 	delete spriteSource;
 }

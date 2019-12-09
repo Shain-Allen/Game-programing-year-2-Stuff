@@ -40,7 +40,7 @@ void Animator::Play(size_t animationIndex_, float playbackSpeed_, bool loop_)
 
 		sprite->SetFrame(currentAnimation->Play());
 	}
-	isDone = true;
+	isDone = false;
 }
 
 size_t Animator::AddAnimation(const Animation* animation)

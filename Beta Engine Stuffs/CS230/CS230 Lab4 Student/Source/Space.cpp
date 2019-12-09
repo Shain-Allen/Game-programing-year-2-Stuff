@@ -76,7 +76,7 @@ void Space::RestartLevel()
 
 void Space::ChangeLevel()
 {
-	std::cout << "Space::ChangeLevel" << std::endl;
+	//std::cout << "Space::ChangeLevel" << std::endl;
 
 	if (currentLevel != nullptr)
 	{

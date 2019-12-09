@@ -27,7 +27,7 @@ unsigned Animation::GetCurrentFrameIndex(float dt, float playbackSpeed, bool loo
 
 	if (isDone != nullptr)
 	{
-		if (currentVirtualFrame == frameCount)
+		if (currentVirtualFrame == frameCount - 1)
 		{
 			*isDone = true;
 		}
@@ -60,6 +60,12 @@ unsigned Animation::Play() const
 unsigned Animation::GetVirtualIndex(float dt_, float playbackSpeed_) const
 {
 	accumulator += dt_ * playbackSpeed_;
+
+	if (frameDuration == 0)
+	{
+		currentVirtualFrame++;
+		return currentVirtualFrame;
+	}
 
 	while (accumulator >= frameDuration)
 	{
