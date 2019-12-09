@@ -1,33 +1,71 @@
 #include "stdafx.h"
 #include "Animation.h"
 
-Animation::Animation(const std::string& name, const SpriteSource* spriteSource, unsigned frameCount, unsigned frameStart, float frameDuration)
-	: accumulator(), currentVirtualFrame()
+Animation::Animation(const std::string& name_, const SpriteSource* spriteSource_, unsigned frameCount_, unsigned frameStart_, float frameDuration_)
+	: accumulator(0.0f), currentVirtualFrame(0), frameDuration(frameDuration_), frameCount(frameCount_), frameStart(frameStart_), name(name_), spriteSource(spriteSource_)
 {
-
 }
 
 unsigned Animation::GetCurrentFrameIndex(float dt, float playbackSpeed, bool looping, bool* isDone) const
 {
-	return 0;
+	currentVirtualFrame = GetVirtualIndex(dt, playbackSpeed);
+
+	if (looping)
+	{
+		if (currentVirtualFrame == frameCount)
+		{
+			currentVirtualFrame = 0;
+		}
+	}
+	else
+	{
+		if (currentVirtualFrame + 1 > frameCount)
+		{
+			currentVirtualFrame = frameCount;
+		}
+	}
+
+	if (isDone != nullptr)
+	{
+		if (currentVirtualFrame == frameCount)
+		{
+			*isDone = true;
+		}
+		else
+		{
+			*isDone = false;
+		}
+	}
+
+	return currentVirtualFrame + frameStart;
 }
 
 const std::string& Animation::GetName() const
 {
-	// TODO: insert return statement here
+	return name;
 }
 
 const SpriteSource* Animation::GetSpriteSource() const
 {
-	return nullptr;
+	return spriteSource;
 }
 
 unsigned Animation::Play() const
 {
-	return 0;
+	accumulator = 0;
+	currentVirtualFrame = 0;
+	return frameStart;
 }
 
-unsigned Animation::GetVirtualIndex(float dt, float playbackSpeed) const
+unsigned Animation::GetVirtualIndex(float dt_, float playbackSpeed_) const
 {
-	return 0;
+	accumulator += dt_ * playbackSpeed_;
+
+	while (accumulator >= frameDuration)
+	{
+		currentVirtualFrame++;
+		accumulator -= frameDuration;
+	}
+
+	return currentVirtualFrame;
 }

@@ -5,7 +5,7 @@
 #include "SpriteSource.h"
 
 Animator::Animator(Sprite* sprite_)
-	: animationIndex(0), isDone(false), isLooping(false), isRunning(false), playbackSpeed(0.0f), sprite(nullptr)
+	: animationIndex(0), isDone(false), isLooping(false), isRunning(false), playbackSpeed(0.0f), sprite(sprite_)
 {
 }
 
@@ -34,17 +34,19 @@ void Animator::Play(size_t animationIndex_, float playbackSpeed_, bool loop_)
 	const Animation* currentAnimation = animationList[animationIndex_];
 
 	if (currentAnimation != nullptr)
-		sprite->SetSpriteSource = currentAnimation->GetSpriteSource();
+	{
+		if (currentAnimation->GetSpriteSource() != nullptr)
+			sprite->SetSpriteSource(currentAnimation->GetSpriteSource());
 
-	sprite->SetFrame(currentAnimation->Play());
-
+		sprite->SetFrame(currentAnimation->Play());
+	}
 	isDone = true;
 }
 
 size_t Animator::AddAnimation(const Animation* animation)
 {
 	animationList.PushBack(animation);
-	return animationList.Size - 1;
+	return animationList.Size() - 1;
 }
 
 size_t Animator::GetCurrentAnimationIndex() const
@@ -54,11 +56,11 @@ size_t Animator::GetCurrentAnimationIndex() const
 
 size_t Animator::GetAnimationIndex(const std::string& name_) const
 {
-	for (int i = 0; i < animationList.Size; i++)
+	for (int i = 0; i < animationList.Size(); i++)
 		if (animationList[i]->GetName() == name_)
 			return i;
-		else
-			return 0;
+	
+	return 0;
 }
 
 bool Animator::IsDone() const
