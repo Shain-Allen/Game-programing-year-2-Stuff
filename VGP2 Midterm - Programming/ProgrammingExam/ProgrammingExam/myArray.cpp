@@ -16,3 +16,21 @@ int myArray::get_size(void) const
 {
     return size;
 }
+
+void myArray::Push(int value_)
+{
+}
+
+void myArray::pop()
+{
+}
+
+myArray myArray::operator+(myArray array_)
+{
+	return myArray();
+}
+
+myArray myArray::operator+=(myArray array_)
+{
+	return myArray();
+}
