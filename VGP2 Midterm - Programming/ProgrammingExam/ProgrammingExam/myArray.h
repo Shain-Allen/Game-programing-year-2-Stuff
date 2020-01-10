@@ -20,7 +20,9 @@ public:
 
 	myArray operator+(const myArray& array_) const;
 
-	myArray operator+=(const myArray& array_);
+	myArray& operator+=(const myArray& array_);
+
+    myArray& operator=(const myArray& array_);
 
     friend std::ostream& operator<<(std::ostream& stream, const myArray& array_);
 

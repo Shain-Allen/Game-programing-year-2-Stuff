@@ -13,11 +13,11 @@ myArray::~myArray(void)
 }
 
 myArray::myArray(const myArray& array_)
-    :capacity(array_.capacity), size(array_.size)
+    :capacity(array_.size), size(array_.size)
 {
-    numbers = new int[capacity];
+    numbers = new int[size];
 
-    for (int i = 0; i <= size; i++)
+    for (int i = 0; i < size; i++)
     {
         numbers[i] = array_.numbers[i];
     }
@@ -70,10 +70,12 @@ myArray myArray::operator+(const myArray& array_) const
     if (capacity >= array_.capacity)
     {
         c.capacity = capacity;
+        c.numbers = new int[capacity];
     }
     else
     {
         c.capacity = array_.capacity;
+        c.numbers = new int[array_.capacity];
     }
 
     if (size >= array_.size)
@@ -85,12 +87,17 @@ myArray myArray::operator+(const myArray& array_) const
         c.size = array_.size;
     }
 
-    for (int i = 0; i <= size; i++)
+    for (int i = 0; i < c.size; i++)
+    {
+        c.numbers[i] = 0;
+    }
+
+    for (int i = 0; i < size; i++)
     {
         c.numbers[i] += numbers[i];
     }
 
-    for (int i = 0; i <= array_.size; i++)
+    for (int i = 0; i < array_.size; i++)
     {
         c.numbers[i] += array_.numbers[i];
     }
@@ -98,25 +105,29 @@ myArray myArray::operator+(const myArray& array_) const
 	return c;
 }
 
-myArray myArray::operator+=(const myArray& array_)
+myArray& myArray::operator+=(const myArray& array_)
 {
-    int* newNumbers;
-    if (capacity < array_.capacity)
+    if (capacity < array_.size)
     {
-        newNumbers = new int[array_.capacity];
+        int* newNumbers = new int[array_.size];
 
-        for (int i = 0; i <= size; i++)
+        for (int i = 0; i < size; i++)
         {
-            newNumbers[i] += numbers[i];
-        }
-
-        for (int i = 0; i <= array_.size; i++)
-        {
-            newNumbers[i] += array_.numbers[i];
+            newNumbers[i] = numbers[i];
         }
 
         delete[] numbers;
         numbers = newNumbers;
+
+        for (int i = size; i < array_.capacity; i++)
+        {
+            numbers[i] = 0;
+        }
+
+        for (int i = 0; i < array_.size; i++)
+        {
+            numbers[i] += array_.numbers[i];
+        }
 
         if (size < array_.size)
         {
@@ -127,13 +138,43 @@ myArray myArray::operator+=(const myArray& array_)
     }
     else
     {
-        for (int i = 0; i <= array_.size; i++)
+
+        for (int i = size; i < capacity; i++)
+        {
+            numbers[i] = 0;
+        }
+
+        for (int i = 0; i < array_.size; i++)
         {
             numbers[i] += array_.numbers[i];
         }
 
+        if (size < array_.size)
+        {
+            size = array_.size;
+        }
+
         return *this;
     }
+}
+
+myArray& myArray::operator=(const myArray& array_)
+{
+    if (capacity < array_.size)
+    {
+        delete[] numbers;
+        numbers = new int[array_.size];
+        capacity = array_.size;
+    }
+
+    for (int i = 0; i < array_.size; i++)
+    {
+        numbers[i] = array_.numbers[i];
+    }
+
+    size = array_.size;
+
+    return *this;
 }
 
 std::ostream& operator<<(std::ostream& stream, const myArray& array_)
