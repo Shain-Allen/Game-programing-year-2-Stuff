@@ -103,7 +103,7 @@ namespace CS230
 		{
 			for (int y = 0; y < 3; y++)
 			{
-				multply.m[y][x] = m[x][0] * other.m[0][x] + m[x][1] * other.m[1][x] + m[x][2] * other.m[2][x]
+				multply.m[y][x] = m[x][0] * other.m[0][x] + m[x][1] * other.m[1][x] + m[x][2] * other.m[2][x];
 			}
 		}
 
