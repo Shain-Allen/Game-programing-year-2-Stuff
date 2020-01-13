@@ -112,7 +112,16 @@ namespace CS230
 
 	Matrix2D& CS230::Matrix2D::operator*=(const Matrix2D& other)
 	{
-		// TODO: insert return statement here
+		for (int x = 0; x < 3; x++)
+		{
+			for (int y = 0; y < 3; y++)
+			{
+				m[y][x] += m[x][0] * other.m[0][x] + m[x][1] * other.m[1][x] + m[x][2] * other.m[2][x];
+			}
+		}
+
+
+		return *this;
 	}
 
 	Beta::Vector2D CS230::Matrix2D::operator*(const Beta::Vector2D& vec) const
