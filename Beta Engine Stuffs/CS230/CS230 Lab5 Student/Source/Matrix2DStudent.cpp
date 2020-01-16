@@ -10,6 +10,7 @@
 //------------------------------------------------------------------------------
 #include "stdafx.h"
 #include "Matrix2DStudent.h"
+
 namespace CS230
 {
 	CS230::Matrix2D::Matrix2D()
@@ -99,11 +100,11 @@ namespace CS230
 	{
 		Matrix2D multply;
 
-		for (int x = 0; x < 3; x++)
+		for (int row = 0; row < 3; row++)
 		{
-			for (int y = 0; y < 3; y++)
+			for (int col = 0; col < 3; col++)
 			{
-				multply.m[y][x] = m[x][0] * other.m[0][x] + m[x][1] * other.m[1][x] + m[x][2] * other.m[2][x];
+				multply.m[row][col] = RowColumnMultiply(other, row, col);
 			}
 		}
 
@@ -112,25 +113,35 @@ namespace CS230
 
 	Matrix2D& CS230::Matrix2D::operator*=(const Matrix2D& other)
 	{
-		for (int x = 0; x < 3; x++)
+		for (int row = 0; row < 3; row++)
 		{
-			for (int y = 0; y < 3; y++)
+			for (int col = 0; col < 3; col++)
 			{
-				m[y][x] += m[x][0] * other.m[0][x] + m[x][1] * other.m[1][x] + m[x][2] * other.m[2][x];
+				m[row][col] += RowColumnMultiply(other, row, col);
 			}
 		}
-
 
 		return *this;
 	}
 
 	Beta::Vector2D CS230::Matrix2D::operator*(const Beta::Vector2D& vec) const
 	{
-		return Beta::Vector2D();
+		using Beta::Vector2D;
+
+		Vector2D outvec;
+		
+		outvec.x = m[0][0] * vec.x + m[0][1] * vec.y + m[0][2] * 1;
+		outvec.y = m[1][0] * vec.x + m[1][1] * vec.y + m[1][2] * 1;
+
+		return outvec;
 	}
 
 	float CS230::Matrix2D::RowColumnMultiply(const Matrix2D& other, unsigned row, unsigned col) const
 	{
-		return 0.0f;
+		float e;
+
+		e = m[row][0] * other.m[0][col] + m[row][1] * other.m[1][col] + m[row][2] * other.m[2][col];
+
+		return e;
 	}
 }
