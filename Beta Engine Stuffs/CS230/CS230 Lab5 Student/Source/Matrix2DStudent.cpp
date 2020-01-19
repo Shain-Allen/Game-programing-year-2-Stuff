@@ -14,6 +14,7 @@
 namespace CS230
 {
 	CS230::Matrix2D::Matrix2D()
+		:m()
 	{
 		for (int x = 0; x < 3; x++)
 		{
@@ -74,7 +75,7 @@ namespace CS230
 	{
 		Matrix2D rotation = rotation.IdentityMatrix();
 
-		float radian = angle * (M_PI / 180);
+		float radian = angle * (static_cast<float>(M_PI) / 180);
 
 		rotation.m[0][0] = cos(radian);
 		rotation.m[0][1] = -sin(radian);

@@ -13,7 +13,7 @@
 #include "Matrix2DStudent.h"
 
 Transform::Transform(float x, float y)
-	: translation(x,y), rotation(0), scale(x,y), matrix(CS230::Matrix2D::IdentityMatrix()), isDirty(false)
+	: translation(x,y), rotation(0), scale(1,1), matrix(CS230::Matrix2D::IdentityMatrix()), isDirty(false)
 {
 }
 
@@ -24,32 +24,47 @@ Transform::Transform(Beta::Vector2D translation, Beta::Vector2D scale, float rot
 
 const CS230::Matrix2D& Transform::GetMatrix() const
 {
-	// TODO: insert return statement here
+	using CS230::Matrix2D;
+
+	if (isDirty)
+	{
+		Matrix2D transMat = transMat.TranslationMatrix(translation.x, translation.y);
+		Matrix2D rotMat = rotMat.RotationMatrixDegrees(rotation);
+		Matrix2D sf = sf.ScalingMatrix(scale.x, scale.y);
+
+		matrix = transMat * rotMat * sf;
+
+		isDirty = false;
+	}
+	return matrix;
 }
 
-void Transform::SetTranslation(const Beta::Vector2D& translation)
+void Transform::SetTranslation(const Beta::Vector2D& translation_)
 {
+	translation = translation_;
 }
 
 const Beta::Vector2D& Transform::GetTranslation() const
 {
-	// TODO: insert return statement here
+	return translation;
 }
 
-void Transform::SetRotation(float rotation)
+void Transform::SetRotation(float rotation_)
 {
+	rotation = rotation_;
 }
 
 float Transform::GetRotation() const
 {
-	return 0.0f;
+	return rotation;
 }
 
-void Transform::SetScale(const Beta::Vector2D& scale)
+void Transform::SetScale(const Beta::Vector2D& scale_)
 {
+	scale = scale_;
 }
 
 const Beta::Vector2D& Transform::GetScale() const
 {
-	// TODO: insert return statement here
+	return scale;
 }

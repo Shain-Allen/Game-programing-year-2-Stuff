@@ -89,7 +89,7 @@ private:
 	// The translation (or world position) of a game object.
 	Beta::Vector2D translation;
 
-	// The rotation (or orientation) of a game object.
+	// The rotation (or orientation) of a game object. IN DEGREES
 	float rotation;
 
 	// The scale (or size) of a game object.

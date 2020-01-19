@@ -11,6 +11,7 @@
 #include "stdafx.h"
 #include "Sprite.h"
 #include "SpriteSource.h"
+#include "Transform.h"
 
 Sprite::Sprite(const Transform* transform_, Beta::Mesh* mesh_, const SpriteSource* spriteSource_)
 	: transform(transform_), mesh(mesh_), spriteSource(spriteSource_), flipX(false), flipY(false), frameIndex(0)
@@ -19,6 +20,9 @@ Sprite::Sprite(const Transform* transform_, Beta::Mesh* mesh_, const SpriteSourc
 
 void Sprite::Draw()
 {
+	if (transform == nullptr)
+		return;
+
 	if (mesh == nullptr)
 		return;
 
@@ -37,7 +41,8 @@ void Sprite::Draw()
 		graphics.GetDefaultTexture().Use();
 	}
 
-	graphics.SetTransform(Vector2D(0, 0), Vector2D(1, 1), 0);
+	graphics.SetTransform(
+		reinterpret_cast<const Beta::Matrix2D&>(transform->GetMatrix()));
 
 	mesh->Draw();
 }
