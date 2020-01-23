@@ -56,6 +56,16 @@ public:
 	//	 velocity = Pointer to a velocity vector.
 	void SetVelocity(const Beta::Vector2D& velocity);
 
+	//Set the x component of velocity of a rigid body
+	// Params:
+	//	velocity = Pointer to a velocity vector.
+	void SetVelocity_x(const float velocity_x);
+
+	//Set the y component of velocity of a rigid body
+	// Params:
+	//	velocity = Pointer to a velocity vector.
+	void SetVelocity_y(const float velocity_y);
+
 	// Get the velocity of a rigid body.
 	// Returns:
 	//		A reference to the component's velocity structure.
@@ -80,6 +90,16 @@ public:
 	// Params:
 	//	 force = A force vector with direction and magnitude.
 	void AddForce(const Beta::Vector2D& force);
+
+	// Add a upward or downward force to the object.
+	// Params:
+	//	 force_Y = A force vector with direction and magnitude.
+	void AddForce_Y(const float force_Y);
+
+	// Add a sideways force to the object.
+	// Params:
+	//	 force_X = A force vector with direction and magnitude.
+	void AddForce_X(const float force_X);
 
 	// Get the acceleration of a rigid body.
 	// Returns:

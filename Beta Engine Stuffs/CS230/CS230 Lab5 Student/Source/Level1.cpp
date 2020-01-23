@@ -15,6 +15,8 @@
 #include "MeshHelper.h"
 #include "Sprite.h"
 #include "Transform.h"
+#include "RigidBody.h"
+#include "Behaviors.h"
 
 using std::cout;
 using std::endl;
@@ -38,17 +40,15 @@ void Levels::Level1::Initialize()
 {
 	cout << "Level1::Initialize" << endl;
 
-	transform = new Transform(Vector2D(0, 0));
+	transform = new Transform(Vector2D(0, 0), Vector2D(1,1));
+
+	rigidBody = new RigidBody(transform);
 
 	sprite = new Sprite(transform, mesh);
 }
 
 void Levels::Level1::Update(float dt)
 {
-	UNREFERENCED_PARAMETER(dt);
-
-	sprite->Draw();
-
 	Beta::Input& input = *EngineGetModule(Beta::Input);
 
 	if (input.CheckTriggered('1'))
@@ -60,6 +60,11 @@ void Levels::Level1::Update(float dt)
 	{
 		GetSpace()->SetLevel(new Level2);
 	}
+
+	Behaviors::UpdateShip(transform, rigidBody);
+	sprite->Draw();
+	rigidBody->Update(dt);
+	rigidBody->FixedUpdate(dt);
 }
 
 void Levels::Level1::Shutdown()
@@ -67,6 +72,7 @@ void Levels::Level1::Shutdown()
 	cout << "Level1::Shutdown" << endl;
 
 	delete sprite;
+	delete rigidBody;
 	delete transform;
 }
 

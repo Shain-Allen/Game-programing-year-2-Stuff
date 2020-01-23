@@ -12,13 +12,15 @@
 #include "Transform.h"
 #include "Matrix2DStudent.h"
 
+using namespace Beta;
+
 Transform::Transform(float x, float y)
-	: translation(x,y), rotation(0), scale(1,1), matrix(CS230::Matrix2D::IdentityMatrix()), isDirty(false)
+	: translation(x,y), rotation(0), scale(1,1), matrix(CS230::Matrix2D::IdentityMatrix()), isDirty(true)
 {
 }
 
 Transform::Transform(Beta::Vector2D translation, Beta::Vector2D scale, float rotation)
-	: translation(translation), rotation(rotation), scale(scale), matrix(CS230::Matrix2D::IdentityMatrix()), isDirty(false)
+	: translation(translation), rotation(rotation), scale(scale), matrix(CS230::Matrix2D::IdentityMatrix()), isDirty(true)
 {
 }
 
@@ -41,6 +43,9 @@ const CS230::Matrix2D& Transform::GetMatrix() const
 
 void Transform::SetTranslation(const Beta::Vector2D& translation_)
 {
+	if (AlmostEqual(translation, translation_))
+		return;
+	isDirty = true;
 	translation = translation_;
 }
 
@@ -51,6 +56,9 @@ const Beta::Vector2D& Transform::GetTranslation() const
 
 void Transform::SetRotation(float rotation_)
 {
+	if (rotation == rotation_)
+		return;
+	isDirty = true;
 	rotation = rotation_;
 }
 
@@ -61,6 +69,9 @@ float Transform::GetRotation() const
 
 void Transform::SetScale(const Beta::Vector2D& scale_)
 {
+	if (AlmostEqual(scale, scale_))
+		return;
+	isDirty = true;
 	scale = scale_;
 }
 

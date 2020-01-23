@@ -21,6 +21,7 @@ RigidBody::RigidBody(Transform* transform)
 
 void RigidBody::Update(float dt)
 {
+	UNREFERENCED_PARAMETER(dt);
 	acceleration = forcesSum * inverseMass;
 	forcesSum = 0;
 }
@@ -37,6 +38,16 @@ void RigidBody::FixedUpdate(float dt)
 void RigidBody::SetVelocity(const Beta::Vector2D& velocity_)
 {
 	velocity = velocity_;
+}
+
+void RigidBody::SetVelocity_x(const float velocity_x)
+{
+	velocity.x = velocity_x;
+}
+
+void RigidBody::SetVelocity_y(const float velocity_y)
+{
+	velocity.y = velocity_y;
 }
 
 const Beta::Vector2D& RigidBody::GetVelocity() const
@@ -62,6 +73,16 @@ void RigidBody::SetMass(float mass)
 void RigidBody::AddForce(const Beta::Vector2D& force)
 {
 	forcesSum += force;
+}
+
+void RigidBody::AddForce_Y(const float force_Y)
+{
+	forcesSum.y += force_Y;
+}
+
+void RigidBody::AddForce_X(const float force_X)
+{
+	forcesSum.x += force_X;
 }
 
 const Beta::Vector2D& RigidBody::GetAcceleration() const

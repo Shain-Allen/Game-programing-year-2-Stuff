@@ -18,6 +18,8 @@
 #include "Animator.h"
 #include "Level1.h"
 #include "Transform.h"
+#include "RigidBody.h"
+#include "Behaviors.h"
 
 using std::cout;
 using std::endl;
@@ -55,6 +57,8 @@ void Levels::Level2::Initialize()
 
 	transform = new Transform(Vector2D(0, 0));
 
+	rigidBody = new RigidBody(transform);
+
 	sprite = new Sprite(transform, mesh, spriteSource);
 
 	animator = new Animator(sprite);
@@ -67,13 +71,6 @@ void Levels::Level2::Initialize()
 
 void Levels::Level2::Update(float dt)
 {
-	sprite->Draw();
-
-	animator->Update(dt);
-
-	if (!animator->IsDone())
-		return;
-
 	Beta::Input& input = *EngineGetModule(Beta::Input);
 
 	if (input.CheckTriggered('1'))
@@ -85,6 +82,15 @@ void Levels::Level2::Update(float dt)
 	{
 		GetSpace()->RestartLevel();
 	}
+
+	sprite->Draw();
+	animator->Update(dt);
+	Behaviors::UpdateMonkey(transform, rigidBody);
+	rigidBody->Update(dt);
+	rigidBody->FixedUpdate(dt);
+
+	if (!animator->IsDone())
+		return;
 }
 
 void Levels::Level2::Shutdown()

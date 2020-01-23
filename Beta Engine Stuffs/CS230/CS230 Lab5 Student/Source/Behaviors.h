@@ -41,4 +41,6 @@ namespace Behaviors
 	//	 transform = The transform component of the monkey.
 	//   rigidBody = The rigid body of the monkey.
 	void UpdateMonkey(Transform* transform, RigidBody* rigidBody);
+
+	float squared(float number);
 }
