@@ -68,9 +68,9 @@ void Behaviors::UpdateShip(Transform* transform, RigidBody* rigidBody)
 }
 
 const float gravity = -9.8f;
-const float upForce = 12.0f;
-const float sidewaysForce = 1;
-const float ground = -2.4f;
+const float upForce = 500.0f;
+const float sidewaysForce = 50;
+const float ground = -1.9f;
 
 void Behaviors::UpdateMonkey(Transform* transform, RigidBody* rigidBody)
 {
@@ -79,11 +79,11 @@ void Behaviors::UpdateMonkey(Transform* transform, RigidBody* rigidBody)
 
 	Input& input = *EngineGetModule(Input);
 
-	bool isGrounded;
+	bool isGrounded = false;
 
-	if (transform->GetTranslation().y > ground)
+	if (transform->GetTranslation().y < ground)
 	{
-		transform->SetTranslation(Vector2D(0.0f, ground));
+		transform->SetTranslation(Vector2D(transform->GetTranslation().x, ground));
 		rigidBody->SetVelocity_y(0);
 		isGrounded = true;
 	}
@@ -91,7 +91,21 @@ void Behaviors::UpdateMonkey(Transform* transform, RigidBody* rigidBody)
 	if (!isGrounded)
 		rigidBody->AddForce_Y(gravity);
 
-	
+	if (isGrounded && input.CheckTriggered(' '))
+	{
+		rigidBody->AddForce_Y(upForce);
+		isGrounded = false;
+	}
+
+	float movement = 0;
+
+	if (input.CheckHeld('A'))
+		movement -= 1;
+
+	if (input.CheckHeld('D'))
+		movement += 1;
+
+	rigidBody->SetVelocity_x(movement);
 }
 
 float Behaviors::squared(float number)
