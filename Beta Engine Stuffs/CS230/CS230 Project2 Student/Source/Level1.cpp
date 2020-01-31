@@ -59,11 +59,6 @@ void Level1::Update(float dt)
 	{
 		GetSpace()->SetLevel(new Level2);
 	}
-	
-	playerShip->Update(dt);
-	playerShip->FixedUpdate(dt);
-	playerShip->Draw();
-
 }
 
 void Level1::Unload()
