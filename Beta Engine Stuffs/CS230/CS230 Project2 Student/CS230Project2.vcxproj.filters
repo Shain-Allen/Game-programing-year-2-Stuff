@@ -34,6 +34,57 @@
     <ClCompile Include="Source\stdafx.cpp">
       <Filter>Precompiled</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Level2.cpp">
+      <Filter>Game\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Level1.cpp">
+      <Filter>Game\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SpriteSource.cpp">
+      <Filter>High-Level API\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.cpp">
+      <Filter>High-Level API\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshHelper.cpp">
+      <Filter>High-Level API\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animator.cpp">
+      <Filter>High-Level API\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>High-Level API\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Space.cpp">
+      <Filter>High-Level API\Spaces</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Level.cpp">
+      <Filter>High-Level API\Spaces</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transform.cpp">
+      <Filter>High-Level API\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RigidBody.cpp">
+      <Filter>High-Level API\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Matrix2DStudent.cpp">
+      <Filter>High-Level API\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component.cpp">
+      <Filter>High-Level API\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.cpp">
+      <Filter>High-Level API\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Archetypes.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerShip.cpp">
+      <Filter>Game\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObjectManager.cpp">
+      <Filter>High-Level API\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\stdafx.h">
