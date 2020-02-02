@@ -11,9 +11,10 @@
 #include "stdafx.h"
 #include "Space.h"
 #include "Level.h"
+#include "GameObjectManager.h"
 
 Space::Space(const std::string& name)
-	: BetaObject(name), currentLevel(nullptr), nextLevel(nullptr), paused(false)
+	: BetaObject(name), currentLevel(nullptr), nextLevel(nullptr), paused(false), objectManager(this)
 {
 }
 
@@ -35,6 +36,8 @@ void Space::Update(float dt)
 	{
 		currentLevel->Update(dt);
 	}
+
+	objectManager.Update(dt);
 }
 
 void Space::Shutdown()
@@ -46,6 +49,8 @@ void Space::Shutdown()
 		delete currentLevel;
 		currentLevel = nullptr;
 	}
+	objectManager.Shutdown();
+	objectManager.Unload();
 }
 
 bool Space::IsPaused() const
@@ -74,6 +79,11 @@ void Space::RestartLevel()
 	nextLevel = currentLevel;
 }
 
+GameObjectManager& Space::GetObjectManager() const
+{
+	return objectManager;
+}
+
 void Space::ChangeLevel()
 {
 	//std::cout << "Space::ChangeLevel" << std::endl;
@@ -84,6 +94,7 @@ void Space::ChangeLevel()
 		{
 			currentLevel->Shutdown();
 			currentLevel->Initialize();
+			objectManager.Shutdown();
 		}
 	}
 
@@ -93,6 +104,8 @@ void Space::ChangeLevel()
 		{
 			currentLevel->Shutdown();
 			currentLevel->Unload();
+			objectManager.Shutdown();
+			objectManager.Unload();
 		}
 		nextLevel->Load();
 		nextLevel->Initialize();

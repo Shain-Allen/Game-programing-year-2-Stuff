@@ -15,7 +15,7 @@
 #include "Component.h"
 
 GameObjectManager::GameObjectManager(Space* space)
-	: BetaObject("GameObjectManager", space), gameObjectActiveList(), numObjects(0), gameObjectArchetypes(), numArchetypes(0), fixedUpdateDt(1 / 60), timeAccumulator(0)
+	: BetaObject("GameObjectManager", space), gameObjectActiveList(), numObjects(0), gameObjectArchetypes(), numArchetypes(0), fixedUpdateDt(1.0f / 60.0f), timeAccumulator(0)
 {
 }
 
@@ -27,7 +27,7 @@ GameObjectManager::~GameObjectManager()
 
 void GameObjectManager::Update(float dt)
 {
-	if (!static_cast<Space*>(GetOwner())->IsPaused)
+	if (!static_cast<Space*>(GetOwner())->IsPaused())
 	{
 		VariableUpdate(dt);
 		FixedUpdate(dt);
@@ -59,7 +59,7 @@ void GameObjectManager::AddObject(GameObject& gameObject)
 	{
 		gameObject.SetOwner(static_cast<Space*>(GetOwner()));
 		gameObject.Initialize();
-		*gameObjectActiveList[++numObjects] = gameObject;
+		gameObjectActiveList[numObjects++] = &gameObject;
 	}
 	else
 	{
@@ -71,7 +71,7 @@ void GameObjectManager::AddArchetype(GameObject& gameObject)
 {
 	if (numArchetypes < maxArchetypes)
 	{
-		gameObjectArchetypes[++numArchetypes];
+		gameObjectArchetypes[numArchetypes++] = &gameObject;
 	}
 	else
 	{
@@ -88,7 +88,7 @@ GameObject* GameObjectManager::GetObjectByName(const std::string& objectName) co
 			return gameObjectActiveList[i];
 		}
 	}
-	return;
+	return nullptr;
 }
 
 GameObject* GameObjectManager::GetArchetypeByName(const std::string& objectName) const
@@ -100,7 +100,7 @@ GameObject* GameObjectManager::GetArchetypeByName(const std::string& objectName)
 			return gameObjectArchetypes[i];
 		}
 	}
-	return;
+	return nullptr;
 }
 
 size_t GameObjectManager::GetObjectCount(const std::string& objectName) const
@@ -121,7 +121,7 @@ void GameObjectManager::VariableUpdate(float dt)
 {
 	for (int i = 0; i < numObjects; i++)
 	{
-		gameObjectActiveList[i]->Update;
+		gameObjectActiveList[i]->Update(dt);
 	}
 }
 
@@ -134,8 +134,8 @@ void GameObjectManager::FixedUpdate(float dt)
 		for (int i = 0; i < numObjects; i++)
 		{
 			gameObjectActiveList[i]->FixedUpdate(fixedUpdateDt);
-			timeAccumulator -= fixedUpdateDt;
 		}
+		timeAccumulator -= fixedUpdateDt;
 	}
 }
 
@@ -143,7 +143,7 @@ void GameObjectManager::DestroyObjects()
 {
 	for (int i = 0; i < numObjects; i++)
 	{
-		if (gameObjectActiveList[i]->IsDestroyed)
+		if (gameObjectActiveList[i]->IsDestroyed())
 		{
 			delete gameObjectActiveList[i];
 			gameObjectActiveList[i] = gameObjectActiveList[--numObjects];

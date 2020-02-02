@@ -46,7 +46,7 @@ GameObject* Archetypes::CreateBulletArchetype(Beta::Mesh* mesh)
 	GameObject* bullet = new GameObject("Bullet");
 
 	Transform* transform = new Transform();
-	transform->SetScale(Vector2D(0.07, 0.07));
+	transform->SetScale(Vector2D(0.07f, 0.07f));
 	bullet->AddComponent(transform);
 
 	Sprite* sprite = new Sprite(mesh);
@@ -66,7 +66,7 @@ GameObject* Archetypes::CreateMonkey(Beta::Mesh* mesh, SpriteSource* spriteSourc
 	GameObject* monkey = new GameObject("Monkey");
 
 	Transform* transform = new Transform();
-	transform->SetScale(Vector2D(0.07, 0.07));
+	transform->SetScale(Vector2D(0.07f, 0.07f));
 	monkey->AddComponent(transform);
 
 	Sprite* sprite = new Sprite(mesh, spriteSource);

@@ -37,6 +37,8 @@ void Level1::Load()
 	using namespace Beta;
 
 	meshShip = CreateTriangleMesh(Colors::Blue, Colors::Green, Colors::Red);
+	meshBullet = CreateTriangleMesh(Colors::Red, Colors::Red, Colors::Red);
+	GetSpace()->GetObjectManager().AddArchetype(*Archetypes::CreateBulletArchetype(meshBullet));
 }
 
 void Level1::Initialize()
@@ -48,6 +50,8 @@ void Level1::Initialize()
 
 void Level1::Update(float dt)
 {
+	UNREFERENCED_PARAMETER(dt);
+
 	Beta::Input& input = *EngineGetModule(Beta::Input);
 
 	if (input.CheckTriggered('1'))

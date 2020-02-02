@@ -13,10 +13,22 @@
 #include "Animation.h"
 #include "Sprite.h"
 #include "SpriteSource.h"
+#include "Component.h"
+#include "GameObject.h"
 
-Animator::Animator(Sprite* sprite_)
-	: animationIndex(0), isDone(false), isLooping(false), isRunning(false), playbackSpeed(0.0f), sprite(sprite_)
+Animator::Animator()
+	: Component("Animator"), animationIndex(0), isDone(false), isLooping(false), isRunning(false), playbackSpeed(0.0f), sprite(nullptr)
 {
+}
+
+Component* Animator::Clone() const
+{
+	return new Animator(*this);
+}
+
+void Animator::Initialize()
+{
+	sprite = M_GetOwnerComponent(Sprite);
 }
 
 void Animator::Update(float dt)

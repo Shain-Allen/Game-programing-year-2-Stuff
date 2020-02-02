@@ -19,13 +19,17 @@
 #include "Level1.h"
 #include "Transform.h"
 #include "RigidBody.h"
+#include "GameObject.h"
+#include "Component.h"
+#include "GameObjectManager.h"
+#include "Archetypes.h"
 
 using std::cout;
 using std::endl;
 using Beta::Vector2D;
 
 Level2::Level2()
-	:Level("Level2"), mesh(nullptr), texture(nullptr), spriteSource(nullptr), columns(0), rows(0), sprite(nullptr), transform(nullptr), rigidBody(nullptr), animator(nullptr), animation(nullptr), animFrameStart(0), animFrameCount(8), animFrameDuration(0.2f)
+	:Level("Level2"), mesh(nullptr), texture(nullptr), spriteSource(nullptr), columns(0), rows(0), animation(nullptr), animFrameStart(0), animFrameCount(8), animFrameDuration(0.2f)
 {
 }
 
@@ -54,22 +58,15 @@ void Level2::Initialize()
 {
 	cout << "Level2::Initialize" << endl;
 
-	transform = new Transform(Vector2D(0, 0));
+	GetSpace()->GetObjectManager().AddObject(*Archetypes::CreateMonkey(mesh, spriteSource, animation));
 
-	rigidBody = new RigidBody(transform);
-
-	sprite = new Sprite(transform, mesh, spriteSource);
-
-	animator = new Animator(sprite);
-
-	animator->SetPlaybackSpeed(0.2f);
-
-	animator->AddAnimation(animation);
-	animator->Play(animFrameStart);
+	//animator->AddAnimation(animation);
+	//animator->Play(animFrameStart);
 }
 
 void Level2::Update(float dt)
 {
+	UNREFERENCED_PARAMETER(dt);
 	Beta::Input& input = *EngineGetModule(Beta::Input);
 
 	if (input.CheckTriggered('1'))
@@ -81,23 +78,6 @@ void Level2::Update(float dt)
 	{
 		GetSpace()->RestartLevel();
 	}
-
-	sprite->Draw();
-	animator->Update(dt);
-	Behaviors::UpdateMonkey(transform, rigidBody);
-	rigidBody->Update(dt);
-	rigidBody->FixedUpdate(dt);
-
-	if (!animator->IsDone())
-		return;
-}
-
-void Level2::Shutdown()
-{
-	cout << "Level2::Shutdown" << endl;
-	delete animator;
-	delete sprite;
-	delete transform;
 }
 
 void Level2::Unload()

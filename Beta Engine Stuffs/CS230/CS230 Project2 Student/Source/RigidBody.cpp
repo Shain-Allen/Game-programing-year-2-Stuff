@@ -28,7 +28,7 @@ Component* RigidBody::Clone() const
 
 void RigidBody::Initialize()
 {
-	transform = M_GetComponent(Transform);
+	transform = M_GetOwnerComponent(Transform);
 }
 
 void RigidBody::Update(float dt)

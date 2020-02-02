@@ -15,11 +15,13 @@
 #include "RigidBody.h"
 #include "Component.h"
 #include "GameObject.h"
+#include "Space.h"
+#include "GameObjectManager.h"
 
 using namespace Beta;
 
 PlayerShip::PlayerShip(float forwardThrust, float maximumSpeed, float rotationSpeed, float bulletSpeed)
-	: Component("PlayerShip"), forwardThrust(forwardThrust), maximumSpeed(maximumSpeed), rotationSpeed(rotationSpeed), bulletSpeed(bulletSpeed), bulletArchetype(nullptr), transform(nullptr), rigidBody(nullptr)
+	: Component("PlayerShip"), forwardThrust(forwardThrust), maximumSpeed(maximumSpeed), rotationSpeed(rotationSpeed), bulletSpeed(bulletSpeed), transform(nullptr), rigidBody(nullptr)
 {
 }
 
@@ -30,13 +32,13 @@ Component* PlayerShip::Clone() const
 
 void PlayerShip::Initialize()
 {
-	//bulletArchetype = Archetypes::CreateBulletArchetype();
-	transform = M_GetComponent(Transform);
-	rigidBody = M_GetComponent(RigidBody);
+	transform = M_GetOwnerComponent(Transform);
+	rigidBody = M_GetOwnerComponent(RigidBody);
 }
 
 void PlayerShip::Update(float dt)
 {
+	UNREFERENCED_PARAMETER(dt);
 	Move();
 	Rotate();
 	Shoot();
@@ -83,18 +85,18 @@ void PlayerShip::Shoot() const
 
 	if (input->CheckTriggered(' '))
 	{
+		GameObject* bulletArchetype = new GameObject(*GetOwner()->GetSpace()->GetObjectManager().GetArchetypeByName("Bullet"));
+
 		Vector2D fireingdir = Vector2D::FromAngleRadians(transform->GetRotation());
 
-		bulletArchetype->GetComponent<Transform>()->SetTranslation(transform->GetTranslation() + fireingdir / 3);
+		M_GetComponent(bulletArchetype, Transform)->SetTranslation(transform->GetTranslation() + fireingdir / 3);
 
-		bulletArchetype->GetComponent<Transform>()->SetRotation(transform->GetRotation());
+		M_GetComponent(bulletArchetype, Transform)->SetRotation(transform->GetRotation());
 
 		Vector2D bulletVelocity = fireingdir * bulletSpeed;
 
-		bulletArchetype->GetComponent<RigidBody>()->SetVelocity(bulletVelocity + rigidBody->GetVelocity());
+		M_GetComponent(bulletArchetype, RigidBody)->SetVelocity(bulletVelocity + rigidBody->GetVelocity());
 
 		GetOwner()->GetSpace()->GetObjectManager().AddObject(*bulletArchetype);
-
-		bullet->GetComponent<PlayerProjectile>()->SetSpawner(this);
 	}
 }

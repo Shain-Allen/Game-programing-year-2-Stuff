@@ -14,14 +14,14 @@
 #include "Space.h"
 
 GameObject::GameObject(const std::string& name)
-	: BetaObject("GameObject"), numComponents(0), isDestroyed(false), components()
+	: BetaObject(name), numComponents(0), isDestroyed(false), components()
 {
 }
 
 GameObject::GameObject(const GameObject& other)
 	: BetaObject("GameObject"), numComponents(other.numComponents), isDestroyed(false), components()
 {
-	for (int i = 0; i < other.numComponents; i++)
+	for (unsigned int i = 0; i < other.numComponents; i++)
 	{
 		components[i] = other.components[i];
 	}
@@ -29,7 +29,7 @@ GameObject::GameObject(const GameObject& other)
 
 GameObject::~GameObject()
 {
-	for (int i = 0; i < numComponents; i++)
+	for (unsigned int i = 0; i < numComponents; i++)
 	{
 		delete components[i];
 	}
@@ -37,7 +37,7 @@ GameObject::~GameObject()
 
 void GameObject::Initialize()
 {
-	for (int i = 0; i < numComponents; i++)
+	for (unsigned int i = 0; i < numComponents; i++)
 	{
 		components[i]->Initialize();
 	}
@@ -45,15 +45,16 @@ void GameObject::Initialize()
 
 void GameObject::Update(float dt)
 {
-	for (int i = 0; i < numComponents; i++)
+	for (unsigned int i = 0; i < numComponents; i++)
 	{
 		components[i]->Update(dt);
+		std::cout << "Updateing" << std::endl;
 	}
 }
 
 void GameObject::FixedUpdate(float dt)
 {
-	for (int i = 0; i < numComponents; i++)
+	for (unsigned int i = 0; i < numComponents; i++)
 	{
 		components[i]->FixedUpdate(dt);
 	}
@@ -61,22 +62,23 @@ void GameObject::FixedUpdate(float dt)
 
 void GameObject::Draw()
 {
-	for (int i = 0; i < numComponents; i++)
+	for (unsigned int i = 0; i < numComponents; i++)
 	{
-		components[i]->Draw();
+			components[i]->Draw();
 	}
 }
 
 void GameObject::AddComponent(Component* component)
 {
-	components[++numComponents] = component;
+	components[numComponents] = component;
+	components[numComponents++]->SetOwner(this);
 }
 
-Component* GameObject::GetComponent(const std::string& name)
+Component* GameObject::GetComponent(const std::string& name_)
 {
-	for (int i = 0; i < numComponents; i++)
+	for (unsigned int i = 0; i < numComponents; i++)
 	{
-		if (components[i]->GetName() == name)
+		if (components[i]->GetName() == name_)
 		{
 			return components[i];
 		}

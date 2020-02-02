@@ -83,9 +83,6 @@ private:
 	float rotationSpeed;
 	float bulletSpeed;
 
-	// Bullet archetype
-	GameObject* bulletArchetype;
-
 	// Components
 	Transform* transform;
 	RigidBody* rigidBody;

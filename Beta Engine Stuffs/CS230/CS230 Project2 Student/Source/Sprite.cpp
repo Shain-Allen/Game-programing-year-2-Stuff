@@ -27,7 +27,7 @@ Component* Sprite::Clone() const
 
 void Sprite::Initialize()
 {
-	transform = M_GetComponent(Transform);
+	transform = M_GetOwnerComponent(Transform);
 }
 
 void Sprite::Draw()
