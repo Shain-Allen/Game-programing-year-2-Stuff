@@ -19,11 +19,12 @@ GameObject::GameObject(const std::string& name)
 }
 
 GameObject::GameObject(const GameObject& other)
-	: BetaObject("GameObject"), numComponents(other.numComponents), isDestroyed(false), components()
+	: BetaObject(other.GetName()), numComponents(other.numComponents), isDestroyed(false), components()
 {
 	for (unsigned int i = 0; i < other.numComponents; i++)
 	{
-		components[i] = other.components[i];
+		components[i] = other.components[i]->Clone();
+		components[i]->SetOwner(this);
 	}
 }
 
@@ -48,7 +49,7 @@ void GameObject::Update(float dt)
 	for (unsigned int i = 0; i < numComponents; i++)
 	{
 		components[i]->Update(dt);
-		std::cout << "Updateing" << std::endl;
+		//std::cout << "Updateing" << std::endl;
 	}
 }
 

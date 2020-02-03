@@ -50,7 +50,7 @@ void PlayerShip::Move() const
 
 	if (input->CheckHeld('W'))
 	{
-		rigidBody->AddForce(Vector2D::FromAngleRadians(transform->GetRotation()));
+		rigidBody->AddForce(Vector2D::FromAngleDegrees(transform->GetRotation()));
 	}
 
 	if (rigidBody->GetVelocity().Magnitude() > maximumSpeed)
@@ -87,7 +87,7 @@ void PlayerShip::Shoot() const
 	{
 		GameObject* bulletArchetype = new GameObject(*GetOwner()->GetSpace()->GetObjectManager().GetArchetypeByName("Bullet"));
 
-		Vector2D fireingdir = Vector2D::FromAngleRadians(transform->GetRotation());
+		Vector2D fireingdir = Vector2D::FromAngleDegrees(transform->GetRotation());
 
 		M_GetComponent(bulletArchetype, Transform)->SetTranslation(transform->GetTranslation() + fireingdir / 3);
 

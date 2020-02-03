@@ -66,7 +66,7 @@ GameObject* Archetypes::CreateMonkey(Beta::Mesh* mesh, SpriteSource* spriteSourc
 	GameObject* monkey = new GameObject("Monkey");
 
 	Transform* transform = new Transform();
-	transform->SetScale(Vector2D(0.07f, 0.07f));
+	transform->SetScale(Vector2D(1.0f, 1.0f));
 	monkey->AddComponent(transform);
 
 	Sprite* sprite = new Sprite(mesh, spriteSource);

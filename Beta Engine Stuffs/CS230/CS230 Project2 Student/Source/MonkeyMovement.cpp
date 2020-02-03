@@ -14,6 +14,8 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "RigidBody.h"
+#include "Animation.h"
+#include "Animator.h"
 
 using namespace Beta;
 
@@ -37,6 +39,8 @@ void MonkeyMovement::Initialize()
 
 	//puting the monkey on the ground
 	transform->SetTranslation(startingspot);
+
+	M_GetOwnerComponent(Animator)->Play();
 }
 
 void MonkeyMovement::Update(float dt)

@@ -42,7 +42,9 @@ void GameObjectManager::Shutdown(void)
 	for (int i = 0; i < numObjects; i++)
 	{
 		delete gameObjectActiveList[i];
+		gameObjectActiveList[i] = nullptr;
 	}
+	numObjects = 0;
 }
 
 void GameObjectManager::Unload(void)
@@ -50,7 +52,9 @@ void GameObjectManager::Unload(void)
 	for (int i = 0; i < numArchetypes; i++)
 	{
 		delete gameObjectArchetypes[i];
+		gameObjectArchetypes[i] = nullptr;
 	}
+	numArchetypes = 0;
 }
 
 void GameObjectManager::AddObject(GameObject& gameObject)
@@ -147,6 +151,7 @@ void GameObjectManager::DestroyObjects()
 		{
 			delete gameObjectActiveList[i];
 			gameObjectActiveList[i] = gameObjectActiveList[--numObjects];
+			gameObjectActiveList[numObjects] = nullptr;
 		}
 	}
 }

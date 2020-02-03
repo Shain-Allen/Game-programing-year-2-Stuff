@@ -49,8 +49,6 @@ void Level2::Load()
 
 	mesh = CreateQuadMesh(Vector2D(1 / spriteDimensions.x, 1 / spriteDimensions.y), Vector2D(0.5f, 0.5f));
 
-	animFrameDuration = 0.0f;
-
 	animation = new Animation("Animation", nullptr, animFrameCount, animFrameStart, animFrameDuration);
 }
 
@@ -59,9 +57,6 @@ void Level2::Initialize()
 	cout << "Level2::Initialize" << endl;
 
 	GetSpace()->GetObjectManager().AddObject(*Archetypes::CreateMonkey(mesh, spriteSource, animation));
-
-	//animator->AddAnimation(animation);
-	//animator->Play(animFrameStart);
 }
 
 void Level2::Update(float dt)
