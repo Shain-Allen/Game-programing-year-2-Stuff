@@ -21,7 +21,7 @@
 using namespace Beta;
 
 PlayerShip::PlayerShip(float forwardThrust, float maximumSpeed, float rotationSpeed, float bulletSpeed)
-	: Component("PlayerShip"), forwardThrust(forwardThrust), maximumSpeed(maximumSpeed), rotationSpeed(rotationSpeed), bulletSpeed(bulletSpeed), transform(nullptr), rigidBody(nullptr)
+	: Component("PlayerShip"), forwardThrust(forwardThrust), maximumSpeed(maximumSpeed), rotationSpeed(rotationSpeed), bulletSpeed(bulletSpeed), transform(nullptr), rigidBody(nullptr), bulletArchetype(nullptr)
 {
 }
 
@@ -34,6 +34,7 @@ void PlayerShip::Initialize()
 {
 	transform = M_GetOwnerComponent(Transform);
 	rigidBody = M_GetOwnerComponent(RigidBody);
+	bulletArchetype = GetOwner()->GetSpace()->GetObjectManager().GetArchetypeByName("Bullet"); 
 }
 
 void PlayerShip::Update(float dt)
@@ -85,18 +86,17 @@ void PlayerShip::Shoot() const
 
 	if (input->CheckTriggered(' '))
 	{
-		GameObject* bulletArchetype = new GameObject(*GetOwner()->GetSpace()->GetObjectManager().GetArchetypeByName("Bullet"));
-
+		GameObject* bullet = new GameObject(*bulletArchetype);
 		Vector2D fireingdir = Vector2D::FromAngleDegrees(transform->GetRotation());
 
-		M_GetComponent(bulletArchetype, Transform)->SetTranslation(transform->GetTranslation() + fireingdir / 3);
+		M_GetComponent(bullet, Transform)->SetTranslation(transform->GetTranslation() + fireingdir / 3);
 
-		M_GetComponent(bulletArchetype, Transform)->SetRotation(transform->GetRotation());
+		M_GetComponent(bullet, Transform)->SetRotation(transform->GetRotation());
 
 		Vector2D bulletVelocity = fireingdir * bulletSpeed;
 
-		M_GetComponent(bulletArchetype, RigidBody)->SetVelocity(bulletVelocity + rigidBody->GetVelocity());
+		M_GetComponent(bullet, RigidBody)->SetVelocity(bulletVelocity + rigidBody->GetVelocity());
 
-		GetOwner()->GetSpace()->GetObjectManager().AddObject(*bulletArchetype);
+		GetOwner()->GetSpace()->GetObjectManager().AddObject(*bullet);
 	}
 }
