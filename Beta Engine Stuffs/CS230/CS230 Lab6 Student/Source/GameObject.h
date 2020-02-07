@@ -105,6 +105,8 @@ private:
 // Convert a type to a string
 #define TYPE_TO_STRING(x) #x
 
+//get the component from an object
 #define M_GetComponent(gameobject, componentType) static_cast<componentType*>(gameobject->GetComponent(TYPE_TO_STRING(componentType)))
 
+//get a component from another component
 #define M_GetOwnerComponent(componentType) static_cast<componentType*>(GetOwner()->GetComponent(TYPE_TO_STRING(componentType)))

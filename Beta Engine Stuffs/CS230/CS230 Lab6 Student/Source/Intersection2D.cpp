@@ -33,10 +33,36 @@ bool CircleCircleIntersection(const Beta::Circle& circle1, const Beta::Circle& c
 
 bool RectangleRectangleIntersection(const Beta::BoundingRectangle& rect1, const Beta::BoundingRectangle& rect2)
 {
-	return false;
+	if (rect1.right < rect2.left)
+		return false;
+	else if (rect1.bottom > rect2.top)
+		return false;
+	else if (rect1.left > rect2.right)
+		return false;
+	else if (rect1.top < rect2.bottom)
+		return false;
+	else
+		return true;
 }
 
 bool RectangleCircleIntersection(const Beta::BoundingRectangle& rect, const Beta::Circle& circle)
 {
-	return false;
+	Beta::Vector2D p = circle.center;
+
+	if (p.x > rect.right)
+		p.x = rect.right;
+	else if (p.x < rect.left)
+		p.x = rect.left;
+	
+	if (p.y > rect.top)
+		p.y = rect.top;
+	else if (p.y < rect.bottom)
+		p.y = rect.bottom;
+
+	float distance = p.DistanceSquared(circle.center);
+
+	if (distance > (circle.radius * circle.radius))
+		return false;
+	else
+		return true;
 }

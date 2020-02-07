@@ -97,6 +97,18 @@
     <ClCompile Include="Source\Intersection2D.cpp">
       <Filter>High-Level API\Collisions</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Collider.cpp">
+      <Filter>High-Level API\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ColliderPoint.cpp">
+      <Filter>High-Level API\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ColliderCircle.cpp">
+      <Filter>High-Level API\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ColliderRectangle.cpp">
+      <Filter>High-Level API\Collisions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\stdafx.h">

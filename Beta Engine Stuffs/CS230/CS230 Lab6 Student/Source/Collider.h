@@ -32,12 +32,12 @@ typedef void(*CollisionEventHandler)(GameObject& callingObject, GameObject& othe
 // Public Consts:
 //------------------------------------------------------------------------------
 
-typedef enum ColliderType
+enum class ColliderType
 {
 	ColliderTypePoint,
 	ColliderTypeCircle,
 	ColliderTypeRectangle
-} ColliderType;
+};
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -80,10 +80,9 @@ public:
 	//   handler = A pointer to the collision handler function.
 	void SetCollisionHandler(CollisionEventHandler handler);
 
-protected:
 	// Component pointers
 	Transform* transform;
-	RigidBody* physics;
+	RigidBody* rigidbody;
 
 private:
 	//------------------------------------------------------------------------------
