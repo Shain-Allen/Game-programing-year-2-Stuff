@@ -109,6 +109,9 @@
     <ClCompile Include="Source\ColliderRectangle.cpp">
       <Filter>High-Level API\Collisions</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ColorChange.cpp">
+      <Filter>Game\Behaviors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\stdafx.h">

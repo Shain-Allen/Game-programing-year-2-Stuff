@@ -22,14 +22,32 @@ void ColliderRectangle::Draw()
 
 const Beta::Vector2D& ColliderRectangle::GetExtents() const
 {
-	// TODO: insert return statement here
+	return extents;
 }
 
-void ColliderRectangle::SetExtents(const Beta::Vector2D& extents)
+void ColliderRectangle::SetExtents(const Beta::Vector2D& extents_)
 {
+	extents = extents_;
 }
 
 bool ColliderRectangle::IsCollidingWith(const Collider& other) const
 {
-	return false;
+	Beta::BoundingRectangle self = Beta::BoundingRectangle(transform->GetTranslation(), GetExtents());
+
+	if (other.GetType() == ColliderType::ColliderTypePoint)
+	{
+		other.IsCollidingWith(*this);
+	}
+	else if (other.GetType() == ColliderType::ColliderTypeCircle)
+	{
+		other.IsCollidingWith(*this);
+	}
+	else if (other.GetType() == ColliderType::ColliderTypeRectangle)
+	{
+		auto rectangle = static_cast<const ColliderRectangle&>(other);
+
+		RectangleRectangleIntersection(self, Beta::BoundingRectangle(rectangle.transform->GetTranslation(), rectangle.GetExtents()));
+	}
+	else
+		return false;
 }

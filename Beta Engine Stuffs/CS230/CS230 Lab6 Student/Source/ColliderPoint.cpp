@@ -23,7 +23,6 @@ void ColliderPoint::Draw()
 
 bool ColliderPoint::IsCollidingWith(const Collider& other) const
 {
-
 	if (other.GetType() == ColliderType::ColliderTypeCircle)
 	{
 		auto circleCollider = static_cast<const ColliderCircle&>(other);
@@ -33,5 +32,9 @@ bool ColliderPoint::IsCollidingWith(const Collider& other) const
 	else if (other.GetType() == ColliderType::ColliderTypeRectangle)
 	{
 		auto rectangleCollider = static_cast<const ColliderRectangle&>(other);
+
+		PointRectangleIntersection(transform->GetTranslation(), Beta::BoundingRectangle(other.transform->GetTranslation(), rectangleCollider.GetExtents()));
 	}
+	else
+		return false;
 }

@@ -56,6 +56,8 @@ void Sprite::Draw()
 	graphics.SetTransform(
 		reinterpret_cast<const Beta::Matrix2D&>(transform->GetMatrix()));
 
+	graphics.SetSpriteBlendColor(color);
+
 	mesh->Draw();
 }
 

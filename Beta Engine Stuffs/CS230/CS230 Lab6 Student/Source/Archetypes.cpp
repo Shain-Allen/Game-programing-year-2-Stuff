@@ -18,6 +18,10 @@
 #include "Animator.h"
 #include "PlayerShip.h"
 #include "MonkeyMovement.h"
+#include "ColliderPoint.h"
+#include "ColliderCircle.h"
+#include "ColliderRectangle.h"
+#include "Collider.h"
 
 using Beta::Vector2D;
 
@@ -83,4 +87,38 @@ GameObject* Archetypes::CreateMonkey(Beta::Mesh* mesh, SpriteSource* spriteSourc
 	monkey->AddComponent(monkeyMovement);
 
 	return monkey;
+}
+
+GameObject* Archetypes::CreateCircle(Beta::Mesh* mesh, SpriteSource* spriteSource)
+{
+	GameObject* Circle = new GameObject("Circle");
+
+	Transform* transform = new Transform();
+	transform->SetScale(Vector2D(0.2f, 0.2f));
+	Circle->AddComponent(transform);
+
+	Sprite* sprite = new Sprite(mesh, spriteSource);
+	Circle->AddComponent(sprite);
+}
+
+GameObject* Archetypes::CreatePoint(Beta::Mesh* mesh, SpriteSource* spriteSource)
+{
+
+
+	Transform* transform = new Transform();
+	
+	Sprite* sprite = new Sprite(mesh, spriteSource);
+
+	RigidBody* rigidbody = new RigidBody();
+
+	
+}
+
+GameObject* Archetypes::CreateRectangle(Beta::Mesh* mesh)
+{
+	Transform* transform = new Transform();
+
+	Sprite* sprite = new Sprite(mesh);
+
+	RigidBody* rigidbody = new RigidBody();
 }
