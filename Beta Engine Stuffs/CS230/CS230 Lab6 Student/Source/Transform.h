@@ -62,6 +62,10 @@ public:
 	//	 translation = Reference to a translation vector.
 	void SetTranslation(const Beta::Vector2D& translation);
 
+	void SetTranslationX(float X_);
+
+	void SetTranslationY(float Y_);
+
 	// Get the translation of a transform component.
 	// Returns:
 	//	 A reference to the component's translation structure.
@@ -86,6 +90,8 @@ public:
 	// Returns:
 	//	 A reference to the component's scale structure.
 	const Beta::Vector2D& GetScale() const;
+
+	
 
 private:
 	//------------------------------------------------------------------------------

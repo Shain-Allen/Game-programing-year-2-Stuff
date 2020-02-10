@@ -112,6 +112,12 @@
     <ClCompile Include="Source\ColorChange.cpp">
       <Filter>Game\Behaviors</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ScreenWrap.cpp">
+      <Filter>Game\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Level3.cpp">
+      <Filter>Game\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\stdafx.h">

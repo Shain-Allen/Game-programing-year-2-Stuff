@@ -34,7 +34,7 @@ public:
 	// Constructor for rectangle collider.
 	// Params:
 	//   extents = The rectangle's extents (half-width, half-height).
-	ColliderRectangle(const Beta::Vector2D& extents = Beta::Vector2D(50.0f, 50.0f));
+	ColliderRectangle(const Beta::Vector2D& extents = Beta::Vector2D(0.5f, 0.5f));
 
 	// Clone an collider and return a pointer to the cloned object.
 	// Returns:

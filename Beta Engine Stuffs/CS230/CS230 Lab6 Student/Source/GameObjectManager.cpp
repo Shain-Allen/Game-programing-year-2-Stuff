@@ -167,7 +167,7 @@ void GameObjectManager::CheckCollisions()
 
 			Collider* other = M_GetComponent(gameObjectActiveList[m], Collider);
 
-			M_GetComponent(gameObjectActiveList[i], Collider)->CheckCollision(*other);
+			collider->CheckCollision(*other);
 		}
 	}
 }

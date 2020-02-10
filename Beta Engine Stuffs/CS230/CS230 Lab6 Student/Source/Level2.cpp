@@ -23,6 +23,7 @@
 #include "Component.h"
 #include "GameObjectManager.h"
 #include "Archetypes.h"
+#include "Level3.h"
 
 using std::cout;
 using std::endl;
@@ -72,6 +73,11 @@ void Level2::Update(float dt)
 	if (input.CheckTriggered('2'))
 	{
 		GetSpace()->RestartLevel();
+	}
+
+	if (input.CheckTriggered('3'))
+	{
+		GetSpace()->SetLevel(new Level3);
 	}
 }
 

@@ -54,6 +54,22 @@ void Transform::SetTranslation(const Beta::Vector2D& translation_)
 	translation = translation_;
 }
 
+void Transform::SetTranslationX(float X_)
+{
+	if (AlmostEqual(translation.x, X_))
+		return;
+	isDirty = true;
+	translation.x = X_;
+}
+
+void Transform::SetTranslationY(float Y_)
+{
+	if (AlmostEqual(translation.y, Y_))
+		return;
+	isDirty = true;
+	translation.y = Y_;
+}
+
 const Beta::Vector2D& Transform::GetTranslation() const
 {
 	return translation;
@@ -84,3 +100,4 @@ const Beta::Vector2D& Transform::GetScale() const
 {
 	return scale;
 }
+

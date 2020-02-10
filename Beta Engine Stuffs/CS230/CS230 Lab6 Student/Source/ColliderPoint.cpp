@@ -27,13 +27,13 @@ bool ColliderPoint::IsCollidingWith(const Collider& other) const
 	{
 		auto circleCollider = static_cast<const ColliderCircle&>(other);
 
-		PointCircleIntersection(transform->GetTranslation(), Beta::Circle(other.transform->GetTranslation(), circleCollider.GetRadius()));
+		return PointCircleIntersection(transform->GetTranslation(), Beta::Circle(other.transform->GetTranslation(), circleCollider.GetRadius()));
 	}
 	else if (other.GetType() == ColliderType::ColliderTypeRectangle)
 	{
 		auto rectangleCollider = static_cast<const ColliderRectangle&>(other);
 
-		PointRectangleIntersection(transform->GetTranslation(), Beta::BoundingRectangle(other.transform->GetTranslation(), rectangleCollider.GetExtents()));
+		return PointRectangleIntersection(transform->GetTranslation(), Beta::BoundingRectangle(other.transform->GetTranslation(), rectangleCollider.GetExtents()));
 	}
 	else
 		return false;

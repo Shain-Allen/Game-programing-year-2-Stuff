@@ -22,8 +22,10 @@
 #include "ColliderCircle.h"
 #include "ColliderRectangle.h"
 #include "Collider.h"
+#include "ScreenWrap.h"
+#include "ColorChange.h"
 
-using Beta::Vector2D;
+using namespace Beta;
 
 GameObject* Archetypes::CreateShip(Beta::Mesh* mesh)
 {
@@ -89,36 +91,82 @@ GameObject* Archetypes::CreateMonkey(Beta::Mesh* mesh, SpriteSource* spriteSourc
 	return monkey;
 }
 
+GameObject* Archetypes::CreatePoint(Beta::Mesh* mesh, SpriteSource* spriteSource)
+{
+	GameObject* point = new GameObject("Point");
+
+	Transform* transform = new Transform();
+	transform->SetScale(Vector2D(0.2f, 0.2f));
+	point->AddComponent(transform);
+	
+	Sprite* sprite = new Sprite(mesh, spriteSource);
+	point->AddComponent(sprite);
+
+	RigidBody* rigidbody = new RigidBody();
+	point->AddComponent(rigidbody);
+
+	ColliderPoint* colliderPoint = new ColliderPoint();
+	point->AddComponent(colliderPoint);
+
+	ColorChange* colorChange = new ColorChange(Beta::Colors::Blue, Beta::Colors::Red);
+	point->AddComponent(colorChange);
+	
+	ScreenWrap* screenWrap = new ScreenWrap();
+	point->AddComponent(screenWrap);
+	
+	return point;
+}
+
 GameObject* Archetypes::CreateCircle(Beta::Mesh* mesh, SpriteSource* spriteSource)
 {
 	GameObject* Circle = new GameObject("Circle");
 
 	Transform* transform = new Transform();
-	transform->SetScale(Vector2D(0.2f, 0.2f));
+	transform->SetScale(Vector2D(1.0f, 1.0f));
 	Circle->AddComponent(transform);
 
 	Sprite* sprite = new Sprite(mesh, spriteSource);
 	Circle->AddComponent(sprite);
-}
-
-GameObject* Archetypes::CreatePoint(Beta::Mesh* mesh, SpriteSource* spriteSource)
-{
-
-
-	Transform* transform = new Transform();
-	
-	Sprite* sprite = new Sprite(mesh, spriteSource);
 
 	RigidBody* rigidbody = new RigidBody();
+	Circle->AddComponent(rigidbody);
 
-	
+	ColliderCircle* colliderCircle = new ColliderCircle();
+	Circle->AddComponent(colliderCircle);
+
+	ColorChange* colorChange = new ColorChange(Colors::Yellow, Colors::Red);
+	Circle->AddComponent(colorChange);
+
+	ScreenWrap* screenWrap = new ScreenWrap();
+	Circle->AddComponent(screenWrap);
+
+	return Circle;
 }
+
+
 
 GameObject* Archetypes::CreateRectangle(Beta::Mesh* mesh)
 {
+	GameObject* rectangle = new GameObject("rectangle");
+
 	Transform* transform = new Transform();
+	transform->SetScale(Vector2D(2.5f, 1.0f));
+	rectangle->AddComponent(transform);
 
 	Sprite* sprite = new Sprite(mesh);
+	rectangle->AddComponent(sprite);
 
 	RigidBody* rigidbody = new RigidBody();
+	rectangle->AddComponent(rigidbody);
+
+	ColliderRectangle* colliderRectangle = new ColliderRectangle(transform->GetScale() / 2.0f);
+	rectangle->AddComponent(colliderRectangle);
+
+	ColorChange* colorChange = new ColorChange(Colors::Green, Colors::Red);
+	rectangle->AddComponent(colorChange);
+
+	ScreenWrap* screenWrap = new ScreenWrap();
+	rectangle->AddComponent(screenWrap);
+
+	return rectangle;
 }

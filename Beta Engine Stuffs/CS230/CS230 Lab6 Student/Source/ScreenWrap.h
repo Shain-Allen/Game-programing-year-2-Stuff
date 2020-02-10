@@ -61,7 +61,7 @@ private:
 
 	// Components
 	Transform* transform;
-	RigidBody* physics;
+	RigidBody* rigidBody;
 };
 
 //------------------------------------------------------------------------------

@@ -37,7 +37,7 @@ public:
 	// Constructor for circle collider.
 	// Params:
 	//   radius = The radius of the circle.
-	ColliderCircle(float radius = 50.0f);
+	ColliderCircle(float radius = 0.5f);
 
 	// Clone an collider and return a pointer to the cloned object.
 	// Returns:

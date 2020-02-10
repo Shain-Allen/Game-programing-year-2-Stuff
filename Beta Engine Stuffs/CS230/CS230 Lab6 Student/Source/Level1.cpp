@@ -19,6 +19,7 @@
 #include "GameObject.h"
 #include "Archetypes.h"
 #include "GameObjectManager.h"
+#include "Level3.h"
 
 
 using std::cout;
@@ -62,6 +63,11 @@ void Level1::Update(float dt)
 	if (input.CheckTriggered('2'))
 	{
 		GetSpace()->SetLevel(new Level2);
+	}
+
+	if (input.CheckTriggered('3'))
+	{
+		GetSpace()->SetLevel(new Level3);
 	}
 }
 

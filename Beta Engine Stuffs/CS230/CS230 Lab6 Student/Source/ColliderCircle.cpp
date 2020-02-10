@@ -17,7 +17,7 @@ Component* ColliderCircle::Clone() const
 
 void ColliderCircle::Draw()
 {
-	EngineGetModule(Beta::DebugDraw)->AddCircle(transform->GetTranslation, radius, Beta::Colors::Red);
+	EngineGetModule(Beta::DebugDraw)->AddCircle(transform->GetTranslation(), radius, Beta::Colors::Red);
 }
 
 float ColliderCircle::GetRadius() const
@@ -25,9 +25,9 @@ float ColliderCircle::GetRadius() const
 	return radius;
 }
 
-void ColliderCircle::SetRadius(float radius)
+void ColliderCircle::SetRadius(float radius_)
 {
-	radius = radius;
+	radius = radius_;
 }
 
 bool ColliderCircle::IsCollidingWith(const Collider& other) const
@@ -36,19 +36,19 @@ bool ColliderCircle::IsCollidingWith(const Collider& other) const
 
 	if (other.GetType() == ColliderType::ColliderTypePoint)
 	{
-		other.IsCollidingWith(*this);
+		return other.IsCollidingWith(*this);
 	}
 	else if (other.GetType() == ColliderType::ColliderTypeCircle)
 	{
 		auto circleCollider = static_cast<const ColliderCircle&>(other);
 
-		CircleCircleIntersection(self, Beta::Circle(other.transform->GetTranslation(), circleCollider.GetRadius()));
+		return CircleCircleIntersection(self, Beta::Circle(other.transform->GetTranslation(), circleCollider.GetRadius()));
 	}
 	else if (other.GetType() == ColliderType::ColliderTypeRectangle)
 	{
 		auto rectangleCollider = static_cast<const ColliderRectangle&>(other);
 
-		RectangleCircleIntersection(Beta::BoundingRectangle(rectangleCollider.transform->GetTranslation(), rectangleCollider.GetExtents), self);
+		return RectangleCircleIntersection(Beta::BoundingRectangle(rectangleCollider.transform->GetTranslation(), rectangleCollider.GetExtents()), self);
 	}
 	else
 		return false;
