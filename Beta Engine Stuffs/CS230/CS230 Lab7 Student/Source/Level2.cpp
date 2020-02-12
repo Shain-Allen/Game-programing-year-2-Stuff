@@ -24,6 +24,7 @@
 #include "GameObjectManager.h"
 #include "Archetypes.h"
 #include "Level3.h"
+#include "Tilemap.h"
 
 using std::cout;
 using std::endl;
@@ -40,7 +41,11 @@ void Level2::Load()
 
 	using namespace Beta;
 
-	//GraphicsEngine& graphics = *EngineGetModule(GraphicsEngine);
+	dataMap = Tilemap::CreateTilemapFromFile("Level2.txt");
+	if (dataMap == nullptr)
+	{
+		cout << "Error loading map!" << endl;
+	}
 
 	textureMonkey = Texture::CreateTextureFromFile("Monkey.png");
 
@@ -87,4 +92,5 @@ void Level2::Unload()
 
 	delete animation;
 	delete spriteSourceMonkey;
+	delete dataMap;
 }

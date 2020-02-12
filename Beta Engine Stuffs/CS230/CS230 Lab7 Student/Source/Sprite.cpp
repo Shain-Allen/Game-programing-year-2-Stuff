@@ -32,6 +32,11 @@ void Sprite::Initialize()
 
 void Sprite::Draw()
 {
+	Draw(Beta::Vector2D(0, 0));
+}
+
+void Sprite::Draw(const Beta::Vector2D& offset)
+{
 	if (transform == nullptr)
 		return;
 
@@ -41,7 +46,7 @@ void Sprite::Draw()
 	using namespace Beta;
 
 	GraphicsEngine& graphics = *EngineGetModule(GraphicsEngine);
-	
+
 	graphics.GetSpriteShader().Use();
 
 	if (spriteSource != nullptr)
@@ -53,8 +58,11 @@ void Sprite::Draw()
 		graphics.GetDefaultTexture().Use();
 	}
 
-	graphics.SetTransform(
-		reinterpret_cast<const Beta::Matrix2D&>(transform->GetMatrix()));
+	CS230::Matrix2D offsetMat = CS230::Matrix2D().TranslationMatrix(offset.x, offset.y);
+
+	CS230::Matrix2D transformMat = offsetMat * transform->GetMatrix();
+
+	graphics.SetTransform(reinterpret_cast<const Beta::Matrix2D&>(transformMat));
 
 	graphics.SetSpriteBlendColor(color);
 
