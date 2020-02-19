@@ -36,7 +36,7 @@ namespace Beta
 //------------------------------------------------------------------------------
 
 // Enum for sides of bounding rectangle
-enum RectangleSide
+enum class RectangleSide
 {
 	SideBottom,
 	SideTop,

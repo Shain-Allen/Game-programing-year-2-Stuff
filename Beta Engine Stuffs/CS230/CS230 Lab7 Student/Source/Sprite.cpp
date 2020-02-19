@@ -58,7 +58,7 @@ void Sprite::Draw(const Beta::Vector2D& offset)
 		graphics.GetDefaultTexture().Use();
 	}
 
-	CS230::Matrix2D offsetMat = CS230::Matrix2D().TranslationMatrix(offset.x, offset.y);
+	CS230::Matrix2D offsetMat = CS230::Matrix2D::TranslationMatrix(offset.x, offset.y);
 
 	CS230::Matrix2D transformMat = offsetMat * transform->GetMatrix();
 

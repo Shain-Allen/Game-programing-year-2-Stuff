@@ -29,8 +29,8 @@ void SpriteTilemap::Draw()
 			int cellValue = map->GetCellValue(x, y);
 			if (cellValue == 0)
 				continue;
-			SetFrame(cellValue);
-			Vector2D offset = Vector2D(cellValue * width * scale.x, cellValue * height * scale.y);
+			SetFrame(cellValue - 1);
+			Vector2D offset = Vector2D((x * scale.x), -(y * scale.y));
 			Sprite::Draw(offset);
 		}
 	}

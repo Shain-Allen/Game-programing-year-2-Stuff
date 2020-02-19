@@ -46,7 +46,7 @@ const Beta::Vector2D SpriteSource::GetUV(unsigned int frameIndex_) const
 	float rowSize = 1.0f / static_cast<float>(numRows);
 	
 	unsigned int cols = frameIndex_ % numCols;
-	unsigned int rows = frameIndex_ / numRows;
+	unsigned int rows = frameIndex_ / numCols;
 
 	using namespace Beta;
 

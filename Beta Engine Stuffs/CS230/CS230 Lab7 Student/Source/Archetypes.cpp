@@ -24,6 +24,8 @@
 #include "Collider.h"
 #include "ScreenWrap.h"
 #include "ColorChange.h"
+#include "SpriteTilemap.h"
+#include "ColliderTilemap.h"
 
 using namespace Beta;
 
@@ -143,8 +145,6 @@ GameObject* Archetypes::CreateCircle(Beta::Mesh* mesh, SpriteSource* spriteSourc
 	return Circle;
 }
 
-
-
 GameObject* Archetypes::CreateRectangle(Beta::Mesh* mesh)
 {
 	GameObject* rectangle = new GameObject("rectangle");
@@ -169,4 +169,21 @@ GameObject* Archetypes::CreateRectangle(Beta::Mesh* mesh)
 	rectangle->AddComponent(screenWrap);
 
 	return rectangle;
+}
+
+GameObject* Archetypes::CreateTilemapObject(Beta::Mesh* mesh, SpriteSource* spriteSource, Tilemap* map)
+{
+	GameObject* tilemap = new GameObject("Tilemap");
+
+	Transform* transform = new Transform();
+	transform->SetTranslation(Vector2D(-3.5f, 2.5f));
+	tilemap->AddComponent(transform);
+
+	SpriteTilemap* spriteTileMap = new SpriteTilemap(mesh, spriteSource, map);
+	tilemap->AddComponent(spriteTileMap);
+
+	/*ColliderTilemap* colliderTilemap = new ColliderTilemap();
+	tilemap->AddComponent(colliderTilemap);*/
+
+	return tilemap;
 }

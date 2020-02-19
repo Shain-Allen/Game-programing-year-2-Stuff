@@ -47,6 +47,10 @@ void Level2::Load()
 		cout << "Error loading map!" << endl;
 	}
 
+	meshMap = CreateQuadMesh(Vector2D(1.0f / columnsMap, 1.0f / rowsMap), Vector2D(0.5f, 0.5f));
+	textureMap = Texture::CreateTextureFromFile("Tilemap.png");
+	spriteSourceMap = new SpriteSource(textureMap, "SpriteSourceMap", columnsMap, rowsMap);
+
 	textureMonkey = Texture::CreateTextureFromFile("Monkey.png");
 
 	spriteSourceMonkey = new SpriteSource(textureMonkey, "Monkey", columnsMonkey, rowsMonkey);
@@ -56,12 +60,17 @@ void Level2::Load()
 	meshMonkey = CreateQuadMesh(Vector2D(1 / spriteDimensions.x, 1 / spriteDimensions.y), Vector2D(0.5f, 0.5f));
 
 	animation = new Animation("Animation", nullptr, animFrameCount, animFrameStart, animFrameDuration);
+
+	GraphicsEngine* graphics = EngineGetModule(GraphicsEngine);
+
+	graphics->SetBackgroundColor(Colors::Black);
 }
 
 void Level2::Initialize()
 {
 	cout << "Level2::Initialize" << endl;
 
+	GetSpace()->GetObjectManager().AddObject(*Archetypes::CreateTilemapObject(meshMap, spriteSourceMap, dataMap));
 	GetSpace()->GetObjectManager().AddObject(*Archetypes::CreateMonkey(meshMonkey, spriteSourceMonkey, animation));
 }
 
@@ -92,5 +101,6 @@ void Level2::Unload()
 
 	delete animation;
 	delete spriteSourceMonkey;
+	delete spriteSourceMap;
 	delete dataMap;
 }
