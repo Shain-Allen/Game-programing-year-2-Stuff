@@ -35,15 +35,20 @@ const CS230::Matrix2D& Transform::GetMatrix() const
 
 	if (isDirty)
 	{
-		Matrix2D transMat = transMat.TranslationMatrix(translation.x, translation.y);
-		Matrix2D rotMat = rotMat.RotationMatrixDegrees(rotation);
-		Matrix2D sf = sf.ScalingMatrix(scale.x, scale.y);
-
-		matrix = transMat * rotMat * sf;
-
-		isDirty = false;
+		CalculateMatrices();
 	}
 	return matrix;
+}
+
+const CS230::Matrix2D& Transform::GetInverseMatrix() const
+{
+	using CS230::Matrix2D;
+	CalculateMatrices();
+
+	Matrix2D transMat = transMat.TranslationMatrix(-translation.x, 
+		-translation.y);
+	Matrix2D rotMat = rotMat.RotationMatrixDegrees(-rotation);
+	Matrix2D sf = sf.ScalingMatrix(scale.x, scale.y);
 }
 
 void Transform::SetTranslation(const Beta::Vector2D& translation_)
@@ -99,5 +104,18 @@ void Transform::SetScale(const Beta::Vector2D& scale_)
 const Beta::Vector2D& Transform::GetScale() const
 {
 	return scale;
+}
+
+void Transform::CalculateMatrices() const
+{
+	using CS230::Matrix2D;
+
+	Matrix2D transMat = transMat.TranslationMatrix(translation.x, translation.y);
+	Matrix2D rotMat = rotMat.RotationMatrixDegrees(rotation);
+	Matrix2D sf = sf.ScalingMatrix(scale.x, scale.y);
+
+	matrix = transMat * rotMat * sf;
+
+	isDirty = false;
 }
 

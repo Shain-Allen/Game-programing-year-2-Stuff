@@ -34,3 +34,18 @@ void Collider::SetCollisionHandler(CollisionEventHandler handler_)
 {
 	handler = handler_;
 }
+
+void Collider::SetMapCollisionHandler(MapCollisionEventHandler mapHandler_)
+{
+	mapHandler = mapHandler_;
+}
+
+MapCollisionEventHandler Collider::GetMapCollisionHandler() const
+{
+	return mapHandler;
+}
+
+MapCollision::MapCollision(bool bottom, bool top, bool left, bool right)
+	: bottom(bottom), top(top), left(left), right(right)
+{
+}
