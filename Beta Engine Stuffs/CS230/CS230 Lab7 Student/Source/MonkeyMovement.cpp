@@ -16,8 +16,12 @@
 #include "RigidBody.h"
 #include "Animation.h"
 #include "Animator.h"
+#include "ColliderTilemap.h"
 
 using namespace Beta;
+
+void MonkeyMapCollisionHandler(GameObject& object,
+	const MapCollision& collision);
 
 MonkeyMovement::MonkeyMovement()
 	:Component("MonkeyMovement"), monkeyWalkSpeed(3.0f), monkeyJumpSpeed(8.0f), gravity(0.0f, -12.0f), transform(nullptr), rigidBody(nullptr), onGround(false)
@@ -35,6 +39,8 @@ void MonkeyMovement::Initialize()
 	rigidBody = M_GetOwnerComponent(RigidBody);
 
 	M_GetOwnerComponent(Animator)->Play();
+
+	M_GetOwnerComponent(Collider)->SetMapCollisionHandler(MonkeyMapCollisionHandler);
 }
 
 void MonkeyMovement::Update(float dt)
@@ -80,17 +86,25 @@ void MonkeyMovement::MoveVertical()
 		{
 			Vector2D upward(rigidBody->GetVelocity().x, monkeyJumpSpeed);
 			rigidBody->SetVelocity(upward);
-		}
-		else
-		{
-			/*Vector2D upward(rigidBody->GetVelocity().x, 0);
-			rigidBody->SetVelocity(upward);
-			Vector2D grounded(transform->GetTranslation().x, groundHeight);
-			transform->SetTranslation(grounded);*/
+
+			onGround = false;
 		}
 	}
 	else
 	{
 		rigidBody->AddForce(gravity);
+	}
+
+	if (rigidBody->GetVelocity().y <= 0.0f)
+	{
+		onGround = false;
+	}
+}
+
+void MonkeyMapCollisionHandler(GameObject& object, const MapCollision& collision)
+{
+	if (collision.bottom)
+	{
+		M_GetComponent((&object), MonkeyMovement)->onGround = true;
 	}
 }

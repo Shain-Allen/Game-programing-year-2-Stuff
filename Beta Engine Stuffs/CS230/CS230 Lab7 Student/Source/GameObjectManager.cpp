@@ -152,20 +152,20 @@ void GameObjectManager::CheckCollisions()
 		if (gameObjectActiveList[i]->IsDestroyed() == true)
 			continue;
 
-		if (M_GetComponent(gameObjectActiveList[i], Collider) == nullptr)
-			continue;
-
 		Collider* collider = M_GetComponent(gameObjectActiveList[i], Collider);
+
+		if (collider == nullptr)
+			continue;
 
 		for (int m = i + 1; m < numObjects; m++)
 		{
 			if (gameObjectActiveList[m]->IsDestroyed() == true)
 				continue;
 
-			if (M_GetComponent(gameObjectActiveList[m], Collider) == nullptr)
-				continue;
-
 			Collider* other = M_GetComponent(gameObjectActiveList[m], Collider);
+
+			if (other == nullptr)
+				continue;
 
 			collider->CheckCollision(*other);
 		}

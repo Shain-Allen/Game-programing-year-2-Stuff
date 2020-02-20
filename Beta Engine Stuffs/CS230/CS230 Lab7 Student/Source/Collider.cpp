@@ -20,8 +20,10 @@ void Collider::CheckCollision(const Collider& other)
 {
 	if (IsCollidingWith(other))
 	{
-		handler(*GetOwner(), *other.GetOwner());
-		other.handler(*other.GetOwner(), *GetOwner());
+		if (handler != nullptr)
+			handler(*GetOwner(), *other.GetOwner());
+		if(other.handler != nullptr)
+			other.handler(*other.GetOwner(), *GetOwner());
 	}
 }
 

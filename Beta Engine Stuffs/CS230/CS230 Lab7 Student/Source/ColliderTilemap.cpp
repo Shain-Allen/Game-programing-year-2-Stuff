@@ -27,7 +27,7 @@ bool ColliderTilemap::IsCollidingWith(const Collider& other) const
 {
 	using namespace Beta;
 
-	BoundingRectangle boundingRectangle = BoundingRectangle(other.transform->GetTranslation(), static_cast<const ColliderRectangle&>(other).GetExtents);
+	BoundingRectangle boundingRectangle = BoundingRectangle(other.transform->GetTranslation(), static_cast<const ColliderRectangle&>(other).GetExtents());
 
 	MapCollision mc(
 		IsSideColliding(boundingRectangle, RectangleSide::SideBottom),
@@ -37,25 +37,25 @@ bool ColliderTilemap::IsCollidingWith(const Collider& other) const
 
 	if (mc.bottom || mc.top)
 	{
-		M_GetOwnerComponent(Transform)->SetTranslationY(M_GetOwnerComponent(RigidBody)->GetOldTranslation().y);
+		other.transform->SetTranslationY(other.rigidbody->GetOldTranslation().y);
 
-		Vector2D yvelocityreset = Vector2D(M_GetOwnerComponent(RigidBody)->GetVelocity().x, 0.0f);
+		Vector2D yvelocityreset = Vector2D(other.rigidbody->GetVelocity().x, 0.0f);
 
-		M_GetOwnerComponent(RigidBody)->SetVelocity(yvelocityreset);
+		other.rigidbody->SetVelocity(yvelocityreset);
 	}
 
 	if (mc.left || mc.right)
 	{
-		M_GetOwnerComponent(Transform)->SetTranslationX(M_GetOwnerComponent(RigidBody)->GetOldTranslation().x);
+		other.transform->SetTranslationX(other.rigidbody->GetOldTranslation().x);
 
-		Vector2D xvelocityreset = Vector2D(0.0f, M_GetOwnerComponent(RigidBody)->GetVelocity().y);
+		Vector2D xvelocityreset = Vector2D(0.0f, other.rigidbody->GetVelocity().y);
 
-		M_GetOwnerComponent(RigidBody)->SetVelocity(xvelocityreset);
+		other.rigidbody->SetVelocity(xvelocityreset);
 	}
 
 	if (mc.left || mc.right || mc.top || mc.bottom)
 	{
-		if (other.GetMapCollisionHandler == nullptr)
+		if (other.GetMapCollisionHandler() == nullptr)
 			return false;
 
 		other.GetMapCollisionHandler()(*other.GetOwner(), mc);
@@ -71,40 +71,64 @@ void ColliderTilemap::SetTilemap(const Tilemap* map_)
 
 bool ColliderTilemap::IsSideColliding(const Beta::BoundingRectangle& rectangle, RectangleSide side) const
 {
-	float leftX = transform->GetTranslation().x - rectangle.extents.x * 0.5f;
-	float rightX = transform->GetTranslation().x + rectangle.extents.x * 0.5f;
-	float topY = transform->GetTranslation().y + rectangle.extents.y * 0.5f;
-	float bottomY = transform->GetTranslation().y - rectangle.extents.y * 0.5f;
+	float leftX = rectangle.center.x - rectangle.extents.x * 0.5f;
+	float rightX = rectangle.center.x + rectangle.extents.x * 0.5f;
+	float topY = rectangle.center.y + rectangle.extents.y * 0.5f;
+	float bottomY = rectangle.center.y - rectangle.extents.y * 0.5f;
 
 	switch (side)
 	{
 	case RectangleSide::SideBottom:
 		//check bottom side Hotspots
+		if (
 			//left
-				IsCollidingAtPosition(leftX, rectangle.bottom);
+			IsCollidingAtPosition(leftX, rectangle.bottom)
+			||
 			//right
-				IsCollidingAtPosition(leftX, rectangle.bottom);
+			IsCollidingAtPosition(rightX, rectangle.bottom)
+			)
+		{
+			return true;
+		}
 		break;
 	case RectangleSide::SideTop:
 		//check top hotspots
+		if (
 			//left
-				IsCollidingAtPosition(leftX, rectangle.top);
+			IsCollidingAtPosition(leftX, rectangle.top)
+			||
 			//right
-				IsCollidingAtPosition(rightX, rectangle.top);
+			IsCollidingAtPosition(rightX, rectangle.top)
+			)
+		{
+			return true;
+		}
 		break;
 	case RectangleSide::SideLeft:
 		//check left side hotspots
+		if(
 			//top
-				IsCollidingAtPosition(rectangle.left, topY);
+				IsCollidingAtPosition(rectangle.left, topY)
+			||
 			//bottom
-				IsCollidingAtPosition(rectangle.left, bottomY);
+				IsCollidingAtPosition(rectangle.left, bottomY)
+		  )
+		{
+			return true;
+		}
 		break;
 	case RectangleSide::SideRight:
 		//check right side Hotspots
+		if(
 			//top
-				IsCollidingAtPosition(rectangle.right, topY);
+				IsCollidingAtPosition(rectangle.right, topY)
+			||
 			//bottom
-				IsCollidingAtPosition(rectangle.right, bottomY);
+				IsCollidingAtPosition(rectangle.right, bottomY)
+			)
+		{
+			return true;
+		}
 		break;
 	default:
 		break;
@@ -118,21 +142,12 @@ bool ColliderTilemap::IsCollidingAtPosition(float x, float y) const
 
 	Vector2D point = M_GetOwnerComponent(Transform)->GetInverseMatrix() * Vector2D(x, y);
 
-	int columnindex = static_cast<int>(point.x);
-	int rowindex = static_cast<int>(point.y);
+	int columnindex = static_cast<int>(point.x + 0.5f);
+	int rowindex = static_cast<int>(-point.y + 0.5f);
 
 	if (map->GetCellValue(columnindex, rowindex) != 0)
 	{
 		return true;
 	}
 	return false;
-}
-
-void ColliderTilemap::ResolveCollisions(const Beta::BoundingRectangle& objectRectangle, Transform* objectTransform, RigidBody* objectRigidBody, const MapCollision& collisions) const
-{
-}
-
-float ColliderTilemap::GetNextTileCenter(RectangleSide side, float sidePosition) const
-{
-	return 0.0f;
 }
